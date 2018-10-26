@@ -1,7 +1,7 @@
 import javafx.stage.Stage;
 import javafx.application.*;
 
-public class mainok extends Application
+public class SnakevsBloc extends Application
 {
     public	static	void main(String[]	args)
     {
