@@ -18,10 +18,10 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <GridPane fx:id="Grid1" layoutY="8.0" prefHeight="533.0" prefWidth="398.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0">
+                  <GridPane fx:id="Grid1" layoutX="7.0" layoutY="7.0" prefHeight="533.0" prefWidth="398.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="7.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="43.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="201.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="190.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="145.0" />
                      </columnConstraints>
                      <rowConstraints>
@@ -40,6 +40,7 @@
                      <children>
                         <Label alignment="CENTER" prefHeight="48.0" prefWidth="205.0" text="SCORE" GridPane.columnIndex="1" />
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="149.0" text="DATE" GridPane.columnIndex="2" />
+                        <Button fx:id="backbt" mnemonicParsing="false" onAction="#back" text="BACK" />
                      </children>
                   </GridPane>
                </children>
