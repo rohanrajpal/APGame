@@ -3,7 +3,11 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
+import Model.LeaderBoardModel;
+import java.io.*;
+import Gui.LeaderBoard;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 public class ControllerMainMenu {
 
     @FXML
@@ -18,4 +22,10 @@ public class ControllerMainMenu {
     public void Message(ActionEvent actionEvent) {
         System.out.println("Whaat");
     }
+    public void leaderboard(ActionEvent actionEvent) throws IOException {
+
+       ControllerLeaderboard.leaderboard(actionEvent);
+
+    }
+
 }

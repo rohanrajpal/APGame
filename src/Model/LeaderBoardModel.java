@@ -2,41 +2,15 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-class LeaderBoardelements{
-    private int index;
-    private String name;
-    private Date Dateofcreation;
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDateofcreation() {
-        return Dateofcreation;
-    }
-
-    public void setDateofcreation(Date dateofcreation) {
-        Dateofcreation = dateofcreation;
-    }
-
-
-}
 public class LeaderBoardModel {
     private ArrayList<LeaderBoardelements> Leaders;
-
+    private static final long serialVersionUID=43L;
     public LeaderBoardModel() {
         Leaders = new ArrayList<>();
     }
@@ -48,4 +22,30 @@ public class LeaderBoardModel {
     public void setLeaders(ArrayList<LeaderBoardelements> leaders) {
         Leaders = leaders;
     }
+    public	static	void serialize(LeaderBoardModel d) throws IOException	{
+        ObjectOutputStream out	=	null;
+        try	{
+            FileOutputStream file = new FileOutputStream("storage/LeaderBoardModel.txt");
+            out = new ObjectOutputStream(file);
+            out.writeObject(d);
+        }
+        finally	{
+            out.close();
+        }
+    }
+    public	static	LeaderBoardModel deserialize() throws IOException,ClassNotFoundException {
+        ObjectInputStream	in	=	null;
+        LeaderBoardModel s1=new LeaderBoardModel();
+        try	{
+
+            FileInputStream file = new FileInputStream("storage/LeaderBoardModel.txt");
+            in = new ObjectInputStream(file);
+            s1	=	(LeaderBoardModel)in.readObject();
+        }
+        finally	{
+            in.close();
+        }
+        return s1;
+    }
+
 }
