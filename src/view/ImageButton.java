@@ -1,12 +1,13 @@
 package view;
 
 import controller.ControllerLeaderboard;
+import controller.ControllerMainMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;;
+import javafx.scene.input.MouseEvent;;import java.io.IOException;
 
 public class ImageButton extends Button {
 
@@ -51,6 +52,23 @@ public class ImageButton extends Button {
                 if(interim.equals("back")){
                     interim=" ";
                     ControllerLeaderboard.back(event);
+                }
+                if(interim.equals("start")){
+                    interim=" ";
+                    ControllerMainMenu.start();
+                }
+                if(interim.equals("leaderboard"))  {
+                    interim=" ";
+                    try {
+                        ControllerMainMenu.leaderboard(event);
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                }
+                if(interim.equals("resume")){
+                    interim=" ";
+                    ControllerMainMenu.resume();
                 }
             }
         });

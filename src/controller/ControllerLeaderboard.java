@@ -1,13 +1,10 @@
 package controller;
 
-import Gui.LeaderBoard;
-import javafx.scene.image.ImageView;
 import Gui.StartPage;
 import Model.LeaderBoardModel;
 import Model.LeaderBoardelements;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -15,13 +12,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import java.text.*;
+import view.ImageButton;
+
 import java.io.IOException;
-import java.util.Date;
-import javafx.fxml.Initializable;
-import view.ImageButton;;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
+
+;
 
 
 public class ControllerLeaderboard implements Initializable {
@@ -32,7 +32,7 @@ public class ControllerLeaderboard implements Initializable {
     }
     public static void back(MouseEvent event){
         StartPage gui=new StartPage();
-        gui.start((Stage) ((Node) event.getSource()).getScene().getWindow());
+        gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
 
     }
     public  void leaderboard() throws IOException {

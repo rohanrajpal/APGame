@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,11 +11,23 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerMainMenu">
    <children>
-      <Pane prefHeight="600.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane fx:id="pane1" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="stGame" layoutX="112.0" layoutY="138.0" mnemonicParsing="false" onAction="#Message" text="Start Game" />
-            <Button fx:id="btLeaderBoard" layoutX="109.0" layoutY="188.0" mnemonicParsing="false" onAction="#leaderboard" text="Leaderboard" />
-            <Button fx:id="btResume" layoutX="104.0" layoutY="243.0" mnemonicParsing="false" text="Resume Game" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="82.0" prefHeight="86.0" prefWidth="194.0" text="SNAKE" textAlignment="CENTER" textFill="GOLD" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font name="MS Gothic" size="50.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="175.0" layoutY="174.0" text="VS" textAlignment="CENTER" textFill="GOLD">
+               <font>
+                  <Font name="MS Gothic" size="50.0" />
+               </font>
+            </Label>
+            <Label layoutX="145.0" layoutY="248.0" text="BLOCK" textFill="GOLD">
+               <font>
+                  <Font name="MS Gothic" size="50.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
