@@ -1,5 +1,7 @@
+import Gui.StartPage;
 import javafx.stage.Stage;
 import javafx.application.*;
+import javafx.stage.StageStyle;
 
 public class SnakevsBloc extends Application
 {
@@ -9,5 +11,14 @@ public class SnakevsBloc extends Application
     }
     @Override
         public	void	start(Stage	primaryStage)	{
+        try{
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+        }
+        catch (Exception e){
+
+        }
+        StartPage gui=new StartPage();
+        gui.show(primaryStage);
+
     }
 }

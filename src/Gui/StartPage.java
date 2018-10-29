@@ -1,5 +1,7 @@
 package Gui;
 
+import controller.ControllerLeaderboard;
+import controller.ControllerMainMenu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,24 +14,10 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
-public class StartPage extends Application {
-    private Stage primaryStage;
+public class StartPage{
     private AnchorPane rootLayout;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        try{
-            primaryStage.initStyle(StageStyle.TRANSPARENT);
-        }
-        catch (Exception e){
-
-        }
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Main Menu");
+    public StartPage(){
         initmainlayout();
     }
 
@@ -46,20 +34,23 @@ public class StartPage extends Application {
                     mousecordinates.yOffset = event.getSceneY();
                 }
             });
-            rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    primaryStage.setX(event.getScreenX() - mousecordinates.xOffset);
-                    primaryStage.setY(event.getScreenY() - mousecordinates.yOffset);
-                }
-            });
-            // Show the scene containing the root layout
-            Scene scene = new Scene(rootLayout);
-            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            ControllerMainMenu controller = loader.getController();
+            controller.init();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void show(Stage primaryStage){
+        rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - mousecordinates.xOffset);
+                primaryStage.setY(event.getScreenY() - mousecordinates.yOffset);
+            }
+        });
+        Scene scene = new Scene(rootLayout);
+        scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
