@@ -55,7 +55,7 @@ public class ImageButton extends Button {
                 }
                 if(interim.equals("start")){
                     interim=" ";
-                    ControllerMainMenu.start();
+                    ControllerMainMenu.start(event);
                 }
                 if(interim.equals("leaderboard"))  {
                     interim=" ";

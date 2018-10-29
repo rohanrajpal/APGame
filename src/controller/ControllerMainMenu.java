@@ -1,5 +1,6 @@
 package controller;
 
+import Gui.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,8 +50,10 @@ public class ControllerMainMenu  implements Initializable {
         LeaderBoard gui=new LeaderBoard();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
-    public static void start(){
-
+    public static void start(MouseEvent actionEvent){
+        Game gui=new Game();
+        gui.createNewGame();
+        gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
     public static void resume(){
 
