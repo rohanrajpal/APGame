@@ -16,20 +16,44 @@ import java.io.FileNotFoundException;
 import static javafx.scene.text.Font.font;
 
 public class Token extends Label {
-    public static final String Back_src = "view/Blocks/block_yellow.png";
+    private static final String AddTail_src = "view/tokens/token_addtail.png";
+    private static final String DestroyAll_src = "view/tokens/token_destroyall.png";
+    private static final String Magnet_src = "view/tokens/token_magnet.png";
+    private static final String Shield_src = "view/Blocks/block_yellow.png";
     private static final String BLOCK_FONT = "src/view/Font/Proxima_Font.otf";
-    public Token(String text) {
+    public Token(String text,int option) {
         super(text);
 
         setPrefWidth(40);
         setPrefHeight(40);
+        BackgroundImage bImage=null;
+        if (option == 1){
+            setBlockLabelFont();
+            setAlignment(Pos.CENTER);
+        }
+        switch (option){
+            case 1:
+                bImage = new BackgroundImage(new Image(AddTail_src,40,40,
+                        false,true), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
+                break;
+            case 2:
+                bImage = new BackgroundImage(new Image(DestroyAll_src,40,40,
+                        false,true), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
+                break;
+            case 3:
+                bImage = new BackgroundImage(new Image(Magnet_src,40,40,
+                        false,true), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
+                break;
 
-        setBlockLabelFont();
-        setAlignment(Pos.CENTER);
+            case 4:
+                bImage = new BackgroundImage(new Image(Shield_src,40,40,
+                        false,true), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
 
-        BackgroundImage bImage = new BackgroundImage(new Image(Back_src,80,80,
-                false,true), BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
+        }
 
         setBackground(new Background(bImage));
     }
