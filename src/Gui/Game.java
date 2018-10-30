@@ -1,11 +1,14 @@
 package Gui;
 
+import Model.GameModel;
 import Model.mousecordinates;
 import controller.ControllerGame;
 import controller.ControllerLeaderboard;
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -13,8 +16,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Game {
     private static final int GAME_WIDTH =400 ;
@@ -23,11 +28,14 @@ public class Game {
     private Scene gameScene;
     private boolean isLeftKeyPressed;
     private boolean isRightKeyPressed;
-    private ImageView snake;
-    
+    private ArrayList<ImageView> snake;
+    private GameModel GameStructure;
     private AnimationTimer TimerGame;
 
-    public Game(){
+    public Game(GameModel G){
+        this.GameStructure=G;
+        this.GameStructure.getSnake().setlength(5);
+        snake=new ArrayList<>();
         initmainlayout();
         createKeyListeners();
 
@@ -107,26 +115,56 @@ public class Game {
     private void moveSnake(){
 //        System.out.println(angle);
         if (isLeftKeyPressed && !isRightKeyPressed){
+            for(int i=0;i<GameStructure.getSnake().getlength();i++) {
+                if (snake.get(i).getLayoutX() > 0) {
+                    ImageView p=snake.get(i);
+                    final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1)*(100)),p);
+                    transition.setFromX(p.getTranslateX());
+                    transition.setFromY(p.getTranslateY());
+                    transition.setToX(p.getTranslateX()-3);
+                    transition.setToY(p.getTranslateY());
+                    transition.playFromStart();
+                    transition.setOnFinished(t -> {
+                        p.setLayoutX(p.getLayoutX() - 3);
+                        p.setLayoutY(p.getLayoutY());
+                    });
 
-            if (snake.getLayoutX() > 0){
-                snake.setLayoutX(snake.getLayoutX() - 3);
+                    //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - 3);
+                }
             }
         }
 
-        if (isRightKeyPressed && !isLeftKeyPressed){
+        if (isRightKeyPressed && !isLeftKeyPressed) {
 
-            if (snake.getLayoutX()<369){
-                snake.setLayoutX(snake.getLayoutX()+3);
+                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
+                    if (snake.get(i).getLayoutX() < 369) {
+                    ImageView p = snake.get(i);
+                    final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
+                    transition.setFromX(p.getTranslateX());
+                    transition.setFromY(p.getTranslateY());
+                    transition.setToX(p.getTranslateX() + 3);
+                    transition.setToY(p.getTranslateY());
+                    transition.playFromStart();
+                    transition.setOnFinished(t -> {
+                        p.setLayoutX(p.getLayoutX() + 3);
+                        p.setLayoutY(p.getLayoutY());
+                    });
+
+                    //snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
+                }
             }
         }
+        }
 
-    }
+
+
 
     private void createSnake() {
-        snake = new ImageView("/view/snake_tail.png");
-        snake.setLayoutX(178);
-        snake.setLayoutY(315);
-
-        rootLayout.getChildren().add(snake);
+        for(int i=0;i<GameStructure.getSnake().getlength();i++) {
+            snake.add(new ImageView("/view/snake_tail.png"));
+            snake.get(i).setLayoutX(178);
+            snake.get(i).setLayoutY(315+(i*20));
+            rootLayout.getChildren().add(snake.get(i));
+        }
     }
 }
