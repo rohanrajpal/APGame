@@ -1,5 +1,6 @@
 package Gui;
 
+import Model.Block;
 import Model.GameModel;
 import Model.mousecordinates;
 import controller.ControllerGame;
@@ -20,6 +21,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     private static final int GAME_WIDTH =400 ;
@@ -32,13 +34,18 @@ public class Game {
     private GameModel GameStructure;
     private AnimationTimer TimerGame;
 
+    private Block[] blockslist;
+    private int[] blockPositions;
+    Random randomPositionDecider;
+
     public Game(GameModel G){
         this.GameStructure=G;
         this.GameStructure.getSnake().setlength(5);
         snake=new ArrayList<>();
         initmainlayout();
         createKeyListeners();
-
+        randomPositionDecider = new Random();
+        blockPositions = new int[]{40, 120, 200, 280, 360};
     }
     private void initmainlayout() {
         try {
@@ -100,6 +107,26 @@ public class Game {
     public void createNewGame() {
         createSnake();
         createGameLoop();
+        createBlocks();
+    }
+
+    private void createBlocks() {
+        int k=(randomPositionDecider.nextInt(4))+1;
+        blockslist = new Block[(int)k];
+
+        for (int i=0;i<blockslist.length;i++){
+            int value = randomPositionDecider.nextInt(50);
+            blockslist[i] = new Block(Integer.toString(value));
+            setNewElementsPosition(blockslist[i]);
+            rootLayout.getChildren().add(blockslist[i]);
+        }
+
+
+    }
+
+    private void setNewElementsPosition(Block block) {
+        block.setLayoutX(blockPositions[randomPositionDecider.nextInt(blockPositions.length-1)+1]);
+        block.setLayoutY(0);
     }
 
     private void createGameLoop() {
@@ -107,9 +134,25 @@ public class Game {
             @Override
             public void handle(long now) {
                 moveSnake();
+                moveBlocks();
+                relocateblocksbelowscreen();
             }
         };
         TimerGame.start();
+    }
+
+    private void relocateblocksbelowscreen() {
+        for (int i=0;i<blockslist.length;i++){
+            if (blockslist[i].getLayoutY()>550){
+                setNewElementsPosition(blockslist[i]);
+            }
+        }
+    }
+
+    private void moveBlocks() {
+        for (int i=0;i<blockslist.length;i++){
+            blockslist[i].setLayoutY(blockslist[i].getLayoutY()+3.5);
+        }
     }
 
     private void moveSnake(){
@@ -161,14 +204,11 @@ public class Game {
 
     }
 
-
-
-
     private void createSnake() {
         for(int i=0;i<GameStructure.getSnake().getlength();i++) {
             snake.add(new ImageView("/view/snake_tail.png"));
-            snake.get(i).setLayoutX(178);
-            snake.get(i).setLayoutY(315+(i*20));
+            snake.get(i).setLayoutX(168);
+            snake.get(i).setLayoutY(375+(i*20));
             rootLayout.getChildren().add(snake.get(i));
         }
     }
