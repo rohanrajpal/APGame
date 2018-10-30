@@ -2,6 +2,7 @@ package Gui;
 
 import Model.Block;
 import Model.GameModel;
+import Model.Token;
 import Model.mousecordinates;
 import controller.ControllerGame;
 import controller.ControllerLeaderboard;
@@ -35,6 +36,7 @@ public class Game {
     private AnimationTimer TimerGame;
 
     private Block[] blockslist;
+    private Token[] tokenslist;
     private int[] blockPositions;
     Random randomPositionDecider;
 
@@ -108,6 +110,25 @@ public class Game {
         createSnake();
         createGameLoop();
         createBlocks();
+        createTokens();
+
+    }
+
+    private void createTokens() {
+        int k=(randomPositionDecider.nextInt(4))+1;
+        tokenslist = new Token[k];
+
+        for (int i=0;i<tokenslist.length;i++){
+            int option = randomPositionDecider.nextInt(4)+1;
+            int value = randomPositionDecider.nextInt(5);
+            tokenslist[i] = new Token(Integer.toString(value),option);
+            setNewElementsPosition(tokenslist[i]);
+        }
+    }
+
+    private void setNewElementsPosition(Token token) {
+        token.setLayoutY(80);
+        token.setLayoutX(blockPositions[randomPositionDecider.nextInt(blockPositions.length-1)+1]);
     }
 
     private void createBlocks() {
