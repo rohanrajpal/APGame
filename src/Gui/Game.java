@@ -113,48 +113,53 @@ public class Game {
     }
 
     private void moveSnake(){
-//        System.out.println(angle);
+//
         if (isLeftKeyPressed && !isRightKeyPressed){
-            for(int i=0;i<GameStructure.getSnake().getlength();i++) {
-                if (snake.get(i).getLayoutX() > 0) {
-                    ImageView p=snake.get(i);
-                    final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1)*(100)),p);
+            if(snake.get(0).getLayoutX()>20) {
+                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
+
+                    ImageView p = snake.get(i);
+                    final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
+                    if (p.getLayoutX() == 33) {
+
+                        transition.stop();
+                    }
                     transition.setFromX(p.getTranslateX());
                     transition.setFromY(p.getTranslateY());
-                    transition.setToX(p.getTranslateX()-3);
+                    transition.setToX(p.getTranslateX());
                     transition.setToY(p.getTranslateY());
                     transition.playFromStart();
                     transition.setOnFinished(t -> {
-                        p.setLayoutX(p.getLayoutX() - 3);
+                        p.setLayoutX(p.getLayoutX() - (3));
                         p.setLayoutY(p.getLayoutY());
                     });
 
+
                     //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - 3);
+
                 }
             }
         }
 
         if (isRightKeyPressed && !isLeftKeyPressed) {
-
+            if(snake.get(0).getLayoutX()<349) {
                 for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
-                    if (snake.get(i).getLayoutX() < 369) {
                     ImageView p = snake.get(i);
                     final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
                     transition.setFromX(p.getTranslateX());
                     transition.setFromY(p.getTranslateY());
-                    transition.setToX(p.getTranslateX() + 3);
+                    transition.setToX(p.getTranslateX());
                     transition.setToY(p.getTranslateY());
                     transition.playFromStart();
                     transition.setOnFinished(t -> {
                         p.setLayoutX(p.getLayoutX() + 3);
                         p.setLayoutY(p.getLayoutY());
                     });
-
-                    //snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
-                }
+                }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
             }
         }
-        }
+
+    }
 
 
 
