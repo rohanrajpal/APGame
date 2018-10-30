@@ -1,6 +1,8 @@
 package controller;
 
 import Gui.Game;
+import Model.GameModel;
+import Model.SnakeModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,7 +53,7 @@ public class ControllerMainMenu  implements Initializable {
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
     public static void start(MouseEvent actionEvent){
-        Game gui=new Game();
+        Game gui=new Game(new GameModel(new SnakeModel()));
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
