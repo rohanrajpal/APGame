@@ -115,15 +115,7 @@ public class Game {
     }
 
     private void createTokens() {
-        int k=(randomPositionDecider.nextInt(4))+1;
-        tokenslist = new Token[k];
 
-        for (int i=0;i<tokenslist.length;i++){
-            int option = randomPositionDecider.nextInt(4)+1;
-            int value = randomPositionDecider.nextInt(5);
-            tokenslist[i] = new Token(Integer.toString(value),option);
-            setNewElementsPosition(tokenslist[i]);
-        }
     }
 
     private void setNewElementsPosition(Token token) {
@@ -142,7 +134,23 @@ public class Game {
             rootLayout.getChildren().add(blockslist[i]);
         }
 
+        k=(randomPositionDecider.nextInt(4))+1;
+        tokenslist = new Token[k];
 
+        for (int i=0;i<tokenslist.length;i++){
+            int option = randomPositionDecider.nextInt(4)+1;
+            int value = randomPositionDecider.nextInt(5)+1;
+
+            if (option == 1){
+                tokenslist[i] = new Token(Integer.toString(value),option);
+            }
+            else{
+                tokenslist[i] = new Token("",option);
+            }
+
+            setNewElementsPosition(tokenslist[i]);
+            rootLayout.getChildren().add(tokenslist[i]);
+        }
     }
 
     private void setNewElementsPosition(Block block) {
@@ -157,15 +165,27 @@ public class Game {
                 moveSnake();
                 moveBlocks();
                 relocateblocksbelowscreen();
+                movePowerUps();
             }
         };
         TimerGame.start();
+    }
+
+    private void movePowerUps() {
+        for (int i=0;i<tokenslist.length;i++){
+            tokenslist[i].setLayoutY(tokenslist[i].getLayoutY()+3.5);
+        }
     }
 
     private void relocateblocksbelowscreen() {
         for (int i=0;i<blockslist.length;i++){
             if (blockslist[i].getLayoutY()>550){
                 setNewElementsPosition(blockslist[i]);
+            }
+        }
+        for (int i=0;i< tokenslist.length;i++){
+            if (tokenslist[i].getLayoutY()>550){
+                setNewElementsPosition(tokenslist[i]);
             }
         }
     }
