@@ -211,7 +211,7 @@ public class Game {
 //
         if (isLeftKeyPressed && !isRightKeyPressed){
             if(snake.get(0).getLayoutX()>20) {
-                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
+                for (int i = 0; i < snake.size(); i++) {
 
                     ImageView p = snake.get(i);
                     final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
@@ -238,7 +238,8 @@ public class Game {
 
         if (isRightKeyPressed && !isLeftKeyPressed) {
             if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
-                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
+//                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
+                    for (int i = 0; i < snake.size(); i++) {
                     ImageView p = snake.get(i);
                     final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
                     transition.setFromX(p.getTranslateX());
@@ -275,11 +276,12 @@ public class Game {
 //                System.out.println(blockslist[i].getPrefWidth());
                 System.out.println(snake.get(0).getFitHeight());
                 points+=blockslist[i].getValue();
-//                for (int r=0;r<blockslist[i].getValue();r++){
-//                    if (snake.size()!=1){
-//                        snake.remove(snake.size()-1);
-//                    }
-//                }
+                for (int r=0;r<blockslist[i].getValue();r++){
+                    if (snake.size()!=1){
+                        rootLayout.getChildren().remove(snake.remove(snake.size()-1));
+
+                    }
+                }
                 String newScore =  "Score: ";
                 scoreLabelText.setText(newScore+points);
             }
