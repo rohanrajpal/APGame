@@ -1,9 +1,6 @@
 package Gui;
 
-import Model.Block;
-import Model.GameModel;
-import Model.Token;
-import Model.mousecordinates;
+import Model.*;
 import controller.ControllerGame;
 import controller.ControllerLeaderboard;
 import javafx.animation.AnimationTimer;
@@ -28,10 +25,11 @@ public class Game {
     private static final int GAME_WIDTH =400 ;
     private static final int GAME_HEIGHT = 600;
 
-    private final static int SNAKEHEAD_RADIUS=10;
-    private final static int BLOCK_RADIUS=10;
+    private final static int SNAKEHEAD_RADIUS=20;
+    private final static int BLOCK_RADIUS=40;
     private final static int TOKEN_RADIUS=10;
 
+    private ScoreLabel scoreLabelText;
     private int points=0;
 
     private Pane rootLayout;
@@ -117,13 +115,18 @@ public class Game {
         createSnake();
         createGameLoop();
         createBlocks();
-        createTokens();
+        createscoreLabelText();
 
     }
 
-    private void createTokens() {
+    private void createscoreLabelText() {
+        scoreLabelText = new ScoreLabel("Score : 00");
+        scoreLabelText.setLayoutY(20);
+        scoreLabelText.setLayoutX(20);
 
+        rootLayout.getChildren().add(scoreLabelText);
     }
+
 
     private void setNewElementsPosition(Token token) {
         token.setLayoutY(80);
@@ -173,6 +176,7 @@ public class Game {
                 moveBlocks();
                 relocateblocksbelowscreen();
                 movePowerUps();
+                checkIfElementsCollide();
             }
         };
         TimerGame.start();
@@ -263,10 +267,21 @@ public class Game {
 
     private void checkIfElementsCollide(){
         for (int i=0;i<blockslist.length;i++){
-            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX(),blockslist[i].getLayoutX(),
-                    snake.get(0).getLayoutY(),blockslist[i].getLayoutY())){
+            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
+                    ,blockslist[i].getLayoutX()+blockslist[i].getPrefWidth()/2,
+                    snake.get(0).getLayoutY()+ 20,
+                    blockslist[i].getLayoutY()+ blockslist[i].getPrefHeight()/2)){
                 setNewElementsPosition(blockslist[i]);
+//                System.out.println(blockslist[i].getPrefWidth());
+                System.out.println(snake.get(0).getFitHeight());
                 points+=blockslist[i].getValue();
+//                for (int r=0;r<blockslist[i].getValue();r++){
+//                    if (snake.size()!=1){
+//                        snake.remove(snake.size()-1);
+//                    }
+//                }
+                String newScore =  "Score: ";
+                scoreLabelText.setText(newScore+points);
             }
         }
 
