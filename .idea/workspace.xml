@@ -14,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Token.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -137,14 +138,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="17" />
-          <entry key="java" value="2533" />
-          <entry key="txt" value="115" />
+          <entry key="java" value="2798" />
+          <entry key="txt" value="156" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2533" />
-          <entry key="PLAIN_TEXT" value="115" />
+          <entry key="JAVA" value="2798" />
+          <entry key="PLAIN_TEXT" value="156" />
           <entry key="XML" value="17" />
         </counts>
       </usages-collector>
@@ -159,8 +160,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="241" column="53" selection-start-line="241" selection-start-column="53" selection-end-line="241" selection-end-column="53" />
+            <state relative-caret-position="435">
+              <caret line="301" column="69" lean-forward="true" selection-start-line="301" selection-start-column="69" selection-end-line="301" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -215,10 +216,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="65" selection-end-column="9" />
+            <state relative-caret-position="535">
+              <caret line="75" column="43" selection-start-line="75" selection-start-column="43" selection-end-line="75" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2613#2614#0" expanded="true" />
+                <element signature="e#2642#2643#0" expanded="true" />
+                <element signature="e#2674#2675#0" expanded="true" />
+                <element signature="e#2703#2704#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -268,10 +273,10 @@
         <option value="$PROJECT_DIR$/src/controller/ControllerMainMenu.java" />
         <option value="$PROJECT_DIR$/src/Model/SnakeModel.java" />
         <option value="$PROJECT_DIR$/src/view/GAMELAYOUT.fxml" />
-        <option value="$PROJECT_DIR$/src/Model/Token.java" />
         <option value="$PROJECT_DIR$/src/Model/Block.java" />
         <option value="$PROJECT_DIR$/src/Model/ScoreLabel.java" />
         <option value="$PROJECT_DIR$/src/view/checkingpositon.fxml" />
+        <option value="$PROJECT_DIR$/src/Model/Token.java" />
         <option value="$PROJECT_DIR$/src/Gui/Game.java" />
       </list>
     </option>
@@ -376,7 +381,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541005465660" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541006189094" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -576,7 +581,7 @@
       <workItem from="1540910496468" duration="100000" />
       <workItem from="1540913515255" duration="9655000" />
       <workItem from="1540970324360" duration="3681000" />
-      <workItem from="1541000521239" duration="4871000" />
+      <workItem from="1541000521239" duration="5477000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -620,11 +625,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541005177614</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Reducing length of snake on collision">
+      <created>1541005507750</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1541005507750</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28721000" />
+    <option name="totallyTimeSpent" value="29327000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -643,7 +655,7 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49932885" visible="true" weight="0.32719547" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49932885" weight="0.32719547" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -731,7 +743,8 @@
     <MESSAGE value="Added tokens" />
     <MESSAGE value="Mini collision" />
     <MESSAGE value="Implemented collision logic and made a score label" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented collision logic and made a score label" />
+    <MESSAGE value="Reducing length of snake on collision" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reducing length of snake on collision" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Gui/StartPageGui.java" />
@@ -867,16 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="65" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/ScoreLabel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -913,10 +916,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="75" column="43" selection-start-line="75" selection-start-column="43" selection-end-line="75" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2613#2614#0" expanded="true" />
+            <element signature="e#2642#2643#0" expanded="true" />
+            <element signature="e#2674#2675#0" expanded="true" />
+            <element signature="e#2703#2704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="241" column="53" selection-start-line="241" selection-start-column="53" selection-end-line="241" selection-end-column="53" />
+        <state relative-caret-position="435">
+          <caret line="301" column="69" lean-forward="true" selection-start-line="301" selection-start-column="69" selection-end-line="301" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
