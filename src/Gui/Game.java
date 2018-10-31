@@ -274,7 +274,7 @@ public class Game {
                     blockslist[i].getLayoutY()+ blockslist[i].getPrefHeight()/2)){
                 setNewElementsPosition(blockslist[i]);
 //                System.out.println(blockslist[i].getPrefWidth());
-                System.out.println(snake.get(0).getFitHeight());
+//                System.out.println(snake.get(0).getFitHeight());
                 points+=blockslist[i].getValue();
                 for (int r=0;r<blockslist[i].getValue();r++){
                     if (snake.size()!=1){
@@ -284,6 +284,25 @@ public class Game {
                 }
                 String newScore =  "Score: ";
                 scoreLabelText.setText(newScore+points);
+            }
+        }
+
+        for (int j=0;j<tokenslist.length;j++){
+            if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
+                    tokenslist[j].getLayoutX()+tokenslist[j].getPrefWidth()/2,
+                    snake.get(0).getLayoutY()+ 20,
+                    tokenslist[j].getLayoutY()+tokenslist[j].getPrefHeight()/2)) {
+
+                setNewElementsPosition(tokenslist[j]);
+
+                if (tokenslist[j].getOption() == 1) {
+                    int lenToInc = tokenslist[j].getValue();
+
+                    for (int k = 0; k < lenToInc; k++) {
+                        snake.add(new ImageView("/view/snake_tail.png"));
+                        rootLayout.getChildren().add(snake.get(snake.size() - 1));
+                    }
+                }
             }
         }
 

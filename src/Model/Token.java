@@ -21,9 +21,11 @@ public class Token extends Label {
     private static final String Magnet_src = "view/tokens/token_magnet.png";
     private static final String Shield_src = "view/tokens/token_shield.png";
     private static final String BLOCK_FONT = "src/view/Font/Proxima_Font.otf";
+
+    private int option;
     public Token(String text,int option) {
         super(text);
-
+        this.option = option;
         setPrefWidth(40);
         setPrefHeight(40);
         BackgroundImage bImage=null;
@@ -64,6 +66,14 @@ public class Token extends Label {
         } catch (FileNotFoundException e) {
             setFont(font("Verdana",20));
         }
+    }
+
+    public int getOption() {
+        return option;
+    }
+
+    public int getValue(){
+        return Integer.parseInt(getText());
     }
 }
 
