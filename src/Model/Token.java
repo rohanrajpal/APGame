@@ -19,7 +19,7 @@ public class Token extends Label {
     private static final String AddTail_src = "view/tokens/token_addtail.png";
     private static final String DestroyAll_src = "view/tokens/token_destroyall.png";
     private static final String Magnet_src = "view/tokens/token_magnet.png";
-    private static final String Shield_src = "view/Blocks/block_yellow.png";
+    private static final String Shield_src = "view/tokens/token_shield.png";
     private static final String BLOCK_FONT = "src/view/Font/Proxima_Font.otf";
     public Token(String text,int option) {
         super(text);
