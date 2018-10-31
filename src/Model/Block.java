@@ -43,4 +43,8 @@ public class Block extends Label {
             setFont(font("Verdana",20));
         }
     }
+
+    public int getValue(){
+        return Integer.parseInt(getText());
+    }
 }

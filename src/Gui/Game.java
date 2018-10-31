@@ -27,6 +27,13 @@ import java.util.Random;
 public class Game {
     private static final int GAME_WIDTH =400 ;
     private static final int GAME_HEIGHT = 600;
+
+    private final static int SNAKEHEAD_RADIUS=10;
+    private final static int BLOCK_RADIUS=10;
+    private final static int TOKEN_RADIUS=10;
+
+    private int points=0;
+
     private Pane rootLayout;
     private Scene gameScene;
     private boolean isLeftKeyPressed;
@@ -128,7 +135,7 @@ public class Game {
         blockslist = new Block[(int)k];
 
         for (int i=0;i<blockslist.length;i++){
-            int value = randomPositionDecider.nextInt(50);
+            int value = randomPositionDecider.nextInt(5);
             blockslist[i] = new Block(Integer.toString(value));
             setNewElementsPosition(blockslist[i]);
             rootLayout.getChildren().add(blockslist[i]);
@@ -252,5 +259,20 @@ public class Game {
             snake.get(i).setLayoutY(375+(i*20));
             rootLayout.getChildren().add(snake.get(i));
         }
+    }
+
+    private void checkIfElementsCollide(){
+        for (int i=0;i<blockslist.length;i++){
+            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX(),blockslist[i].getLayoutX(),
+                    snake.get(0).getLayoutY(),blockslist[i].getLayoutY())){
+                setNewElementsPosition(blockslist[i]);
+                points+=blockslist[i].getValue();
+            }
+        }
+
+    }
+
+    private double calcculateDistance(double x1,double x2,double y1,double y2){
+        return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
     }
 }
