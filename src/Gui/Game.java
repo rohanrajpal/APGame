@@ -226,7 +226,7 @@ public class Game {
         }
 
         if (isRightKeyPressed && !isLeftKeyPressed) {
-            if(snake.get(0).getLayoutX()<349) {
+            if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
                 for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
                     ImageView p = snake.get(i);
                     final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
