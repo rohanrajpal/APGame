@@ -316,7 +316,7 @@ public class Game {
         for(int i=0;i<GameStructure.getSnake().getlength();i++) {
             snake.add(new ImageView("/view/snake_tail.png"));
             snake.get(i).setLayoutX(168);
-            snake.get(i).setLayoutY(375+(i*20));
+            snake.get(i).setLayoutY(375+(i*33));
             rootLayout.getChildren().add(snake.get(i));
         }
     }
@@ -326,16 +326,19 @@ public class Game {
             if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
                     ,blockslist[i].getLayoutX()+blockslist[i].getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
-                    blockslist[i].getLayoutY()+ blockslist[i].getPrefHeight()/2)){
-                    rootLayout.getChildren().remove(blockslist[i]);
-//                System.out.println(blockslist[i].getPrefWidth());
-//                System.out.println(snake.get(0).getFitHeight());
+                    blockslist[i].getLayoutY()+ blockslist[i].getPrefHeight()/2))
+            {
+                setNewElementsPosition(blockslist[i]);
+                points+=blockslist[i].getValue();
+                System.out.println(blockslist[i].getValue());
 
                 for (int r=0;r<blockslist[i].getValue();r++){
                     if (snake.size()!=1){
                         rootLayout.getChildren().remove(snake.remove(snake.size()-1));
                     }
                 }
+                String newScore =  "Score: ";
+                scoreLabelText.setText(newScore+points);
 
             }
         }
@@ -351,15 +354,15 @@ public class Game {
                     int lenToInc = tokenslist[j].getValue();
 
                     for (int k = 0; k < lenToInc; k++) {
-//                            snake.add(new ImageView("/view/snake_tail.png"));
-//                            snake.get(snake.size() - 1).setLayoutX(snake.get(snake.size() - 2).getLayoutX());
-//                            snake.get(snake.size() - 1).setLayoutY(snake.get(snake.size() - 2).getLayoutY() + 20);
-//                            rootLayout.getChildren().add(snake.get(snake.size() - 1));
+                            double toSetX = snake.get(snake.size() - 1).getLayoutX();
+                            double toSetY = snake.get(snake.size() - 1).getLayoutY() + 33;
+                            snake.add(new ImageView("/view/snake_tail.png"));
+                            snake.get(snake.size() - 1).setLayoutX(toSetX);
+                            snake.get(snake.size() - 1).setLayoutY(toSetY);
+                            rootLayout.getChildren().add(snake.get(snake.size() - 1));
                     }
-                    points+=tokenslist[j].getValue();
                 }
-                String newScore =  "Score: ";
-                scoreLabelText.setText(newScore+points);
+
             }
         }
 
