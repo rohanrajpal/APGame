@@ -167,7 +167,7 @@ public class Game {
         blockslist=new Block[(int)k];
 
         for (int i=0;i<blockslist.length;i++){
-            int value = randomPositionDecider.nextInt(5);
+            int value = randomPositionDecider.nextInt(5)+1;
             blockslist[i] = new Block(Integer.toString(value));
             setNewElementsPosition(blockslist[i]);
             rootLayout.getChildren().add(blockslist[i]);
@@ -230,19 +230,24 @@ public class Game {
         }
     }
     private void relocateelementsbelowscreen() {
-
-            if (blockslist[0].getLayoutY()>550){
-                for (int i=0;i<blockslist.length;i++) {
-                    rootLayout.getChildren().remove(blockslist[i]);
+            for(int j=0;j<blockslist.length;j++) {
+                if (blockslist[j].getLayoutY() > 550) {
+                    for (int i = 0; i < blockslist.length; i++) {
+                        rootLayout.getChildren().remove(blockslist[i]);
+                    }
+                    createBlocks();
+                    break;
                 }
-                createBlocks();
             }
-            if (tokenslist[0].getLayoutY()>550){
-                for (int i=0;i< tokenslist.length;i++) {
+        for(int j=0;j<tokenslist.length;j++) {
+            if (tokenslist[0].getLayoutY() > 550) {
+                for (int i = 0; i < tokenslist.length; i++) {
                     rootLayout.getChildren().remove(tokenslist[i]);
                 }
                 createTokens();
+                break;
             }
+        }
              for(int k=0;k<walllist.length;k++){
                 if (walllist[k].getWalls().get(0).getLayoutY()>550) {
                     for (int i = 0; i < walllist[k].getLength(); i++) {
@@ -322,7 +327,7 @@ public class Game {
                     ,blockslist[i].getLayoutX()+blockslist[i].getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     blockslist[i].getLayoutY()+ blockslist[i].getPrefHeight()/2)){
-                setNewElementsPosition(blockslist[i]);
+                    rootLayout.getChildren().remove(blockslist[i]);
 //                System.out.println(blockslist[i].getPrefWidth());
 //                System.out.println(snake.get(0).getFitHeight());
 
