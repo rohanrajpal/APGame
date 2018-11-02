@@ -14,6 +14,7 @@ import Model.LeaderBoardModel;
 import javafx.scene.input.MouseEvent;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Gui.LeaderBoard;
@@ -53,7 +54,7 @@ public class ControllerMainMenu  implements Initializable {
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
     public static void start(MouseEvent actionEvent){
-        Game gui=new Game(new GameModel(new SnakeModel()));
+        Game gui=new Game(new GameModel(new SnakeModel()),new ArrayList<>());
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
