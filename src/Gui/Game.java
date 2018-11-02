@@ -20,7 +20,10 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Game {
     private static final int GAME_WIDTH =400 ;
@@ -44,7 +47,7 @@ public class Game {
     private ArrayList<Block> blockslist;
     private Wallswrapper[] walllist;
     private Token[] tokenslist;
-    private int[] blockPositions;
+    private ArrayList<Integer> blockPositions;
     private int[] wallPositions;
     Random randomPositionDecider;
 
@@ -56,7 +59,12 @@ public class Game {
         createKeyListeners();
         blockslist=bl;
         randomPositionDecider = new Random();
-        blockPositions = new int[]{0,80,160,240,320};
+        blockPositions = new ArrayList<>(5);
+        blockPositions.add(0);
+        blockPositions.add(80);
+        blockPositions.add(160);
+        blockPositions.add(240);
+        blockPositions.add(320);
         wallPositions=new int[]{80-5,160-5,240-5,320-5};
     }
     private void initmainlayout() {
@@ -134,10 +142,10 @@ public class Game {
 
     private void setNewElementsPosition(Token token) {
         token.setLayoutY(-50);
-        token.setLayoutX(blockPositions[randomPositionDecider.nextInt(blockPositions.length)]);
+        token.setLayoutX(blockPositions.get(randomPositionDecider.nextInt(blockPositions.size())));
     }
     private void setNewElementsPosition(Block block) {
-        block.setLayoutX(blockPositions[randomPositionDecider.nextInt(blockPositions.length)]);
+        block.setLayoutX(blockPositions.get(randomPositionDecider.nextInt(blockPositions.size())));
         block.setLayoutY(-50);
     }
     private void setNewElementsPosition(Wallswrapper Wall) {
@@ -181,6 +189,7 @@ public class Game {
         int k=(randomPositionDecider.nextInt(4))+1;
         tokenslist = new Token[k];
 
+//        ArrayList<Integer> tokensPosList = blockPositions.clone();
         for (int i=0;i<tokenslist.length;i++){
             int option = randomPositionDecider.nextInt(4)+1;
             int value = randomPositionDecider.nextInt(5)+1;
