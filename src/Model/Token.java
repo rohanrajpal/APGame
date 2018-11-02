@@ -7,6 +7,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.io.File;
@@ -16,7 +17,7 @@ import java.io.FileNotFoundException;
 import static javafx.scene.text.Font.font;
 
 public class Token extends Label {
-    private static final String AddTail_src = "view/tokens/token_addtail.png";
+    private static final String AddTail_src = "view/snake_tail.png";
     private static final String DestroyAll_src = "view/tokens/token_destroyall.png";
     private static final String Magnet_src = "view/tokens/token_magnet.png";
     private static final String Shield_src = "view/tokens/token_shield.png";
@@ -32,10 +33,13 @@ public class Token extends Label {
         if (option == 1){
             setBlockLabelFont();
             setAlignment(Pos.CENTER);
+//            setTextFill(Color.rgb(255,255,255));
         }
         switch (option){
             case 1:
-                bImage = new BackgroundImage(new Image(AddTail_src,40,40,
+                setPrefHeight(25);
+                setPrefWidth(25);
+                bImage = new BackgroundImage(new Image(AddTail_src,25,25,
                         false,true), BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
                 break;
@@ -62,7 +66,7 @@ public class Token extends Label {
 
     private void setBlockLabelFont() {
         try {
-            setFont(Font.loadFont(new FileInputStream(new File(BLOCK_FONT)),20));
+            setFont(Font.loadFont(new FileInputStream(new File(BLOCK_FONT)),15));
         } catch (FileNotFoundException e) {
             setFont(font("Verdana",20));
         }
