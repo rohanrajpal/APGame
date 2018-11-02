@@ -59,7 +59,7 @@ public class ControllerMainMenu  implements Initializable {
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
     public static void start(MouseEvent actionEvent){
-        Game gui=new Game(new GameModel(new SnakeModel()),new ArrayList<>());
+        Game gui=new Game(new GameModel(new SnakeModel()),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }

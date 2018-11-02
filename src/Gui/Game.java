@@ -45,26 +45,38 @@ public class Game {
     private AnimationTimer TimerGame;
     private static int pressed=0;
     private ArrayList<Block> blockslist;
-    private Wallswrapper[] walllist;
-    private Token[] tokenslist;
+    private ArrayList<Wallswrapper> walllist;
+    private ArrayList<Token> tokenslist;
     private ArrayList<Integer> blockPositions;
+    private ArrayList<Integer> TokenPositions;
     private int[] wallPositions;
     Random randomPositionDecider;
 
-    public Game(GameModel G,ArrayList<Block> bl){
+    public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa){
         this.GameStructure=G;
         this.GameStructure.getSnake().setlength(5);
         snake=new ArrayList<>();
         initmainlayout();
         createKeyListeners();
         blockslist=bl;
+        tokenslist=tk;
+        walllist=wa;
         randomPositionDecider = new Random();
         blockPositions = new ArrayList<>(5);
+        TokenPositions= new ArrayList<>(8);
         blockPositions.add(0);
         blockPositions.add(80);
         blockPositions.add(160);
         blockPositions.add(240);
         blockPositions.add(320);
+        TokenPositions.add(0);
+        TokenPositions.add(50);
+        TokenPositions.add(100);
+        TokenPositions.add(150);
+        TokenPositions.add(200);
+        TokenPositions.add(250);
+        TokenPositions.add(300);
+        TokenPositions.add(350);
         wallPositions=new int[]{80-5,160-5,240-5,320-5};
     }
     private void initmainlayout() {
@@ -141,36 +153,39 @@ public class Game {
 
 
     private void setNewElementsPosition(Token token) {
-        token.setLayoutY(-50);
-        token.setLayoutX(blockPositions.get(randomPositionDecider.nextInt(blockPositions.size())));
+        token.setLayoutX(TokenPositions.get(randomPositionDecider.nextInt(TokenPositions.size())));
+        token.setLayoutY(-100);
     }
     private void setNewElementsPosition(Block block) {
         block.setLayoutX(blockPositions.get(randomPositionDecider.nextInt(blockPositions.size())));
-        block.setLayoutY(-50);
+        block.setLayoutY(-100);
     }
     private void setNewElementsPosition(Wallswrapper Wall) {
         int rnd=wallPositions[randomPositionDecider.nextInt(wallPositions.length)];
         for(int i=0;i<Wall.getLength();i++) {
             Wall.getWalls().get(i).setLayoutX(rnd);
-            Wall.getWalls().get(i).setLayoutY(-100+(63*(i)));
+            Wall.getWalls().get(i).setLayoutY(-250+(63*(i)));
         }
     }
-    private void createwall(){
-        int k=(randomPositionDecider.nextInt(4))+1;
-        walllist = new Wallswrapper[(int)k];
-        for (int i=0;i<walllist.length;i++){
-            int value = randomPositionDecider.nextInt(3)+1;
-            walllist[i] = new Wallswrapper(value);
-            setNewElementsPosition(walllist[i]);
-            for(int j=0;j<walllist[i].getLength();j++) {
-                rootLayout.getChildren().add(walllist[i].getWalls().get(j));
+    private void createwall() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
+            int k = (randomPositionDecider.nextInt(4)) + 1;
+            k+=walllist.size();
+            for (int i = walllist.size(); i < k; i++) {
+                int value = randomPositionDecider.nextInt(3) + 1;
+                walllist.add(new Wallswrapper(value));
+                System.out.println("fc");
+                setNewElementsPosition(walllist.get(walllist.size()-1));
+                rootLayout.getChildren().addAll(walllist.get(walllist.size()-1).getWalls());
             }
-        }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void createBlocks() {
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(4), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             int k=(randomPositionDecider.nextInt(4))+1;
             k+=blockslist.size();
             for (int i=blockslist.size();i<k;i++){
@@ -186,29 +201,30 @@ public class Game {
 
     }
     private void createTokens(){
-        int k=(randomPositionDecider.nextInt(4))+1;
-        tokenslist = new Token[k];
-
-//        ArrayList<Integer> tokensPosList = blockPositions.clone();
-        for (int i=0;i<tokenslist.length;i++){
-            int option = randomPositionDecider.nextInt(4)+1;
-            int value = randomPositionDecider.nextInt(5)+1;
-
-            if (option == 1){
-                tokenslist[i] = new Token(Integer.toString(value),option);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), ev -> {
+            int k=(randomPositionDecider.nextInt(4))+1;
+            k+=tokenslist.size();
+            for (int i=tokenslist.size();i<k;i++){
+                int option = randomPositionDecider.nextInt(4)+1;
+                int value = randomPositionDecider.nextInt(5)+1;
+                if (option == 1){
+                    tokenslist.add(new Token(Integer.toString(value),option));
+                }
+                else{
+                    tokenslist.add(new Token("",option));
+                }
+                setNewElementsPosition(tokenslist.get(tokenslist.size()-1));
+                rootLayout.getChildren().add(tokenslist.get(tokenslist.size()-1));
             }
-            else{
-                tokenslist[i] = new Token("",option);
-            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
-            setNewElementsPosition(tokenslist[i]);
-            rootLayout.getChildren().add(tokenslist[i]);
-        }
     }
 
 
     private void createGameLoop() {
-        AnimationTimerExt TimerGame = new AnimationTimerExt(15) {
+        AnimationTimerExt TimerGame = new AnimationTimerExt(20) {
             @Override
             public void handle() {
                 moveSnake();
@@ -223,16 +239,16 @@ public class Game {
     }
 
     private void moveWalls() {
-        for(int j=0;j<walllist.length;j++) {
-            for (int i = 0; i < walllist[j].getLength(); i++) {
-                walllist[j].getWalls().get(i).setLayoutY(walllist[j].getWalls().get(i).getLayoutY() +5);
+        for(int j=0;j<walllist.size();j++) {
+            for (int i = 0; i < walllist.get(j).getLength(); i++) {
+                walllist.get(j).getWalls().get(i).setLayoutY(walllist.get(j).getWalls().get(i).getLayoutY() +5);
             }
         }
     }
 
     private void movePowerUps() {
-        for (int i=0;i<tokenslist.length;i++){
-            tokenslist[i].setLayoutY(tokenslist[i].getLayoutY()+5);
+        for (int i=0;i<tokenslist.size();i++){
+            tokenslist.get(i).setLayoutY(tokenslist.get(i).getLayoutY()+5);
         }
     }
     private void moveBlocks() {
@@ -248,27 +264,22 @@ public class Game {
 
                 }
             }
-        for(int j=0;j<tokenslist.length;j++) {
-            if (tokenslist[0].getLayoutY() >600) {
-                for (int i = 0; i < tokenslist.length; i++) {
-                    rootLayout.getChildren().remove(tokenslist[i]);
-                }
-                createTokens();
-                break;
+        for(int j=0;j<tokenslist.size();j++) {
+            if (tokenslist.get(j).getLayoutY() > 600) {
+
+                rootLayout.getChildren().remove(tokenslist.get(j));
+
             }
         }
-             for(int k=0;k<walllist.length;k++){
-                if (walllist[k].getWalls().get(0).getLayoutY()>600) {
-                    for (int i = 0; i < walllist[k].getLength(); i++) {
-                            rootLayout.getChildren().remove(walllist[k].getWalls().get(i));
-                    }
-                    int value = randomPositionDecider.nextInt(3)+1;
-                    walllist[k] = new Wallswrapper(value);
-                    setNewElementsPosition(walllist[k]);
-                    for(int j=0;j<walllist[k].getLength();j++) {
-                        rootLayout.getChildren().add(walllist[k].getWalls().get(j));
-                    }
-                }
+             for(int k=0;k<walllist.size();k++) {
+                 for (int j = 0; j < walllist.get(k).getLength(); j++) {
+                     if (walllist.get(k).getWalls().get(j).getLayoutY() > 600) {
+
+                             rootLayout.getChildren().remove(walllist.get(k).getWalls().get(j));
+
+
+                     }
+                 }
              }
 
 
@@ -355,15 +366,15 @@ public class Game {
             }
         }
 
-        for (int j=0;j<tokenslist.length;j++){
+        for (int j=0;j<tokenslist.size();j++){
             if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
-                    tokenslist[j].getLayoutX()+tokenslist[j].getPrefWidth()/2,
+                    tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
-                    tokenslist[j].getLayoutY()+tokenslist[j].getPrefHeight()/2)) {
-                setNewElementsPosition(tokenslist[j]);
+                    tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
+                setNewElementsPosition(tokenslist.get(j));
 
-                if (tokenslist[j].getOption() == 1) {
-                    int lenToInc = tokenslist[j].getValue();
+                if (tokenslist.get(j).getOption() == 1) {
+                    int lenToInc = tokenslist.get(j).getValue();
 
                     for (int k = 0; k < lenToInc; k++) {
                             double toSetX = snake.get(snake.size() - 1).getLayoutX();
