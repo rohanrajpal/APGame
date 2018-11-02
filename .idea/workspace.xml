@@ -6,23 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Model/TokenAll.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Blocks/blue_block.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Blocks/purple_block.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Blocks/red_block.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Blocks/yellow_block.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Block.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/controller/ControllerGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/controller/ControllerGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/ImageButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/ImageButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/snake_tail.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/snake_tail.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/snake_tail.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/snake_tail.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -165,12 +150,14 @@
     <session id="26785562">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="449" />
+          <entry key="java" value="728" />
+          <entry key="txt" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="449" />
+          <entry key="JAVA" value="728" />
+          <entry key="PLAIN_TEXT" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -199,13 +186,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5905">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="258">
+              <caret line="257" column="13" lean-forward="true" selection-start-line="257" selection-start-column="13" selection-end-line="257" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#moveSnake#0;class#Game#0" />
               </folding>
             </state>
           </provider>
@@ -262,11 +250,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/TokenAll.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -358,9 +346,9 @@
         <option value="$PROJECT_DIR$/src/controller/ControllerGame.java" />
         <option value="$PROJECT_DIR$/src/view/ImageButton.java" />
         <option value="$PROJECT_DIR$/src/Model/Block.java" />
-        <option value="$PROJECT_DIR$/src/Gui/Game.java" />
         <option value="$PROJECT_DIR$/src/Model/Token.java" />
         <option value="$PROJECT_DIR$/src/Model/TokenAll.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Game.java" />
       </list>
     </option>
   </component>
@@ -438,7 +426,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541167562861" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541170075724" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -533,7 +521,7 @@
       <workItem from="1540913515255" duration="9655000" />
       <workItem from="1540970324360" duration="3681000" />
       <workItem from="1541000521239" duration="5477000" />
-      <workItem from="1541164640043" duration="2867000" />
+      <workItem from="1541164640043" duration="5237000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -584,11 +572,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541005507750</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Made the looks better">
+      <created>1541167641185</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1541167641185</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34087000" />
+    <option name="totallyTimeSpent" value="36457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -599,7 +594,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" weight="0.3295302" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18657719" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18657719" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
@@ -696,7 +691,8 @@
     <MESSAGE value="Mini collision" />
     <MESSAGE value="Implemented collision logic and made a score label" />
     <MESSAGE value="Reducing length of snake on collision" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reducing length of snake on collision" />
+    <MESSAGE value="Made the looks better" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the looks better" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Gui/StartPageGui.java" />
@@ -824,6 +820,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
           <caret line="75" column="32" lean-forward="true" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -870,32 +869,10 @@
     <entry file="file://$PROJECT_DIR$/src/view/snake_tail.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="19" column="84" lean-forward="true" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1374#1375#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/ScoreLabel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5905">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -912,10 +889,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ControllerGame.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/TokenAll.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="120">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -933,10 +910,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/TokenAll.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        <state relative-caret-position="-40">
+          <caret line="19" column="84" lean-forward="true" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1374#1375#0" expanded="true" />
+            <element signature="e#1424#1425#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ControllerGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="257" column="13" lean-forward="true" selection-start-line="257" selection-start-column="13" selection-end-line="257" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#moveSnake#0;class#Game#0" />
+          </folding>
         </state>
       </provider>
     </entry>
