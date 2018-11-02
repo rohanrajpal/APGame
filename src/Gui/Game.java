@@ -3,6 +3,7 @@ package Gui;
 import Model.*;
 import controller.ControllerGame;
 import controller.ControllerLeaderboard;
+import controller.ControllerMainMenu;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +65,8 @@ public class Game {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(StartPage.class.getResource("../view/GAMELAYOUT.fxml"));
             rootLayout =  loader.load();
+            ControllerGame controller = loader.getController();
+            controller.init();
             rootLayout.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -71,9 +74,6 @@ public class Game {
                     mousecordinates.yOffset = event.getSceneY();
                 }
             });
-            ControllerGame controller = loader.getController();
-            //controller.leaderboard();
-            // Show the scene containing the root layout.
             gameScene=new Scene(rootLayout);
             gameScene.setFill(javafx.scene.paint.Color.TRANSPARENT);
         } catch (IOException e) {
@@ -340,9 +340,7 @@ public class Game {
                 String newScore =  "Score: ";
                 scoreLabelText.setText(newScore+points);
                 break;
-
             }
-
         }
 
         for (int j=0;j<tokenslist.length;j++){
