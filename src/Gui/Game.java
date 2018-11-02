@@ -216,19 +216,19 @@ public class Game {
     private void moveWalls() {
         for(int j=0;j<walllist.length;j++) {
             for (int i = 0; i < walllist[j].getLength(); i++) {
-                walllist[j].getWalls().get(i).setLayoutY(walllist[j].getWalls().get(i).getLayoutY() +2);
+                walllist[j].getWalls().get(i).setLayoutY(walllist[j].getWalls().get(i).getLayoutY() +5);
             }
         }
     }
 
     private void movePowerUps() {
         for (int i=0;i<tokenslist.length;i++){
-            tokenslist[i].setLayoutY(tokenslist[i].getLayoutY()+2);
+            tokenslist[i].setLayoutY(tokenslist[i].getLayoutY()+5);
         }
     }
     private void moveBlocks() {
         for (int i=0;i<blockslist.size();i++){
-            blockslist.get(i).setLayoutY(blockslist.get(i).getLayoutY()+2);
+            blockslist.get(i).setLayoutY(blockslist.get(i).getLayoutY()+5);
         }
     }
     private void relocateelementsbelowscreen() {
@@ -314,9 +314,12 @@ public class Game {
 
     private void createSnake() {
         for(int i=0;i<GameStructure.getSnake().getlength();i++) {
-            snake.add(new ImageView("/view/snake_tail.png"));
+            ImageView img = new ImageView("/view/snake_tail.png");
+            img.setFitHeight(25);
+            img.setFitWidth(25);
+            snake.add(img);
             snake.get(i).setLayoutX(168);
-            snake.get(i).setLayoutY(375+(i*33));
+            snake.get(i).setLayoutY(375+(i*25));
             rootLayout.getChildren().add(snake.get(i));
         }
     }
@@ -355,8 +358,11 @@ public class Game {
 
                     for (int k = 0; k < lenToInc; k++) {
                             double toSetX = snake.get(snake.size() - 1).getLayoutX();
-                            double toSetY = snake.get(snake.size() - 1).getLayoutY() + 33;
-                            snake.add(new ImageView("/view/snake_tail.png"));
+                            double toSetY = snake.get(snake.size() - 1).getLayoutY() + 25;
+                            ImageView img = new ImageView("/view/snake_tail.png");
+                            img.setFitHeight(25);
+                            img.setFitWidth(25);
+                            snake.add(img);
                             snake.get(snake.size() - 1).setLayoutX(toSetX);
                             snake.get(snake.size() - 1).setLayoutY(toSetY);
                             rootLayout.getChildren().add(snake.get(snake.size() - 1));
