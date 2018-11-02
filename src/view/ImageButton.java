@@ -1,8 +1,6 @@
 package view;
 
-import controller.ControllerLeaderboard;
-import controller.ControllerMainMenu;
-import javafx.event.ActionEvent;
+import controller.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -69,6 +67,14 @@ public class ImageButton extends Button {
                 if(interim.equals("resume")){
                     interim=" ";
                     ControllerMainMenu.resume();
+                }
+                if(interim.equals("exit")){
+                    interim=" ";
+                    ControllerMainMenu.exit();
+                }
+                if(interim.equals("Pause")){
+                    interim=" ";
+                    ControllerGame.pause(event);
                 }
             }
         });
