@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -55,6 +57,7 @@ public class Game {
     private ArrayList<Integer> TokenPositions;
     private int[] wallPositions;
     Random randomPositionDecider;
+    GameSubScene subGameScene;
 
     private boolean isGameRunning;
 
@@ -99,7 +102,13 @@ public class Game {
         ib.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                isGameRunning = false;
+//                isGameRunning = false;
+                if (isGameRunning){
+                    isGameRunning = false;
+                }
+                else{
+                    isGameRunning = true;
+                }
                 openPauseMenu();
             }
         });
@@ -107,10 +116,43 @@ public class Game {
     }
 
     private void openPauseMenu() {
-        SubScene subGameScene = new SubScene(new AnchorPane(),400,600);
+        subGameScene = new GameSubScene();
         rootLayout.getChildren().add(subGameScene);
 
+        subGameScene.getPane().getChildren().add(createResumeButton());
+
+        subGameScene.getPane().getChildren().add(createGoBacktoMenuButton());
 //        subGameScene;
+    }
+
+    private Button createGoBacktoMenuButton() {
+        ImageButton imgResume = new ImageButton("../view/Helper_images/error.png");
+        imgResume.setLayoutX(150);
+        imgResume.setLayoutY(250);
+
+        imgResume.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                isGameRunning = true;
+                rootLayout.getChildren().remove(subGameScene);
+            }
+        });
+        return imgResume;
+    }
+
+    private Button createResumeButton() {
+        ImageButton imgResume = new ImageButton("../view/Helper_images/resume-button.png");
+        imgResume.setLayoutX(150);
+        imgResume.setLayoutY(150);
+
+        imgResume.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                isGameRunning = true;
+                rootLayout.getChildren().remove(subGameScene);
+            }
+        });
+        return imgResume;
     }
 
     private void initmainlayout() {
