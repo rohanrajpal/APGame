@@ -5,18 +5,22 @@ import controller.ControllerGame;
 import controller.ControllerLeaderboard;
 import controller.ControllerMainMenu;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import view.ImageButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +56,8 @@ public class Game {
     private int[] wallPositions;
     Random randomPositionDecider;
 
+    private boolean isGameRunning;
+
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa){
         this.GameStructure=G;
         this.GameStructure.getSnake().setlength(5);
@@ -78,7 +84,35 @@ public class Game {
         TokenPositions.add(300);
         TokenPositions.add(350);
         wallPositions=new int[]{80-5,160-5,240-5,320-5};
+
+        isGameRunning = true;
+
+        makepausebutton();
     }
+
+    private void makepausebutton() {
+        ImageButton ib=new ImageButton("/view/Helper_images/pause.png");
+        ib.setLayoutX(313);
+        ib.setLayoutY(20);
+        ib.setInterim("pause");
+
+        ib.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                isGameRunning = false;
+                openPauseMenu();
+            }
+        });
+        rootLayout.getChildren().add(ib);
+    }
+
+    private void openPauseMenu() {
+        SubScene subGameScene = new SubScene(new AnchorPane(),400,600);
+        rootLayout.getChildren().add(subGameScene);
+
+//        subGameScene;
+    }
+
     private void initmainlayout() {
         try {
             // Load root layout from fxml file.
@@ -227,12 +261,14 @@ public class Game {
         AnimationTimerExt TimerGame = new AnimationTimerExt(20) {
             @Override
             public void handle() {
-                moveSnake();
-                moveBlocks();
-                moveWalls();
-                relocateelementsbelowscreen();
-                movePowerUps();
-                checkIfElementsCollide();
+                if (isGameRunning) {
+                    moveSnake();
+                    moveBlocks();
+                    moveWalls();
+                    relocateelementsbelowscreen();
+                    movePowerUps();
+                    checkIfElementsCollide();
+                }
             }
         };
         TimerGame.start();
