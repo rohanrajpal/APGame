@@ -1,5 +1,8 @@
 package controller;
 
+import Gui.Game;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -18,15 +21,20 @@ public class ControllerGame  implements Initializable {
     }
 
     public void init() {
-        ImageButton ib=new ImageButton("/view/Helper_images/pause.png");
-        ib.setLayoutX(313);
-        ib.setLayoutY(20);
-        ib.setInterim("pause");
-        pane1.getChildren().add(ib);
+//        ImageButton ib=new ImageButton("/view/Helper_images/pause.png");
+//        ib.setLayoutX(313);
+//        ib.setLayoutY(20);
+//        ib.setInterim("pause");
+//
+//        ib.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                pause();
+//            }
+//        });
+//        pane1.getChildren().add(ib);
     }
-    public static void pause(MouseEvent actionEvent){
-
-
+    public static void pause(MouseEvent event){
 
     }
 
