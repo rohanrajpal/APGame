@@ -1,6 +1,8 @@
 package view;
 
+import Gui.LeaderBoard;
 import Gui.StartPage;
+import Model.LeaderBoardModel;
 import controller.*;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -14,6 +16,11 @@ public class ImageButton extends Button {
     private final String STYLE_NORMAL = "-fx-background-color: transparent; -fx-padding: 5, 5, 5, 5;";
     private final String STYLE_PRESSED = "-fx-background-color: transparent; -fx-padding: 6 4 4 6;";
 
+    public void setLe(int le) {
+        this.points = le;
+    }
+
+    private int points;
     public String getInterim() {
         return interim;
     }
@@ -55,7 +62,12 @@ public class ImageButton extends Button {
                 }
                 if(interim.equals("start")){
                     interim=" ";
-                    ControllerMainMenu.start(event);
+                    try {
+                        ControllerMainMenu.start(event);
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
                 }
                 if(interim.equals("leaderboard"))  {
                     interim=" ";
@@ -80,8 +92,14 @@ public class ImageButton extends Button {
                 }
                 if(interim.equals("StartPage")){
                     interim=" ";
-                    StartPage gui=new StartPage();
-                    gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+                    try {
+                        ControllerLeaderboard.addpoints(points,event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
