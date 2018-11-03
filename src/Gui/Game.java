@@ -25,10 +25,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import view.ImageButton;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -40,8 +37,8 @@ public class Game {
     private final static int TOKEN_RADIUS=10;
 
     private ScoreLabel scoreLabelText;
+    private int Totalscore=0;
     private int points=0;
-
     private Pane rootLayout;
     private Scene gameScene;
     private boolean isLeftKeyPressed;
@@ -55,13 +52,15 @@ public class Game {
     private ArrayList<Token> tokenslist;
     private ArrayList<Integer> blockPositions;
     private ArrayList<Integer> TokenPositions;
+    private LeaderBoardModel templeaderboard;
     private int[] wallPositions;
     Random randomPositionDecider;
     GameSubScene subGameScene;
 
     private boolean isGameRunning;
 
-    public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa){
+    public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
+        this.templeaderboard=le;
         this.GameStructure=G;
         this.GameStructure.getSnake().setlength(5);
         snake=new ArrayList<>();
@@ -129,6 +128,7 @@ public class Game {
         imgResume.setLayoutX(110);
         imgResume.setLayoutY(170);
         imgResume.setInterim("StartPage");
+        imgResume.setLe(Totalscore);
 //        imgResume.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
 //            public void handle(ActionEvent event) {
@@ -249,7 +249,6 @@ public class Game {
             for (int i = walllist.size(); i < k; i++) {
                 int value = randomPositionDecider.nextInt(3) + 1;
                 walllist.add(new Wallswrapper(value));
-                System.out.println("fc");
                 setNewElementsPosition(walllist.get(walllist.size()-1));
                 rootLayout.getChildren().addAll(walllist.get(walllist.size()-1).getWalls());
             }
@@ -303,16 +302,36 @@ public class Game {
             @Override
             public void handle() {
                 if (isGameRunning) {
-                    moveSnake();
+
                     moveBlocks();
                     moveWalls();
                     relocateelementsbelowscreen();
                     movePowerUps();
                     checkIfElementsCollide();
+                    moveSnake();
+                    checkhighscore();
                 }
             }
         };
         TimerGame.start();
+    }
+
+    private void checkhighscore() {
+        if(this.templeaderboard.getLeaders().size()>=10) {
+            if (Totalscore > this.templeaderboard.getLeaders().get(this.templeaderboard.getLeaders().size() - 1).getscore()) {
+                this.templeaderboard.getLeaders().remove(this.templeaderboard.getLeaders().size() - 1);
+                this.templeaderboard.getLeaders().add(new LeaderBoardelements(Totalscore, new Date()));
+                java.util.Collections.sort(this.templeaderboard.getLeaders());
+            }
+        }
+        try {
+            LeaderBoardModel.serialize(this.templeaderboard);
+        }
+        catch (Exception e){
+
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void moveWalls() {
@@ -336,15 +355,14 @@ public class Game {
     private void relocateelementsbelowscreen() {
             for(int j=0;j<blockslist.size();j++) {
                 if (blockslist.get(j).getLayoutY() > 600) {
-
                         rootLayout.getChildren().remove(blockslist.get(j));
-
                 }
             }
         for(int j=0;j<tokenslist.size();j++) {
             if (tokenslist.get(j).getLayoutY() > 600) {
 
                 rootLayout.getChildren().remove(tokenslist.get(j));
+
 
             }
         }
@@ -353,6 +371,7 @@ public class Game {
                      if (walllist.get(k).getWalls().get(j).getLayoutY() > 600) {
 
                              rootLayout.getChildren().remove(walllist.get(k).getWalls().get(j));
+
 
 
                      }
@@ -372,7 +391,9 @@ public class Game {
                 for (int i = 0; i < snake.size(); i++) {
 
                     ImageView p = snake.get(i);
+
                     final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
+                    checkIfElementsCollide();
                     transition.setFromX(p.getTranslateX());
                     transition.setFromY(p.getTranslateY());
                     transition.setToX(p.getTranslateX());
@@ -393,6 +414,7 @@ public class Game {
 //                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
                     for (int i = 0; i < snake.size(); i++) {
                     ImageView p = snake.get(i);
+                    checkIfElementsCollide();
                     final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
                     transition.setFromX(p.getTranslateX());
                     transition.setFromY(p.getTranslateY());
@@ -434,7 +456,7 @@ public class Game {
                     }
                 }
                 points+=blockslist.get(i).getValue();
-                System.out.println(blockslist.get(i).getValue());
+                Totalscore+=points;
                 rootLayout.getChildren().remove(blockslist.get(i));
                 blockslist.remove(blockslist.get(i));
                 String newScore =  "Score: ";
