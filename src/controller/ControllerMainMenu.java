@@ -58,8 +58,19 @@ public class ControllerMainMenu  implements Initializable {
         LeaderBoard gui=new LeaderBoard();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
-    public static void start(MouseEvent actionEvent){
-        Game gui=new Game(new GameModel(new SnakeModel()),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+    public static void start(MouseEvent actionEvent) throws ClassNotFoundException,IOException{
+
+        LeaderBoardModel L=new LeaderBoardModel();
+        try{
+            L=LeaderBoardModel.deserialize();
+            L.setLeaders(L.getLeaders());
+        }
+        catch(Exception E) {
+
+            LeaderBoardModel.serialize(L);
+        }
+        Game gui=new Game(new GameModel(new SnakeModel()),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),L);
+
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }

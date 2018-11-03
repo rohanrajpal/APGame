@@ -1,14 +1,10 @@
 package Model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
-public class LeaderBoardModel {
+public class LeaderBoardModel implements Serializable {
     private ArrayList<LeaderBoardelements> Leaders;
     private static final long serialVersionUID=43L;
     public LeaderBoardModel() {
@@ -25,7 +21,8 @@ public class LeaderBoardModel {
     public	static	void serialize(LeaderBoardModel d) throws IOException	{
         ObjectOutputStream out	=	null;
         try	{
-            FileOutputStream file = new FileOutputStream("storage/LeaderBoardModel.txt");
+
+            FileOutputStream file = new FileOutputStream("LeaderBoardModel.txt");
             out = new ObjectOutputStream(file);
             out.writeObject(d);
         }
@@ -38,9 +35,14 @@ public class LeaderBoardModel {
         LeaderBoardModel s1=new LeaderBoardModel();
         try	{
 
-            FileInputStream file = new FileInputStream("storage/LeaderBoardModel.txt");
-            in = new ObjectInputStream(file);
-            s1	=	(LeaderBoardModel)in.readObject();
+            FileInputStream file = new FileInputStream("LeaderBoardModel.txt");
+           
+
+                in = new ObjectInputStream(file);
+
+
+                s1	=	(LeaderBoardModel)in.readObject();
+
         }
         finally	{
             in.close();
