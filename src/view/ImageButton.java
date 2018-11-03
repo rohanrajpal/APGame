@@ -1,12 +1,14 @@
 package view;
 
+import Gui.StartPage;
 import controller.*;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;;import java.io.IOException;
-
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;;import java.io.IOException;
 public class ImageButton extends Button {
 
     private final String STYLE_NORMAL = "-fx-background-color: transparent; -fx-padding: 5, 5, 5, 5;";
@@ -75,6 +77,11 @@ public class ImageButton extends Button {
                 if(interim.equals("Pause")){
                     interim=" ";
                     ControllerGame.pause(event);
+                }
+                if(interim.equals("StartPage")){
+                    interim=" ";
+                    StartPage gui=new StartPage();
+                    gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
                 }
             }
         });

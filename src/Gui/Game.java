@@ -98,7 +98,6 @@ public class Game {
         ib.setLayoutX(313);
         ib.setLayoutY(20);
         ib.setInterim("pause");
-
         ib.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -127,23 +126,23 @@ public class Game {
 
     private Button createGoBacktoMenuButton() {
         ImageButton imgResume = new ImageButton("../view/Helper_images/error.png");
-        imgResume.setLayoutX(150);
-        imgResume.setLayoutY(250);
-
-        imgResume.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                isGameRunning = true;
-                rootLayout.getChildren().remove(subGameScene);
-            }
-        });
+        imgResume.setLayoutX(110);
+        imgResume.setLayoutY(170);
+        imgResume.setInterim("StartPage");
+//        imgResume.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                isGameRunning = true;
+//                rootLayout.getChildren().remove(subGameScene);
+//            }
+//        });
         return imgResume;
     }
 
     private Button createResumeButton() {
         ImageButton imgResume = new ImageButton("../view/Helper_images/resume-button.png");
-        imgResume.setLayoutX(150);
-        imgResume.setLayoutY(150);
+        imgResume.setLayoutX(110);
+        imgResume.setLayoutY(70);
 
         imgResume.setOnAction(new EventHandler<ActionEvent>() {
             @Override
