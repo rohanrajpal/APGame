@@ -1,15 +1,13 @@
 package controller;
 
 import Gui.Game;
-import Model.GameModel;
-import Model.SnakeModel;
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import Model.LeaderBoardModel;
 
 import javafx.scene.input.MouseEvent;
 import java.io.*;
@@ -69,13 +67,78 @@ public class ControllerMainMenu  implements Initializable {
 
             LeaderBoardModel.serialize(L);
         }
-        Game gui=new Game(new GameModel(new SnakeModel()),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),L);
-
+        GameModel model=new GameModel(new SnakeModel(5,168,375),0);
+        Game gui=new Game(model,model.getBlockslist(),model.getTokenslist(),model.getWalllist(),L);
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
-    public static void resume(){
+    public static void resume(MouseEvent actionEvent)throws ClassNotFoundException,IOException{
+        LeaderBoardModel L=new LeaderBoardModel();
+        try{
+            L=LeaderBoardModel.deserialize();
+            L.setLeaders(L.getLeaders());
+        }
+        catch(Exception E) {
 
+            LeaderBoardModel.serialize(L);
+        }
+        GameModel model=new GameModel(new SnakeModel(5,168,375),0);
+        try{
+            model=GameModel.deserialize();
+
+        }
+        catch(Exception E) {
+
+            GameModel.serialize(model);
+        }
+
+        for(int i=0;i<model.getBlockslist().size();i++){
+            double x=model.getBlockslist().get(i).getX();
+            double y=model.getBlockslist().get(i).getY();
+            model.getBlockslist().set(i,new Block(model.getBlockslist().get(i).gettext(),model.getBlockslist().get(i).getImagecolor()));
+           model.getBlockslist().get(i).setLayoutX(x);
+            model.getBlockslist().get(i).setLayoutY(y);
+            model.getBlockslist().get(i).setX(x);
+            model.getBlockslist().get(i).setY(y);
+
+        }
+        for(int i=0;i<model.getTokenslist().size();i++){
+            double x=model.getTokenslist().get(i).getX();
+            double y=model.getTokenslist().get(i).getY();
+
+            if(model.getTokenslist().get(i).getClass().getName().equals("Model.Ball")) {
+
+                model.getTokenslist().set(i, new Ball(model.getTokenslist().get(i).gettext()));
+            }
+            if(model.getTokenslist().get(i).getClass().getName().equals("Model.Bomb")){
+                model.getTokenslist().set(i, new Bomb(""));
+            }
+            if(model.getTokenslist().get(i).getClass().getName().equals("Model.Shield")){
+                model.getTokenslist().set(i, new Shield(""));
+            }
+            if(model.getTokenslist().get(i).getClass().getName().equals("Model.Magnet")){
+                model.getTokenslist().set(i, new Magnet(""));
+            }
+
+            model.getTokenslist().get(i).setLayoutX(x);
+            model.getTokenslist().get(i).setLayoutY(y);
+            model.getTokenslist().get(i).setX(x);
+            model.getTokenslist().get(i).setY(y);
+        }
+        for(int i=0;i<model.getWalllist().size();i++){
+            for (int j=0;j<model.getWalllist().get(i).getLength();j++) {
+                double x=model.getWalllist().get(i).getWalls().get(j).getX();
+                double y=model.getWalllist().get(i).getWalls().get(j).getY();
+                model.getWalllist().get(i).getWalls().set(j,new wall());
+                model.getWalllist().get(i).getWalls().get(j).setLayoutX(x);
+                model.getWalllist().get(i).getWalls().get(j).setLayoutY(y);
+                model.getWalllist().get(i).getWalls().get(j).setX(x);
+                model.getWalllist().get(i).getWalls().get(j).setY(y);
+            }
+        }
+        Game gui=new Game(model,model.getBlockslist(),model.getTokenslist(),model.getWalllist(),L);
+        gui.creatExistingGame();
+        gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
     public static void exit(){
         System.exit(0);
