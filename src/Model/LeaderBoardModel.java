@@ -36,7 +36,7 @@ public class LeaderBoardModel implements Serializable {
         try	{
 
             FileInputStream file = new FileInputStream("LeaderBoardModel.txt");
-           
+
 
                 in = new ObjectInputStream(file);
 

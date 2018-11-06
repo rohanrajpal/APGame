@@ -8,10 +8,29 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class wall extends Label {
+public class wall extends Label implements Serializable {
     private static final String wall_image= "view/Blocks/wall.png";
+    private double x;
+    private double y;
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public wall(){
         setPrefWidth(10);
         setPrefHeight(80);

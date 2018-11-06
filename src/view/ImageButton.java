@@ -2,6 +2,7 @@ package view;
 
 import Gui.LeaderBoard;
 import Gui.StartPage;
+import Model.GameModel;
 import Model.LeaderBoardModel;
 import controller.*;
 import javafx.event.EventHandler;
@@ -16,10 +17,11 @@ public class ImageButton extends Button {
     private final String STYLE_NORMAL = "-fx-background-color: transparent; -fx-padding: 5, 5, 5, 5;";
     private final String STYLE_PRESSED = "-fx-background-color: transparent; -fx-padding: 6 4 4 6;";
 
-    public void setLe(int le) {
+    public void setLe(int le, GameModel g) {
         this.points = le;
+        this.GAME=g;
     }
-
+    private GameModel GAME;
     private int points;
     public String getInterim() {
         return interim;
@@ -79,8 +81,14 @@ public class ImageButton extends Button {
                     }
                 }
                 if(interim.equals("resume")){
+                    try {
+                        ControllerMainMenu.resume(event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     interim=" ";
-                    ControllerMainMenu.resume();
                 }
                 if(interim.equals("exit")){
                     interim=" ";
@@ -93,13 +101,14 @@ public class ImageButton extends Button {
                 if(interim.equals("StartPage")){
                     interim=" ";
                     try {
+                        ControllerGame.serializegame(GAME,event);
                         ControllerLeaderboard.addpoints(points,event);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         });

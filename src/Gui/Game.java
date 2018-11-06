@@ -62,13 +62,13 @@ public class Game {
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
         this.templeaderboard=le;
         this.GameStructure=G;
-        this.GameStructure.getSnake().setlength(5);
         snake=new ArrayList<>();
         initmainlayout();
         createKeyListeners();
         blockslist=bl;
         tokenslist=tk;
         walllist=wa;
+        points=GameStructure.getPoints();
         randomPositionDecider = new Random();
         blockPositions = new ArrayList<>(5);
         TokenPositions= new ArrayList<>(8);
@@ -128,7 +128,30 @@ public class Game {
         imgResume.setLayoutX(110);
         imgResume.setLayoutY(170);
         imgResume.setInterim("StartPage");
-        imgResume.setLe(Totalscore);
+        rootLayout.getChildren().removeAll();
+//        for(int i=0;i<blockslist.size();i++) {
+//            if (blockslist.get(i).getLayoutY() > 600 || blockslist.get(i).getLayoutY() < -50) {
+//                    blockslist.remove(i);
+//            }
+//        }
+//        for(int i=0;i<tokenslist.size();i++){
+//            if(tokenslist.get(i).getLayoutY()<600 || tokenslist.get(i).getLayoutY()>-50){
+//                tokenslist.remove(i);
+//            }
+//        }
+//        for(int i=0;i<walllist.size();i++){
+//            for (int j=0;j<walllist.get(i).getLength();j++) {
+//                if (walllist.get(i).getWalls().get(j).getLayoutY() < 600 || walllist.get(i).getWalls().get(j).getLayoutY() > -50) {
+//                    walllist.get(i).getWalls().remove(j);
+//                }
+//            }
+//        }
+        this.GameStructure.setBlockslist(this.blockslist);
+        this.GameStructure.setTokenslist(this.tokenslist);
+        this.GameStructure.setWalllist(this.walllist);
+        this.GameStructure.setSnake(new SnakeModel(this.snake.size(),168,375));
+        this.GameStructure.setPoints(this.points);
+        imgResume.setLe(Totalscore,this.GameStructure);
 //        imgResume.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
 //            public void handle(ActionEvent event) {
@@ -169,7 +192,8 @@ public class Game {
                     mousecordinates.yOffset = event.getSceneY();
                 }
             });
-            gameScene=new Scene(rootLayout);
+
+            gameScene=new Scene(rootLayout,400,600);
             gameScene.setFill(javafx.scene.paint.Color.TRANSPARENT);
         } catch (IOException e) {
             e.printStackTrace();
@@ -218,9 +242,52 @@ public class Game {
         createwall();
         createscoreLabelText();
     }
+    public void creatExistingGame(){
+        createSnake();
+        createGameLoop();
+        createExistingBlocks();
+        createExistingTokens();
+        createExistingwall();
+        createscoreLabelText();
+    }
+    public void createExistingBlocks(){
+        for(int i=0;i<blockslist.size();i++) {
+            if (blockslist.get(i).getLayoutY() < 600 || blockslist.get(i).getLayoutY() > -50) {
+                rootLayout.getChildren().add(blockslist.get(i));
+            }
+        }
+        createBlocks();
+    }
+    public void createExistingTokens(){
+        for(int i=0;i<tokenslist.size();i++){
+            if(tokenslist.get(i).getLayoutY()<600 || tokenslist.get(i).getLayoutY()>-50){
+                rootLayout.getChildren().add(tokenslist.get(i));
+            }
+        }
+
+            createTokens();
+
+    }
+    public void createExistingwall(){
+
+
+            for(int i=0;i<walllist.size();i++){
+                for (int j=0;j<walllist.get(i).getLength();j++) {
+                    if (walllist.get(i).getWalls().get(j).getLayoutY() < 600 || walllist.get(i).getWalls().get(j).getLayoutY() > -50) {
+                        rootLayout.getChildren().add(walllist.get(i).getWalls().get(j));
+                    }
+                }
+            }
+
+
+
+        createwall();
+
+    }
 
     private void createscoreLabelText() {
-        scoreLabelText = new ScoreLabel("Score : 00");
+
+        scoreLabelText = new ScoreLabel("Score : "+this.points);
         scoreLabelText.setLayoutY(20);
         scoreLabelText.setLayoutX(20);
         rootLayout.getChildren().add(scoreLabelText);
@@ -230,16 +297,22 @@ public class Game {
     private void setNewElementsPosition(Token token) {
         token.setLayoutX(TokenPositions.get(randomPositionDecider.nextInt(TokenPositions.size())));
         token.setLayoutY(-100);
+        token.setY(token.getLayoutY());
+        token.setX(token.getLayoutX());
     }
     private void setNewElementsPosition(Block block) {
         block.setLayoutX(blockPositions.get(randomPositionDecider.nextInt(blockPositions.size())));
         block.setLayoutY(-100);
+        block.setY(block.getLayoutY());
+        block.setX(block.getLayoutX());
     }
     private void setNewElementsPosition(Wallswrapper Wall) {
         int rnd=wallPositions[randomPositionDecider.nextInt(wallPositions.length)];
         for(int i=0;i<Wall.getLength();i++) {
             Wall.getWalls().get(i).setLayoutX(rnd);
             Wall.getWalls().get(i).setLayoutY(-250+(63*(i)));
+            Wall.getWalls().get(i).setY(Wall.getWalls().get(i).getLayoutY());
+            Wall.getWalls().get(i).setX(Wall.getWalls().get(i).getLayoutX());
         }
     }
     private void createwall() {
@@ -282,11 +355,18 @@ public class Game {
                 int option = randomPositionDecider.nextInt(4)+1;
                 int value = randomPositionDecider.nextInt(5)+1;
                 if (option == 1){
-                    tokenslist.add(new Token(Integer.toString(value),option));
+                    tokenslist.add(new Ball(Integer.toString(value)));
                 }
-                else{
-                    tokenslist.add(new Token("",option));
+                else if(option==2){
+                    tokenslist.add(new Bomb(""));
                 }
+                else if(option==3){
+                    tokenslist.add(new Shield(""));
+                }
+                else if(option==4){
+                    tokenslist.add(new Magnet(""));
+                }
+
                 setNewElementsPosition(tokenslist.get(tokenslist.size()-1));
                 rootLayout.getChildren().add(tokenslist.get(tokenslist.size()-1));
             }
@@ -338,6 +418,7 @@ public class Game {
         for(int j=0;j<walllist.size();j++) {
             for (int i = 0; i < walllist.get(j).getLength(); i++) {
                 walllist.get(j).getWalls().get(i).setLayoutY(walllist.get(j).getWalls().get(i).getLayoutY() +5);
+                walllist.get(j).getWalls().get(i).setY(walllist.get(j).getWalls().get(i).getLayoutY());
             }
         }
     }
@@ -345,11 +426,13 @@ public class Game {
     private void movePowerUps() {
         for (int i=0;i<tokenslist.size();i++){
             tokenslist.get(i).setLayoutY(tokenslist.get(i).getLayoutY()+5);
+            tokenslist.get(i).setY(tokenslist.get(i).getLayoutY());
         }
     }
     private void moveBlocks() {
         for (int i=0;i<blockslist.size();i++){
             blockslist.get(i).setLayoutY(blockslist.get(i).getLayoutY()+5);
+            blockslist.get(i).setY( blockslist.get(i).getLayoutY());
         }
     }
     private void relocateelementsbelowscreen() {
@@ -403,6 +486,7 @@ public class Game {
                         p.setLayoutX(p.getLayoutX() - (3));
                         p.setLayoutY(p.getLayoutY());
                     });
+                    GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
                     //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - 3);
 
                 }
@@ -425,6 +509,7 @@ public class Game {
                         p.setLayoutX(p.getLayoutX() + 3);
                         p.setLayoutY(p.getLayoutY());
                     });
+                    GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
                 }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
             }
         }
@@ -437,8 +522,8 @@ public class Game {
             img.setFitHeight(25);
             img.setFitWidth(25);
             snake.add(img);
-            snake.get(i).setLayoutX(168);
-            snake.get(i).setLayoutY(375+(i*25));
+            snake.get(i).setLayoutX(GameStructure.getSnake().getX());
+            snake.get(i).setLayoutY(GameStructure.getSnake().getY()+(i*25));
             rootLayout.getChildren().add(snake.get(i));
         }
     }
@@ -472,7 +557,7 @@ public class Game {
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
                 setNewElementsPosition(tokenslist.get(j));
 
-                if (tokenslist.get(j).getOption() == 1) {
+                if (tokenslist.get(j).getClass().equals("Ball")) {
                     int lenToInc = tokenslist.get(j).getValue();
 
                     for (int k = 0; k < lenToInc; k++) {

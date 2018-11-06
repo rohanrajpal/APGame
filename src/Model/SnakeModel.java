@@ -1,22 +1,24 @@
 package Model;
 
-public class SnakeModel {
+import java.io.Serializable;
+
+public class SnakeModel implements Serializable {
     private int length;
-    private int x;
-    private int y;
-    public int getX() {
+    private double x;
+    private double y;
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
     public int getlength(){
@@ -24,6 +26,11 @@ public class SnakeModel {
     }
     public void setlength(int x){
         this.length=x;
-    }
 
+    }
+    public SnakeModel(int x,double xcor,double ycor){
+        this.length=x;
+        this.x=xcor;
+        this.y=ycor;
+    }
 }
