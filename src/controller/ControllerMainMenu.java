@@ -31,6 +31,36 @@ public class ControllerMainMenu  implements Initializable {
     }
 
     public void init() {
+        try {
+            GameModel g = GameModel.deserialize();
+
+                createstartpage1();
+
+        }
+        catch (Exception e){
+
+            createstartpage2();
+        }
+
+    }
+    public void createstartpage2(){
+        ImageButton ib=new ImageButton("/view/Helper_images/leaderboard-button.png");
+        ImageButton ib1=new ImageButton("/view/Helper_images/play-button.png");
+        ImageButton ib3=new ImageButton("/view/Helper_images/error.png");
+        ib.setInterim("leaderboard");
+        ib1.setInterim("start");
+        ib3.setInterim("exit");
+        ib.setLayoutX(174);
+        ib.setLayoutY(475);
+        ib1.setLayoutX(244);
+        ib1.setLayoutY(383);
+        ib3.setLayoutX(100);
+        ib3.setLayoutY(383);
+        pane1.getChildren().add(ib);
+        pane1.getChildren().add(ib1);
+        pane1.getChildren().add(ib3);
+    }
+    public void createstartpage1(){
         ImageButton ib=new ImageButton("/view/Helper_images/leaderboard-button.png");
         ImageButton ib1=new ImageButton("/view/Helper_images/play-button.png");
         ImageButton ib2=new ImageButton("/view/Helper_images/resume-button.png");
