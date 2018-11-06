@@ -1,6 +1,7 @@
 package controller;
 
 import Gui.Game;
+import Model.GameModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import view.ImageButton;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,6 +37,12 @@ public class ControllerGame  implements Initializable {
 //        pane1.getChildren().add(ib);
     }
     public static void pause(MouseEvent event){
+
+
+    }
+    public static void serializegame (GameModel g,MouseEvent event)throws IOException,ClassNotFoundException {
+
+        GameModel.serialize(g);
 
     }
 

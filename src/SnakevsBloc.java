@@ -19,6 +19,5 @@ public class SnakevsBloc extends Application
         }
         StartPage gui=new StartPage();
         gui.show(primaryStage);
-
     }
 }

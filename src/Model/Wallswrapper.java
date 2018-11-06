@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Wallswrapper {
+public class Wallswrapper implements Serializable {
 
     private ArrayList<wall> walls;
     private int length;
@@ -26,7 +27,6 @@ public class Wallswrapper {
             this.walls.add(new wall());
             this.length=this.length+1;
     }
-
     public int getLength() {
         return length;
     }
