@@ -54,7 +54,8 @@ public class Game {
     private ArrayList<Integer> TokenPositions;
     private LeaderBoardModel templeaderboard;
 
-    private boolean facesWall= false;
+    private boolean facesWallleft= false;
+    private boolean facesWallright=false;
     private int[] wallPositions;
     Random randomPositionDecider;
     GameSubScene subGameScene;
@@ -513,9 +514,9 @@ public class Game {
     private void moveSnake(){
 //
         if (isLeftKeyPressed && !isRightKeyPressed){
-            if (facesWall){
-                facesWall = false;
-                moveRight();
+            if (facesWallleft){
+               facesWallleft = false;
+//                moveRight();
             }
             else{
                 moveLeft();
@@ -523,9 +524,9 @@ public class Game {
         }
 
         if (isRightKeyPressed && !isLeftKeyPressed) {
-            if (facesWall){
-                facesWall=false;
-                moveLeft();
+            if (facesWallright){
+                facesWallright=false;
+//                moveLeft();
             }
             else{
                 moveRight();
@@ -617,7 +618,12 @@ public class Game {
             for (int j=0;j<len;j++){
                 wall x = walllist.get(i).getWalls().get(j);
                 if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())){
-                    facesWall = true;
+                    if(snake.get(0).getLayoutX()-x.getLayoutX()>=-5) {
+                        facesWallleft = true;
+                    }
+                    else{
+                        facesWallright = true;
+                    }
                 }
             }
 
