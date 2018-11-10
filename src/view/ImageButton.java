@@ -31,7 +31,7 @@ public class ImageButton extends Button {
         this.interim = interim;
     }
 
-    private String interim;
+    private String interim="";
     public String getSTYLE_NORMAL() {
         return STYLE_NORMAL;
     }

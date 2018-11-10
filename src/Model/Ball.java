@@ -29,6 +29,11 @@ public class Ball extends Token implements Serializable {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
         setBackground(new Background(bImage));
     }
+
+    public Ball() {
+        super("");
+    }
+
     public void setBlockLabelFont() {
         try {
             setFont(Font.loadFont(new FileInputStream(new File(BLOCK_FONT)),15));

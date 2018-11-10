@@ -53,6 +53,8 @@ public class Game {
     private ArrayList<Integer> blockPositions;
     private ArrayList<Integer> TokenPositions;
     private LeaderBoardModel templeaderboard;
+
+    private boolean facesWall= false;
     private int[] wallPositions;
     Random randomPositionDecider;
     GameSubScene subGameScene;
@@ -464,53 +466,69 @@ public class Game {
 
 
     }
+    private void moveLeft(){
+        if(snake.get(0).getLayoutX()>20) {
 
+            for (int i = 0; i < snake.size(); i++) {
+
+                ImageView p = snake.get(i);
+
+                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
+                checkIfElementsCollide();
+                transition.setFromX(p.getTranslateX());
+                transition.setFromY(p.getTranslateY());
+                transition.setToX(p.getTranslateX());
+                transition.setToY(p.getTranslateY());
+                transition.playFromStart();
+                transition.setOnFinished(t -> {
+                    p.setLayoutX(p.getLayoutX() - (3));
+                    p.setLayoutY(p.getLayoutY());
+                });
+                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
+                //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - 3);
+
+            }
+        }
+    }
+    private void moveRight(){
+        if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
+//                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
+            for (int i = 0; i < snake.size(); i++) {
+                ImageView p = snake.get(i);
+                checkIfElementsCollide();
+                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
+                transition.setFromX(p.getTranslateX());
+                transition.setFromY(p.getTranslateY());
+                transition.setToX(p.getTranslateX());
+                transition.setToY(p.getTranslateY());
+                transition.playFromStart();
+                transition.setOnFinished(t -> {
+                    p.setLayoutX(p.getLayoutX() + 3);
+                    p.setLayoutY(p.getLayoutY());
+                });
+                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
+            }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
+        }
+    }
     private void moveSnake(){
 //
         if (isLeftKeyPressed && !isRightKeyPressed){
-
-            if(snake.get(0).getLayoutX()>20) {
-
-                for (int i = 0; i < snake.size(); i++) {
-
-                    ImageView p = snake.get(i);
-
-                    final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
-                    checkIfElementsCollide();
-                    transition.setFromX(p.getTranslateX());
-                    transition.setFromY(p.getTranslateY());
-                    transition.setToX(p.getTranslateX());
-                    transition.setToY(p.getTranslateY());
-                    transition.playFromStart();
-                    transition.setOnFinished(t -> {
-                        p.setLayoutX(p.getLayoutX() - (3));
-                        p.setLayoutY(p.getLayoutY());
-                    });
-                    GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
-                    //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - 3);
-
-                }
+            if (facesWall){
+                facesWall = false;
+                moveRight();
+            }
+            else{
+                moveLeft();
             }
         }
 
         if (isRightKeyPressed && !isLeftKeyPressed) {
-            if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
-//                for (int i = 0; i < GameStructure.getSnake().getlength(); i++) {
-                    for (int i = 0; i < snake.size(); i++) {
-                    ImageView p = snake.get(i);
-                    checkIfElementsCollide();
-                    final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
-                    transition.setFromX(p.getTranslateX());
-                    transition.setFromY(p.getTranslateY());
-                    transition.setToX(p.getTranslateX());
-                    transition.setToY(p.getTranslateY());
-                    transition.playFromStart();
-                    transition.setOnFinished(t -> {
-                        p.setLayoutX(p.getLayoutX() + 3);
-                        p.setLayoutY(p.getLayoutY());
-                    });
-                    GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
-                }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
+            if (facesWall){
+                facesWall=false;
+                moveLeft();
+            }
+            else{
+                moveRight();
             }
         }
 
@@ -551,13 +569,28 @@ public class Game {
         }
 
         for (int j=0;j<tokenslist.size();j++){
+
+            ImageView snakeLocalHead = snake.get(0);
+//            if (tokenslist.get(j).getBoundsInParent().intersects(snakeLocalHead.getBoundsInParent())){
+//                System.out.println("simple?");
+//            }
             if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
                     tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
+
+//                if (snake.get(0).intersects(tokenslist.get(j).getLayoutX(),
+//                        tokenslist.get(j).getLayoutY(),tokenslist.get(j).getPrefWidth(),
+//                        tokenslist.get(j).getPrefHeight())){
+//                    System.out.println("same");
+//                }
+//                ImageView snakeLocalHead = snake.get(0);
+//                if (tokenslist.get(j).intersects(snakeLocalHead.getBoundsInLocal())){
+//                    System.out.println("simple?");
+//                }
                 setNewElementsPosition(tokenslist.get(j));
 
-                if (tokenslist.get(j).getClass().equals("Ball")) {
+                if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
 
                     for (int k = 0; k < lenToInc; k++) {
@@ -570,11 +603,27 @@ public class Game {
                             snake.get(snake.size() - 1).setLayoutX(toSetX);
                             snake.get(snake.size() - 1).setLayoutY(toSetY);
                             rootLayout.getChildren().add(snake.get(snake.size() - 1));
+
                     }
                 }
 
             }
         }
+
+        for (int i=0;i<walllist.size();i++){
+                int len = walllist.get(i).getWalls().size();
+
+//            System.out.println(x.getBoundsInLocal());
+            for (int j=0;j<len;j++){
+                wall x = walllist.get(i).getWalls().get(j);
+                if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())){
+                    facesWall = true;
+                }
+            }
+
+        }
+
+
 
     }
 
