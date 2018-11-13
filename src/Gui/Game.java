@@ -55,6 +55,7 @@ public class Game {
     private LeaderBoardModel templeaderboard;
 
     Timer timer;
+    private Timeline timeline;
 
     private boolean facesWallleft= false;
     private boolean facesWallright=false;
@@ -561,19 +562,54 @@ public class Game {
     }
 
     private void checkIfElementsCollide(){
+//        System.out.println(snake.size());
         for (int i=0;i<blockslist.size();i++){
             if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
                     ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
             {
-                if (!isMagnetOn){
-                    for (int r=0;r<blockslist.get(i).getValue();r++){
-                        if (snake.size()!=1){
-                            rootLayout.getChildren().remove(snake.remove(snake.size()-1));
+                int valueOfBlock = blockslist.get(i).getValue();
+                if (valueOfBlock <= 5){
+                    if (!isMagnetOn){
+                        for (int r=0;r<valueOfBlock;r++){
+                            if (snake.size()!=1){
+                                rootLayout.getChildren().remove(snake.remove(snake.size()-1));
+                            }
                         }
                     }
                 }
+                else{
+                    if (snake.size()>1) {
+                        isGameRunning = false;
+                    }
+
+                    for (int j = 0; j < Math.min(valueOfBlock,snake.size())-1; j++) {
+                        if (snake.size()!=1) {
+                            //buggy code, need to fix
+                            Timeline localTimeline= new Timeline();
+                            ImageView tail = snake.get(snake.size()-1);
+                            KeyValue keyValueX = new KeyValue(tail.scaleXProperty(), -1);
+                            KeyValue keyValueY = new KeyValue(tail.scaleYProperty(), -1);
+                            Duration duration = Duration.millis(1000);
+
+                            KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
+
+
+                            localTimeline.getKeyFrames().add(keyFrame);
+                            localTimeline.setOnFinished(event -> {
+                                isGameRunning = true;
+                                rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                            });
+
+                            localTimeline.play();
+                        }
+                    }
+
+//                    isGameRunning = true;
+                }
+
+
 
                 points+=blockslist.get(i).getValue();
                 Totalscore+=points;
@@ -583,7 +619,6 @@ public class Game {
                 scoreLabelText.setText(newScore+points);
 
 //                blockslist.remove(blockslist.get(i));
-                break;
             }
         }
 
@@ -609,10 +644,11 @@ public class Game {
 //                }
 //                setNewElementsPosition(tokenslist.get(j));
 //                tokenslist.remove(tokenslist.get(j));
-                rootLayout.getChildren().remove(tokenslist.get(j));
+//                System.out.println("came here");
+
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
-
+                    System.out.println(lenToInc);
                     for (int k = 0; k < lenToInc; k++) {
                             double toSetX = snake.get(snake.size() - 1).getLayoutX();
                             double toSetY = snake.get(snake.size() - 1).getLayoutY() + 25;
@@ -645,7 +681,7 @@ public class Game {
                 if (tokenslist.get(j).getClass() == Magnet.class){
                     turnOnMagnet();
                 }
-
+                rootLayout.getChildren().remove(tokenslist.remove(j));
             }
         }
 //        System.out.println(walllist.size());
