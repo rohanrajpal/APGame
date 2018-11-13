@@ -472,7 +472,6 @@ public class Game {
                  if (walllist.get(k).getWalls().get(j).getLayoutY() > 720) {
                      rootLayout.getChildren().remove(walllist.get(k).getWalls().get(j));
                      removeWall = true;
-//                             walllist.remove(walllist.get(k).getWalls().get(j));
                  }
              }
              if (removeWall){
@@ -526,11 +525,9 @@ public class Game {
         }
     }
     private void moveSnake(){
-//
         if (isLeftKeyPressed && !isRightKeyPressed){
             if (facesWallleft){
                facesWallleft = false;
-//                moveRight();
             }
             else{
                 moveLeft();
@@ -540,7 +537,6 @@ public class Game {
         if (isRightKeyPressed && !isLeftKeyPressed) {
             if (facesWallright){
                 facesWallright=false;
-//                moveLeft();
             }
             else{
                 moveRight();
@@ -570,7 +566,7 @@ public class Game {
                     blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
             {
                 int valueOfBlock = blockslist.get(i).getValue();
-                if (valueOfBlock <= 5){
+                if (valueOfBlock <= 0){
                     if (!isMagnetOn){
                         for (int r=0;r<valueOfBlock;r++){
                             if (snake.size()!=1){
@@ -584,22 +580,27 @@ public class Game {
                         isGameRunning = false;
                     }
 
-                    for (int j = 0; j < Math.min(valueOfBlock,snake.size())-1; j++) {
+                    for (int j = 0; j < valueOfBlock; j++) {
                         if (snake.size()!=1) {
                             //buggy code, need to fix
                             Timeline localTimeline= new Timeline();
                             ImageView tail = snake.get(snake.size()-1);
                             KeyValue keyValueX = new KeyValue(tail.scaleXProperty(), -1);
                             KeyValue keyValueY = new KeyValue(tail.scaleYProperty(), -1);
-                            Duration duration = Duration.millis(1000);
+                            Duration duration = Duration.millis(500*(j+1));
 
                             KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
 
 
                             localTimeline.getKeyFrames().add(keyFrame);
+                            int finalJ = j;
                             localTimeline.setOnFinished(event -> {
-                                isGameRunning = true;
-                                rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                if (finalJ == snake.size()-1 || finalJ == valueOfBlock-1){
+                                    isGameRunning = true;
+                                }
+                                if (snake.size()>1) {
+                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                }
                             });
 
                             localTimeline.play();
@@ -648,7 +649,6 @@ public class Game {
 
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
-                    System.out.println(lenToInc);
                     for (int k = 0; k < lenToInc; k++) {
                             double toSetX = snake.get(snake.size() - 1).getLayoutX();
                             double toSetY = snake.get(snake.size() - 1).getLayoutY() + 25;
