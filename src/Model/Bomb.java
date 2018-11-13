@@ -17,4 +17,8 @@ public class Bomb extends Token implements Serializable {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, null);
         setBackground(new Background(bImage));
     }
+
+    public Bomb() {
+        super("");
+    }
 }

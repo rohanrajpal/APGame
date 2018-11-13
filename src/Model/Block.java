@@ -27,6 +27,8 @@ public class Block extends Label implements Serializable {
     private double x;
     private double y;
 
+
+
     public String gettext() {
         return text;
     }
