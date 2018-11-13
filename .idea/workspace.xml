@@ -8,14 +8,16 @@
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeaderBoardModel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LeaderBoardModel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Block.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Bomb.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Bomb.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Shield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Shield.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Bomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Shield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Shield.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -103,14 +105,14 @@
         <counts>
           <entry key="dummy" value="12" />
           <entry key="fxml" value="16" />
-          <entry key="java" value="1247" />
-          <entry key="txt" value="27" />
+          <entry key="java" value="1304" />
+          <entry key="txt" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1247" />
-          <entry key="PLAIN_TEXT" value="39" />
+          <entry key="JAVA" value="1304" />
+          <entry key="PLAIN_TEXT" value="66" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -243,8 +245,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1129">
-              <caret line="688" column="27" lean-forward="true" selection-start-line="688" selection-start-column="27" selection-end-line="688" selection-end-column="27" />
+            <state relative-caret-position="281">
+              <caret line="458" column="46" lean-forward="true" selection-start-line="458" selection-start-column="46" selection-end-line="458" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -362,8 +364,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>points</find>
-      <find>createnewga</find>
       <find>random</find>
       <find>Decider</find>
       <find>keyListeners</find>
@@ -392,6 +392,8 @@
       <find>system.ou</find>
       <find>facesWall</find>
       <find>faceswall</find>
+      <find>check</find>
+      <find>blockslist.re</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -609,7 +611,7 @@
       <workItem from="1541225201665" duration="1499000" />
       <workItem from="1541243131948" duration="998000" />
       <workItem from="1542107267703" duration="452000" />
-      <workItem from="1542108431845" duration="4537000" />
+      <workItem from="1542108431845" duration="5598000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -667,11 +669,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541167641185</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added tokens functionality">
+      <created>1542113049195</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1542113049195</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47019000" />
+    <option name="totallyTimeSpent" value="48080000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -749,7 +758,8 @@
     <MESSAGE value="Implemented collision logic and made a score label" />
     <MESSAGE value="Reducing length of snake on collision" />
     <MESSAGE value="Made the looks better" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the looks better" />
+    <MESSAGE value="Added tokens functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tokens functionality" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Gui/resources/title.png" />
@@ -1024,8 +1034,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1129">
-          <caret line="688" column="27" lean-forward="true" selection-start-line="688" selection-start-column="27" selection-end-line="688" selection-end-column="27" />
+        <state relative-caret-position="281">
+          <caret line="458" column="46" lean-forward="true" selection-start-line="458" selection-start-column="46" selection-end-line="458" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

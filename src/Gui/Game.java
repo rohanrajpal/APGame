@@ -453,13 +453,14 @@ public class Game {
             for(int j=0;j<blockslist.size();j++) {
                 if (blockslist.get(j).getLayoutY() > 600) {
                         rootLayout.getChildren().remove(blockslist.get(j));
+                        blockslist.remove(blockslist.get(j));
                 }
             }
         for(int j=0;j<tokenslist.size();j++) {
             if (tokenslist.get(j).getLayoutY() > 600) {
 
                 rootLayout.getChildren().remove(tokenslist.get(j));
-
+                tokenslist.remove(tokenslist.get(j));
 
             }
         }
@@ -467,6 +468,7 @@ public class Game {
                  for (int j = 0; j < walllist.get(k).getLength(); j++) {
                      if (walllist.get(k).getWalls().get(j).getLayoutY() > 600) {
                              rootLayout.getChildren().remove(walllist.get(k).getWalls().get(j));
+                             walllist.remove(walllist.get(k).getWalls().get(j));
                      }
                  }
              }
@@ -642,7 +644,8 @@ public class Game {
 
             }
         }
-        System.out.println(TOKEN_RADIUS);
+        System.out.println(walllist.size());
+//        System.out.println(TOKEN_RADIUS);
         for (int i=0;i<walllist.size();i++){
                 int len = walllist.get(i).getWalls().size();
 
@@ -660,9 +663,6 @@ public class Game {
             }
 
         }
-
-
-
     }
 
     private void turnOnMagnet() {
