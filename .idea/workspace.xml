@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/tokens/icons8-shield-48.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" afterDir="false" />
@@ -15,11 +14,9 @@
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Shield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Shield.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Shield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Shield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/tokens/token_magnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/tokens/token_magnet.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -89,14 +86,14 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="2" />
-          <entry key="java" value="14" />
+          <entry key="java" value="16" />
           <entry key="png" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="2" />
-          <entry key="JAVA" value="14" />
+          <entry key="JAVA" value="16" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -107,14 +104,14 @@
         <counts>
           <entry key="dummy" value="12" />
           <entry key="fxml" value="16" />
-          <entry key="java" value="1497" />
-          <entry key="txt" value="67" />
+          <entry key="java" value="2042" />
+          <entry key="txt" value="126" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1497" />
-          <entry key="PLAIN_TEXT" value="79" />
+          <entry key="JAVA" value="2042" />
+          <entry key="PLAIN_TEXT" value="138" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -247,11 +244,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="376" column="17" lean-forward="true" selection-start-line="376" selection-start-column="17" selection-end-line="376" selection-end-column="17" />
+            <state relative-caret-position="101">
+              <caret line="575" column="46" lean-forward="true" selection-start-line="575" selection-start-column="46" selection-end-line="575" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/KeyFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="258" column="11" selection-start-line="258" selection-start-column="11" selection-end-line="258" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/TranslateTransition.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="465" column="11" selection-start-line="465" selection-start-column="11" selection-end-line="465" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -273,7 +288,7 @@
         <entry file="file://$PROJECT_DIR$/src/Model/Token.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
             </state>
           </provider>
         </entry>
@@ -318,27 +333,6 @@
               <folding>
                 <element signature="e#746#747#0" expanded="true" />
                 <element signature="e#769#770#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/ControllerLeaderboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/ImageButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -393,9 +387,9 @@
       <find>movesna</find>
       <find>relocateelementsbelowscreen</find>
       <find>chec</find>
-      <find>check</find>
       <find>token</find>
       <find>createTokens</find>
+      <find>check</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -620,7 +614,7 @@
       <workItem from="1541225201665" duration="1499000" />
       <workItem from="1541243131948" duration="998000" />
       <workItem from="1542107267703" duration="452000" />
-      <workItem from="1542108431845" duration="8457000" />
+      <workItem from="1542108431845" duration="17021000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -692,11 +686,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542114099602</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Changed a few UI elements and improved frequency of tokens">
+      <created>1542120497221</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1542120497221</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50939000" />
+    <option name="totallyTimeSpent" value="59503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -707,7 +708,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" weight="0.3295302" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.16040269" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16040269" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
@@ -715,7 +716,7 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.38101983" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4986577" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -776,17 +777,10 @@
     <MESSAGE value="Made the looks better" />
     <MESSAGE value="Added tokens functionality" />
     <MESSAGE value="Fixed the lag" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the lag" />
+    <MESSAGE value="Changed a few UI elements and improved frequency of tokens" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed a few UI elements and improved frequency of tokens" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Gui/resources/title.png" />
-    <entry file="file://$PROJECT_DIR$/src/Model/mousecordinates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/com/sun/javafx/collections/VetoableListDecorator.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/event/EventHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/view/StartPageLayout.fxml">
@@ -1034,7 +1028,7 @@
     <entry file="file://$PROJECT_DIR$/src/Model/Token.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
@@ -1049,10 +1043,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/TranslateTransition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="465" column="11" selection-start-line="465" selection-start-column="11" selection-end-line="465" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/KeyFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="258" column="11" selection-start-line="258" selection-start-column="11" selection-end-line="258" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="376" column="17" lean-forward="true" selection-start-line="376" selection-start-column="17" selection-end-line="376" selection-end-column="17" />
+        <state relative-caret-position="101">
+          <caret line="575" column="46" lean-forward="true" selection-start-line="575" selection-start-column="46" selection-end-line="575" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
