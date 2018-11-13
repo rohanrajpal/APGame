@@ -17,4 +17,8 @@ public class Shield extends Token implements Serializable {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, null);
         setBackground(new Background(bImage));
     }
+
+    public Shield() {
+        super("");
+    }
 }

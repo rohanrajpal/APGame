@@ -34,7 +34,7 @@ public class Game {
 
     private final static int SNAKEHEAD_RADIUS=20;
     private final static int BLOCK_RADIUS=40;
-    private final static int TOKEN_RADIUS=10;
+    private static int TOKEN_RADIUS=10;
 
     private ScoreLabel scoreLabelText;
     private int Totalscore=0;
@@ -54,8 +54,11 @@ public class Game {
     private ArrayList<Integer> TokenPositions;
     private LeaderBoardModel templeaderboard;
 
+    Timer timer;
+
     private boolean facesWallleft= false;
     private boolean facesWallright=false;
+    private boolean MagnetShield =false;
     private int[] wallPositions;
     Random randomPositionDecider;
     GameSubScene subGameScene;
@@ -211,6 +214,13 @@ public class Game {
                 }else if (event.getCode() == KeyCode.RIGHT){
                     isRightKeyPressed = true;
                 }
+                //To check is Magnet is working correctly
+                if (event.getCode() == KeyCode.S){
+                    turnOnShield();
+                }
+                if (event.getCode() == KeyCode.M){
+                    turnOnMagnet();
+                }
             }
         });
 
@@ -224,6 +234,7 @@ public class Game {
                 }
             }
         });
+
     }
     public void show(Stage primaryStage){
         rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -455,11 +466,7 @@ public class Game {
              for(int k=0;k<walllist.size();k++) {
                  for (int j = 0; j < walllist.get(k).getLength(); j++) {
                      if (walllist.get(k).getWalls().get(j).getLayoutY() > 600) {
-
                              rootLayout.getChildren().remove(walllist.get(k).getWalls().get(j));
-
-
-
                      }
                  }
              }
@@ -554,17 +561,22 @@ public class Game {
                     snake.get(0).getLayoutY()+ 20,
                     blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
             {
-                for (int r=0;r<blockslist.get(i).getValue();r++){
-                    if (snake.size()!=1){
-                        rootLayout.getChildren().remove(snake.remove(snake.size()-1));
+                if (!MagnetShield){
+                    for (int r=0;r<blockslist.get(i).getValue();r++){
+                        if (snake.size()!=1){
+                            rootLayout.getChildren().remove(snake.remove(snake.size()-1));
+                        }
                     }
                 }
+
                 points+=blockslist.get(i).getValue();
                 Totalscore+=points;
                 rootLayout.getChildren().remove(blockslist.get(i));
                 blockslist.remove(blockslist.get(i));
                 String newScore =  "Score: ";
                 scoreLabelText.setText(newScore+points);
+
+//                blockslist.remove(blockslist.get(i));
                 break;
             }
         }
@@ -589,8 +601,9 @@ public class Game {
 //                if (tokenslist.get(j).intersects(snakeLocalHead.getBoundsInLocal())){
 //                    System.out.println("simple?");
 //                }
-                setNewElementsPosition(tokenslist.get(j));
-
+//                setNewElementsPosition(tokenslist.get(j));
+//                tokenslist.remove(tokenslist.get(j));
+                rootLayout.getChildren().remove(tokenslist.get(j));
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
 
@@ -608,9 +621,28 @@ public class Game {
                     }
                 }
 
+                if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
+                    for (int i = blockslist.size()-1;i>=0;i--){
+                        points+=blockslist.get(i).getValue();
+                        Totalscore+=points;
+                        rootLayout.getChildren().remove(blockslist.get(i));
+                        blockslist.remove(blockslist.get(i));
+                    }
+                    String newScore =  "Score: ";
+                    scoreLabelText.setText(newScore+points);
+                }
+
+                if(tokenslist.get(j).getClass() == (Shield.class)){
+                    turnOnShield();
+                }
+                
+                if (tokenslist.get(j).getClass() == Magnet.class){
+                    turnOnMagnet();
+                }
+
             }
         }
-
+        System.out.println(TOKEN_RADIUS);
         for (int i=0;i<walllist.size();i++){
                 int len = walllist.get(i).getWalls().size();
 
@@ -633,7 +665,36 @@ public class Game {
 
     }
 
+    private void turnOnMagnet() {
+        TOKEN_RADIUS = 100;
+        timer = new Timer();
+        timer.schedule(new changeBackRadius(),5*1000);
+
+    }
+
+    private void turnOnShield() {
+        MagnetShield = true;
+        timer = new Timer();
+        timer.schedule(new changeBackShield(),5*1000);
+    }
+
     private double calcculateDistance(double x1,double x2,double y1,double y2){
         return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
+    }
+
+    private class changeBackRadius extends TimerTask {
+        @Override
+        public void run() {
+            TOKEN_RADIUS =10;
+            timer.cancel();
+        }
+    }
+
+    private class changeBackShield extends TimerTask {
+        @Override
+        public void run() {
+            MagnetShield = false;
+            timer.cancel();
+        }
     }
 }
