@@ -135,7 +135,25 @@ public class Game {
         subGameScene.getPane().getChildren().add(createResumeButton());
 
         subGameScene.getPane().getChildren().add(createGoBacktoMenuButton());
+
+        subGameScene.getPane().getChildren().add(createRestartButton());
 //        subGameScene;
+    }
+
+    private Button createRestartButton() {
+        ImageButton imgResart = new ImageButton("../view/Helper_images/icon-restart.png");
+        imgResart.setLayoutX(170);
+        imgResart.setLayoutY(130);
+        imgResart.setPrefHeight(20);
+        imgResart.setPrefWidth(20);
+        imgResart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
+
+        return imgResart;
     }
 
     private Button createGoBacktoMenuButton() {
@@ -307,9 +325,6 @@ public class Game {
                     }
                 }
             }
-
-
-
         createwall();
 
     }
@@ -579,6 +594,9 @@ public class Game {
     private void UpdateSnakeSize(){
         snakeLen.setText(String.valueOf(snake.size()));
         snakeLen.setLayoutX(snake.get(0).getLayoutX());
+        downSpeed = 0.5*(snake.size()+11);
+        snakeSpeed = 0.5 * (snake.size() + 5);
+
     }
     private void checkIfElementsCollide(){
 //        System.out.println(snake.size());
@@ -589,6 +607,8 @@ public class Game {
 //                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent()))
             {
+                isGameRunning = false;
+
                 System.out.println(snake.size());
                 int valueOfBlock = blockslist.get(i).getValue();
                 if (valueOfBlock < snake.size() || isShieldOn) {
@@ -625,7 +645,7 @@ public class Game {
                             int finalJ = j;
                             int finalI = i;
                             localTimeline.setOnFinished(event -> {
-                                if (finalJ == snake.size() - 1 || finalJ == valueOfBlock - 1) {
+                                if (finalJ == valueOfBlock - 1) {
                                     System.out.println(finalJ);
                                     Block toDestroyBlock = blockslist.get(finalI);
                                     ImageView imageView = new ImageView("view/Animations/Explosion.gif");
@@ -649,6 +669,7 @@ public class Game {
 
                     String newScore = "Score: ";
                     scoreLabelText.setText(newScore + points);
+                    isGameRunning = true;
                 }
                 else{
                     isGameRunning = false;
@@ -668,12 +689,14 @@ public class Game {
                     tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
+
+                isGameRunning =false;
                 System.out.println(snake.size());
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
                     incSnakeLength(lenToInc);
 
-                    correctSnakePostions();
+//                    correctSnakePostions();
                 }
 
                 if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
@@ -697,8 +720,7 @@ public class Game {
                     destroyBlockAnimation(imageView);
                     rootLayout.getChildren().remove(tokenslist.remove(j));
 
-
-
+                    isGameRunning = true;
             }
 
 //            if (isMagnetOn){
@@ -741,8 +763,8 @@ public class Game {
 
     private void incSnakeLength(int lenToInc) {
         for (int k = 0; k < lenToInc; k++) {
-                double toSetX = snake.get(0).getLayoutX();
-                double toSetY = snake.get(0).getLayoutY() + 25 * snake.size();
+                double toSetX = snake.get(snake.size()-1).getLayoutX();
+                double toSetY = snake.get(snake.size()-1).getLayoutY() +25;
                 ImageView img = new ImageView("/view/snake_tail.png");
                 img.setFitHeight(25);
                 img.setFitWidth(25);

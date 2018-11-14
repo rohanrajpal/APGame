@@ -6,10 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Model/SnakeLengthLabel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Helper_images/icon-restart.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" afterDir="false" />
@@ -91,14 +90,14 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="2" />
-          <entry key="java" value="25" />
-          <entry key="png" value="2" />
+          <entry key="java" value="27" />
+          <entry key="png" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="2" />
-          <entry key="JAVA" value="25" />
+          <entry key="Image" value="8" />
+          <entry key="JAVA" value="27" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -109,14 +108,14 @@
         <counts>
           <entry key="dummy" value="12" />
           <entry key="fxml" value="16" />
-          <entry key="java" value="3772" />
-          <entry key="txt" value="297" />
+          <entry key="java" value="4108" />
+          <entry key="txt" value="338" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3772" />
-          <entry key="PLAIN_TEXT" value="309" />
+          <entry key="JAVA" value="4108" />
+          <entry key="PLAIN_TEXT" value="350" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -249,13 +248,56 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1750">
-              <caret line="645" column="49" selection-start-line="645" selection-start-column="49" selection-end-line="645" selection-end-column="49" />
+            <state relative-caret-position="201">
+              <caret line="752" column="48" lean-forward="true" selection-start-line="752" selection-start-column="48" selection-end-line="752" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/ImageButton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/ControllerGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="620">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Helper_images/error.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Helper_images/leaderboard-button.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Helper_images/pause.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Helper_images/play-button.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Helper_images/resume-button.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -271,82 +313,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/ScoreLabel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/Animation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20500">
-              <caret line="1131" selection-start-line="1131" selection-end-line="1131" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Token.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/wall.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Ball.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1111#1112#0" expanded="true" />
-                <element signature="e#1136#1137#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/GameModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Bomb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-              <folding>
-                <element signature="e#746#747#0" expanded="true" />
-                <element signature="e#771#772#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/ControllerMainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3120">
-              <caret line="177" selection-start-line="177" selection-end-line="177" />
+            <state relative-caret-position="521">
+              <caret line="100" column="37" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -364,15 +334,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>facesWall</find>
-      <find>faceswall</find>
-      <find>blockslist.re</find>
-      <find>createwall</find>
-      <find>walllist</find>
-      <find>movesna</find>
-      <find>relocateelementsbelowscreen</find>
-      <find>chec</find>
-      <find>token</find>
       <find>createTokens</find>
       <find>check</find>
       <find>gameloop</find>
@@ -389,11 +350,20 @@
       <find>coll</find>
       <find>turnOnMagnet</find>
       <find>changeBackRadius</find>
-      <find>collide</find>
       <find>listeners</find>
       <find>createsna</find>
       <find>gameloo</find>
       <find>updat</find>
+      <find>collide</find>
+      <find>pause</find>
+      <find>createNewGame</find>
+      <find>resta</find>
+      <find>restart</find>
+      <find>rest</find>
+      <find>upda</find>
+      <find>update</find>
+      <find>incSnakeLength</find>
+      <find>colli</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -430,7 +400,6 @@
         <option value="$PROJECT_DIR$/LeaderBoardModel.txt" />
         <option value="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" />
         <option value="$PROJECT_DIR$/src/Model/SnakeModel.java" />
-        <option value="$PROJECT_DIR$/src/view/ImageButton.java" />
         <option value="$PROJECT_DIR$/src/Model/GameModel.java" />
         <option value="$PROJECT_DIR$/src/Model/Wallswrapper.java" />
         <option value="$PROJECT_DIR$/src/Model/Magnet.java" />
@@ -445,6 +414,7 @@
         <option value="$PROJECT_DIR$/src/Model/Shield.java" />
         <option value="$PROJECT_DIR$/src/Model/Block.java" />
         <option value="$PROJECT_DIR$/src/Model/SnakeLengthLabel.java" />
+        <option value="$PROJECT_DIR$/src/view/ImageButton.java" />
         <option value="$PROJECT_DIR$/src/Gui/Game.java" />
       </list>
     </option>
@@ -513,6 +483,13 @@
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="Animations" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="APGame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="APGame" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="Helper_images" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -523,7 +500,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542205575440" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542216994711" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../APGameDemo2" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -531,15 +508,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\Animations" />
-      <recent name="C:\Users\Rohan\IdeaProjects\APGame3\src\view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\Helper_images" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\Gui" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\tokens" />
       <recent name="C:\Users\BHARATH\eclipse-workspace\APGame\src\Model\storage" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\Animations" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame3\src\view" />
     </key>
   </component>
@@ -627,7 +604,7 @@
       <workItem from="1542135597473" duration="120000" />
       <workItem from="1542137868648" duration="770000" />
       <workItem from="1542173681016" duration="11718000" />
-      <workItem from="1542197795124" duration="5790000" />
+      <workItem from="1542197795124" duration="10778000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -741,11 +718,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542190487519</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Combined all the features">
+      <created>1542205655143</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1542205655143</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79721000" />
+    <option name="totallyTimeSpent" value="84709000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -764,7 +748,7 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.38101983" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4986577" weight="0.2917847" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.2917847" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -831,17 +815,10 @@
     <MESSAGE value="Added block destroy animations" />
     <MESSAGE value="Snake movement problem loosely fixed" />
     <MESSAGE value="Minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+    <MESSAGE value="Combined all the features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combined all the features" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/play-button.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/back-button.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/com/sun/javafx/tk/quantum/QuantumToolkit.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/ArrayList.java" />
     <entry file="file://$PROJECT_DIR$/src/view/tokens/token_addtail.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -859,13 +836,7 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/resume-button.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/layout/Background.java" />
-    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/error.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/black_back.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -949,13 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ControllerGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameModelStore.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -984,13 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
           <caret line="95" selection-start-line="95" selection-end-line="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/ImageButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1094,13 +1051,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ControllerMainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3120">
-          <caret line="177" selection-start-line="177" selection-end-line="177" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/ScoreLabel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -1118,10 +1068,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/error.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/pause.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/play-button.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/resume-button.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/leaderboard-button.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Helper_images/back-button.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ControllerGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ControllerMainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="100" column="37" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ImageButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1750">
-          <caret line="645" column="49" selection-start-line="645" selection-start-column="49" selection-end-line="645" selection-end-column="49" />
+        <state relative-caret-position="201">
+          <caret line="752" column="48" lean-forward="true" selection-start-line="752" selection-start-column="48" selection-end-line="752" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
