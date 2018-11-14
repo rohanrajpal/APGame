@@ -82,14 +82,14 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="2" />
-          <entry key="java" value="19" />
+          <entry key="java" value="23" />
           <entry key="png" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="2" />
-          <entry key="JAVA" value="19" />
+          <entry key="JAVA" value="23" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -100,14 +100,14 @@
         <counts>
           <entry key="dummy" value="12" />
           <entry key="fxml" value="16" />
-          <entry key="java" value="2701" />
-          <entry key="txt" value="236" />
+          <entry key="java" value="3044" />
+          <entry key="txt" value="284" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2701" />
-          <entry key="PLAIN_TEXT" value="248" />
+          <entry key="JAVA" value="3044" />
+          <entry key="PLAIN_TEXT" value="296" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -237,20 +237,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Block.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="726" column="65" selection-start-line="726" selection-start-column="65" selection-end-line="726" selection-end-column="65" />
+            <state relative-caret-position="195">
+              <caret line="697" column="46" lean-forward="true" selection-start-line="697" selection-start-column="46" selection-end-line="697" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#27341#27352#0" expanded="true" />
@@ -260,19 +251,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/TranslateTransition.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/Animation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8200">
-              <caret line="465" column="11" selection-start-line="465" selection-start-column="11" selection-end-line="465" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Shield.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+            <state relative-caret-position="172">
+              <caret line="1131" selection-start-line="1131" selection-end-line="1131" />
             </state>
           </provider>
         </entry>
@@ -353,12 +335,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Syst</find>
-      <find>snake</find>
-      <find>createsnake</find>
-      <find>creates</find>
-      <find>createsna</find>
-      <find>pause</find>
       <find>createne</find>
       <find>createt</find>
       <find>System.out</find>
@@ -381,8 +357,14 @@
       <find>_prefWidth</find>
       <find>USE_COMPUTED_SIZE</find>
       <find>movewall</find>
-      <find>destroyAllBlocks</find>
       <find>keylis</find>
+      <find>destroyAllBlocks</find>
+      <find>isGameRunning</find>
+      <find>createbl</find>
+      <find>des</find>
+      <find>destroyBlockAnimation</find>
+      <find>createblo</find>
+      <find>coll</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -444,10 +426,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="620" />
-    <option name="height" value="1040" />
+    <option name="x" value="85" />
+    <option name="y" value="25" />
+    <option name="width" value="1750" />
+    <option name="height" value="970" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -511,8 +493,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542181322650" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542190375193" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../APGameDemo2" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -614,7 +596,7 @@
       <workItem from="1542108431845" duration="18841000" />
       <workItem from="1542135597473" duration="120000" />
       <workItem from="1542137868648" duration="770000" />
-      <workItem from="1542173681016" duration="4857000" />
+      <workItem from="1542173681016" duration="11681000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -714,11 +696,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542179246014</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Snake movement problem loosely fixed">
+      <created>1542181466165</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1542181466165</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67070000" />
+    <option name="totallyTimeSpent" value="73894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -737,12 +726,12 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.38101983" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4986577" weight="0.2917847" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.0694051" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3243626" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
@@ -802,21 +791,10 @@
     <MESSAGE value="fixed unnecessary score increasing" />
     <MESSAGE value="added delay on hitting a block" />
     <MESSAGE value="Added block destroy animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added block destroy animations" />
+    <MESSAGE value="Snake movement problem loosely fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Snake movement problem loosely fixed" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/event/EventHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/view/StartPageLayout.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="75" selection-start-line="15" selection-start-column="75" selection-end-line="15" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Font/Proxima_Font.otf">
-      <provider selected="true" editor-type-id="fontseditor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Blocks/block_yellow.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1073,10 +1051,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/AnimationAccessorImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#929#930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/scenario/animation/shared/SingleLoopClipEnvelope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/Animation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="1131" selection-start-line="1131" selection-end-line="1131" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="726" column="65" selection-start-line="726" selection-start-column="65" selection-end-line="726" selection-end-column="65" />
+        <state relative-caret-position="195">
+          <caret line="697" column="46" lean-forward="true" selection-start-line="697" selection-start-column="46" selection-end-line="697" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#27341#27352#0" expanded="true" />
