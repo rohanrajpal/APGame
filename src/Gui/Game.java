@@ -671,8 +671,8 @@ public class Game {
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
                     for (int k = 0; k < lenToInc; k++) {
-                            double toSetX = snake.get(snake.size() - 1).getLayoutX();
-                            double toSetY = snake.get(snake.size() - 1).getLayoutY() + 25;
+                            double toSetX = snake.get(0).getLayoutX();
+                            double toSetY = snake.get(0).getLayoutY() + 25*snake.size();
                             ImageView img = new ImageView("/view/snake_tail.png");
                             img.setFitHeight(25);
                             img.setFitWidth(25);
@@ -682,6 +682,8 @@ public class Game {
                             rootLayout.getChildren().add(snake.get(snake.size() - 1));
 
                     }
+
+                    correctSnakePostions();
                 }
 
                 if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
@@ -716,6 +718,13 @@ public class Game {
                 }
             }
 
+        }
+    }
+
+    private void correctSnakePostions() {
+        for (int i=1;i<snake.size();i++){
+            snake.get(i).setLayoutX(snake.get(0).getLayoutX());
+            snake.get(i).setLayoutY(snake.get(0).getLayoutY()+25*i);
         }
     }
 
