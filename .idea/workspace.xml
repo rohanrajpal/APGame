@@ -6,13 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/Animations/Explosion.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
     </list>
@@ -105,14 +100,14 @@
         <counts>
           <entry key="dummy" value="12" />
           <entry key="fxml" value="16" />
-          <entry key="java" value="2610" />
-          <entry key="txt" value="201" />
+          <entry key="java" value="2701" />
+          <entry key="txt" value="236" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2610" />
-          <entry key="PLAIN_TEXT" value="213" />
+          <entry key="JAVA" value="2701" />
+          <entry key="PLAIN_TEXT" value="248" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -254,8 +249,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="723" column="42" selection-start-line="723" selection-start-column="42" selection-end-line="723" selection-end-column="42" />
+            <state relative-caret-position="312">
+              <caret line="726" column="65" selection-start-line="726" selection-start-column="65" selection-end-line="726" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#27341#27352#0" expanded="true" />
@@ -516,7 +511,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542179146023" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542181322650" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -619,7 +614,7 @@
       <workItem from="1542108431845" duration="18841000" />
       <workItem from="1542135597473" duration="120000" />
       <workItem from="1542137868648" duration="770000" />
-      <workItem from="1542173681016" duration="2947000" />
+      <workItem from="1542173681016" duration="4857000" />
     </task>
     <task id="LOCAL-00001" summary="Made the main menu UI">
       <created>1540660350645</created>
@@ -712,11 +707,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542135692604</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added block destroy animations">
+      <created>1542179246013</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1542179246014</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65160000" />
+    <option name="totallyTimeSpent" value="67070000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -799,7 +801,8 @@
     <MESSAGE value="Changed a few UI elements and improved frequency of tokens" />
     <MESSAGE value="fixed unnecessary score increasing" />
     <MESSAGE value="added delay on hitting a block" />
-    <option name="LAST_COMMIT_MESSAGE" value="added delay on hitting a block" />
+    <MESSAGE value="Added block destroy animations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added block destroy animations" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/event/EventHandler.java" />
@@ -1072,8 +1075,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="723" column="42" selection-start-line="723" selection-start-column="42" selection-end-line="723" selection-end-column="42" />
+        <state relative-caret-position="312">
+          <caret line="726" column="65" selection-start-line="726" selection-start-column="65" selection-end-line="726" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#27341#27352#0" expanded="true" />
