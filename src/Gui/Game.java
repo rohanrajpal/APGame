@@ -563,90 +563,85 @@ public class Game {
     private void checkIfElementsCollide(){
 //        System.out.println(snake.size());
         for (int i=0;i<blockslist.size();i++){
-            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
-                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
-                    snake.get(0).getLayoutY()+ 20,
-                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
+//            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
+//                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
+//                    snake.get(0).getLayoutY()+ 20,
+//                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
+            if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent()))
             {
                 int valueOfBlock = blockslist.get(i).getValue();
-                if (valueOfBlock <= 0){
-                    if (!isMagnetOn){
-                        for (int r=0;r<valueOfBlock;r++){
-                            if (snake.size()!=1){
-                                rootLayout.getChildren().remove(snake.remove(snake.size()-1));
+                if (valueOfBlock < snake.size()) {
+                    if (valueOfBlock <= 5) {
+
+                        if (!isMagnetOn) {
+                            for (int r = 0; r < valueOfBlock; r++) {
+                                if (snake.size() != 1) {
+                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                }
                             }
                         }
-                    }
-                }
-                else{
-                    if (snake.size()>1) {
+
+                        points += blockslist.get(i).getValue();
+                        Totalscore += points;
+                        ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+                        imageView.setLayoutY(blockslist.get(i).getLayoutY());
+                        imageView.setLayoutX(blockslist.get(i).getLayoutX());
+                        rootLayout.getChildren().add(imageView);
+                        destroyBlockAnimation(imageView);
+                        rootLayout.getChildren().remove(blockslist.remove(i));
+                    } else {
                         isGameRunning = false;
-                    }
 
-                    for (int j = 0; j < valueOfBlock; j++) {
-                        if (snake.size()!=1) {
+                        for (int j = 0; j < valueOfBlock; j++) {
                             //buggy code, need to fix
-                            Timeline localTimeline= new Timeline();
-                            ImageView tail = snake.get(snake.size()-1);
-                            KeyValue keyValueX = new KeyValue(tail.scaleXProperty(), -1);
-                            KeyValue keyValueY = new KeyValue(tail.scaleYProperty(), -1);
-                            Duration duration = Duration.millis(500*(j+1));
-
+                            Timeline localTimeline = new Timeline();
+                            ImageView tail = snake.get(snake.size() - 1);
+                            KeyValue keyValueX = new KeyValue(tail.scaleXProperty(), -0.7);
+                            KeyValue keyValueY = new KeyValue(tail.scaleYProperty(), -0.7);
+                            Duration duration = Duration.millis(500 * (j + 1));
                             KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
-
 
                             localTimeline.getKeyFrames().add(keyFrame);
                             int finalJ = j;
+                            int finalI = i;
                             localTimeline.setOnFinished(event -> {
-                                if (finalJ == snake.size()-1 || finalJ == valueOfBlock-1){
+                                if (finalJ == snake.size() - 1 || finalJ == valueOfBlock - 1) {
+                                    System.out.println(finalJ);
+                                    Block toDestroyBlock = blockslist.get(finalI);
+                                    ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+                                    imageView.setLayoutY(toDestroyBlock.getLayoutY());
+                                    imageView.setLayoutX(toDestroyBlock.getLayoutX());
+                                    rootLayout.getChildren().add(imageView);
+                                    destroyBlockAnimation(imageView);
+                                    points += blockslist.get(finalI).getValue();
+                                    Totalscore += points;
+                                    rootLayout.getChildren().remove(blockslist.remove(finalI));
                                     isGameRunning = true;
                                 }
-                                if (snake.size()>1) {
+                                if (snake.size() > 1) {
                                     rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
                                 }
                             });
 
                             localTimeline.play();
+
                         }
+
                     }
 
-//                    isGameRunning = true;
+                    String newScore = "Score: ";
+                    scoreLabelText.setText(newScore + points);
                 }
-                Block toDestroyBlock = blockslist.get(i);
-                ImageView imageView = new ImageView("view/Animations/Explosion.gif");
-                imageView.setLayoutY(toDestroyBlock.getLayoutY());
-                imageView.setLayoutX(toDestroyBlock.getLayoutX());
-                rootLayout.getChildren().add(imageView);
-
-                isGameRunning = false;
-                Timeline newlocalTimeline= new Timeline();
-                Duration duration = Duration.millis(500);
-                KeyFrame kf = new KeyFrame(duration);
-                newlocalTimeline.getKeyFrames().add(kf);
-                newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        rootLayout.getChildren().remove(imageView);
-                        isGameRunning = true;
-                    }
-                });
-                newlocalTimeline.play();
-
-                points+=blockslist.get(i).getValue();
-                Totalscore+=points;
-                rootLayout.getChildren().remove(blockslist.get(i));
-                blockslist.remove(blockslist.get(i));
-
-                String newScore =  "Score: ";
-                scoreLabelText.setText(newScore+points);
-
-//                blockslist.remove(blockslist.get(i));
+                else{
+                    isGameRunning = false;
+                    System.out.println("Game Over");
+                    openPauseMenu();
+                }
             }
         }
-
+        System.out.println(snake.size());
         for (int j=0;j<tokenslist.size();j++){
 
-            ImageView snakeLocalHead = snake.get(0);
 //            if (tokenslist.get(j).getBoundsInParent().intersects(snakeLocalHead.getBoundsInParent())){
 //                System.out.println("simple?");
 //            }
@@ -654,19 +649,6 @@ public class Game {
                     tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
-
-//                if (snake.get(0).intersects(tokenslist.get(j).getLayoutX(),
-//                        tokenslist.get(j).getLayoutY(),tokenslist.get(j).getPrefWidth(),
-//                        tokenslist.get(j).getPrefHeight())){
-//                    System.out.println("same");
-//                }
-//                ImageView snakeLocalHead = snake.get(0);
-//                if (tokenslist.get(j).intersects(snakeLocalHead.getBoundsInLocal())){
-//                    System.out.println("simple?");
-//                }
-//                setNewElementsPosition(tokenslist.get(j));
-//                tokenslist.remove(tokenslist.get(j));
-//                System.out.println("came here");
 
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
@@ -697,6 +679,19 @@ public class Game {
                 if (tokenslist.get(j).getClass() == Magnet.class){
                     turnOnMagnet();
                 }
+                if (!isMagnetOn) {
+                    ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+                    Token toDestroyToken = tokenslist.get(j);
+                    imageView.setLayoutY(toDestroyToken.getLayoutY());
+                    imageView.setLayoutX(toDestroyToken.getLayoutX());
+                    imageView.setFitWidth(toDestroyToken.getPrefWidth());
+                    imageView.setFitHeight(toDestroyToken.getPrefHeight());
+                    rootLayout.getChildren().add(imageView);
+                    destroyBlockAnimation(imageView);
+                }
+                else{
+                    Timeline localTimeline = new Timeline();
+                }
                 rootLayout.getChildren().remove(tokenslist.remove(j));
             }
         }
@@ -717,8 +712,22 @@ public class Game {
                     }
                 }
             }
-
         }
+    }
+
+    private void destroyBlockAnimation(ImageView imageView) {
+        Timeline newlocalTimeline = new Timeline();
+        Duration duration = Duration.millis(500);
+        KeyFrame kf = new KeyFrame(duration);
+        newlocalTimeline.getKeyFrames().add(kf);
+        newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootLayout.getChildren().remove(imageView);
+//                        isGameRunning = true;
+            }
+        });
+        newlocalTimeline.play();
     }
 
     private void correctSnakePostions() {
@@ -742,7 +751,6 @@ public class Game {
 //            blockslist.remove(blockslist.get(i));
         }
         blockslist.clear();
-        isGameRunning = false;
         Timeline newlocalTimeline= new Timeline();
         Duration duration = Duration.millis(500);
         KeyFrame kf = new KeyFrame(duration);
@@ -754,7 +762,6 @@ public class Game {
                     rootLayout.getChildren().remove(gifArrList.get(i));
                 }
                 gifArrList.clear();
-                isGameRunning = true;
             }
         });
         newlocalTimeline.play();
