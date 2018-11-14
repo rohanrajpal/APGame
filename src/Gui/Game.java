@@ -224,6 +224,9 @@ public class Game {
                 if (event.getCode() == KeyCode.M){
                     turnOnMagnet();
                 }
+                if (event.getCode() == KeyCode.D){
+                    destroyAllBlocks();
+                }
             }
         });
 
@@ -434,7 +437,7 @@ public class Game {
         for(int j=0;j<walllist.size();j++) {
             for (int i = 0; i < walllist.get(j).getLength(); i++) {
                 walllist.get(j).getWalls().get(i).setLayoutY(walllist.get(j).getWalls().get(i).getLayoutY() +downSpeed);
-                walllist.get(j).getWalls().get(i).setY(walllist.get(j).getWalls().get(i).getLayoutY());
+//                walllist.get(j).getWalls().get(i).setY(walllist.get(j).getWalls().get(i).getLayoutY());
             }
         }
     }
@@ -442,13 +445,13 @@ public class Game {
     private void movePowerUps() {
         for (int i=0;i<tokenslist.size();i++){
             tokenslist.get(i).setLayoutY(tokenslist.get(i).getLayoutY()+downSpeed);
-            tokenslist.get(i).setY(tokenslist.get(i).getLayoutY());
+//            tokenslist.get(i).setY(tokenslist.get(i).getLayoutY());
         }
     }
     private void moveBlocks() {
         for (int i=0;i<blockslist.size();i++){
             blockslist.get(i).setLayoutY(blockslist.get(i).getLayoutY()+downSpeed);
-            blockslist.get(i).setY( blockslist.get(i).getLayoutY());
+//            blockslist.get(i).setY( blockslist.get(i).getLayoutY());
         }
     }
     private void relocateelementsbelowscreen() {
@@ -609,13 +612,31 @@ public class Game {
 
 //                    isGameRunning = true;
                 }
+                Block toDestroyBlock = blockslist.get(i);
+                ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+                imageView.setLayoutY(toDestroyBlock.getLayoutY());
+                imageView.setLayoutX(toDestroyBlock.getLayoutX());
+                rootLayout.getChildren().add(imageView);
 
-
+                isGameRunning = false;
+                Timeline newlocalTimeline= new Timeline();
+                Duration duration = Duration.millis(500);
+                KeyFrame kf = new KeyFrame(duration);
+                newlocalTimeline.getKeyFrames().add(kf);
+                newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        rootLayout.getChildren().remove(imageView);
+                        isGameRunning = true;
+                    }
+                });
+                newlocalTimeline.play();
 
                 points+=blockslist.get(i).getValue();
                 Totalscore+=points;
                 rootLayout.getChildren().remove(blockslist.get(i));
                 blockslist.remove(blockslist.get(i));
+
                 String newScore =  "Score: ";
                 scoreLabelText.setText(newScore+points);
 
@@ -664,14 +685,7 @@ public class Game {
                 }
 
                 if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
-                    for (int i = blockslist.size()-1;i>=0;i--){
-                        points+=blockslist.get(i).getValue();
-                        Totalscore+=points;
-                        rootLayout.getChildren().remove(blockslist.get(i));
-                        blockslist.remove(blockslist.get(i));
-                    }
-                    String newScore =  "Score: ";
-                    scoreLabelText.setText(newScore+points);
+                    destroyAllBlocks();
                 }
 
                 if(tokenslist.get(j).getClass() == (Shield.class)){
@@ -703,6 +717,41 @@ public class Game {
             }
 
         }
+    }
+
+    private void destroyAllBlocks() {
+        ArrayList<ImageView> gifArrList = new ArrayList<ImageView>();
+        for (int i = 0;i<blockslist.size();i++){
+            points+=blockslist.get(i).getValue();
+            Totalscore+=points;
+            gifArrList.add(new ImageView("view/Animations/Explosion.gif"));
+            gifArrList.get(i).setLayoutX(blockslist.get(i).getLayoutX());
+            gifArrList.get(i).setLayoutY(blockslist.get(i).getLayoutY());
+            rootLayout.getChildren().add(gifArrList.get(i));
+
+            rootLayout.getChildren().remove(blockslist.get(i));
+//            blockslist.remove(blockslist.get(i));
+        }
+        blockslist.clear();
+        isGameRunning = false;
+        Timeline newlocalTimeline= new Timeline();
+        Duration duration = Duration.millis(500);
+        KeyFrame kf = new KeyFrame(duration);
+        newlocalTimeline.getKeyFrames().add(kf);
+        newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                for (int i =0;i<gifArrList.size();i++){
+                    rootLayout.getChildren().remove(gifArrList.get(i));
+                }
+                gifArrList.clear();
+                isGameRunning = true;
+            }
+        });
+        newlocalTimeline.play();
+
+        String newScore =  "Score: ";
+        scoreLabelText.setText(newScore+points);
     }
 
     private void turnOnMagnet() {
