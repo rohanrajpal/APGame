@@ -13,12 +13,16 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -67,6 +71,8 @@ public class Game {
     private boolean isGameRunning;
     private double downSpeed= 8;
     private double snakeSpeed=5;
+    private boolean isShieldOn = false;
+    SnakeLengthLabel snakeLen;
 
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
         this.templeaderboard=le;
@@ -227,6 +233,9 @@ public class Game {
                 if (event.getCode() == KeyCode.D){
                     destroyAllBlocks();
                 }
+                if (event.getCode() == KeyCode.I){
+                    incSnakeLength(1);
+                }
             }
         });
 
@@ -357,7 +366,10 @@ public class Game {
             k+=blockslist.size();
             for (int i=blockslist.size();i<k;i++){
                 int value = randomPositionDecider.nextInt(5)+1;
-                blockslist.add(new Block(Integer.toString(value)));
+                int value2 = randomPositionDecider.nextInt(50)+1;
+                int[] valArr = {value,value2};
+
+                blockslist.add(new Block(Integer.toString(valArr[randomPositionDecider.nextInt(2)])));
                 setNewElementsPosition(blockslist.get(blockslist.size()-1));
                 rootLayout.getChildren().add(blockslist.get(blockslist.size()-1));
             }
@@ -409,6 +421,7 @@ public class Game {
                     checkIfElementsCollide();
                     moveSnake();
                     checkhighscore();
+                    UpdateSnakeSize();
                 }
             }
         };
@@ -558,8 +571,15 @@ public class Game {
             snake.get(i).setLayoutY(GameStructure.getSnake().getY()+(i*25));
             rootLayout.getChildren().add(snake.get(i));
         }
+        snakeLen = new SnakeLengthLabel("5");
+        snakeLen.setLayoutX(snake.get(0).getLayoutX());
+        snakeLen.setLayoutY(snake.get(0).getLayoutY()-25);
+        rootLayout.getChildren().add(snakeLen);
     }
-
+    private void UpdateSnakeSize(){
+        snakeLen.setText(String.valueOf(snake.size()));
+        snakeLen.setLayoutX(snake.get(0).getLayoutX());
+    }
     private void checkIfElementsCollide(){
 //        System.out.println(snake.size());
         for (int i=0;i<blockslist.size();i++){
@@ -569,11 +589,12 @@ public class Game {
 //                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent()))
             {
+                System.out.println(snake.size());
                 int valueOfBlock = blockslist.get(i).getValue();
-                if (valueOfBlock < snake.size()) {
-                    if (valueOfBlock <= 5) {
+                if (valueOfBlock < snake.size() || isShieldOn) {
+                    if (valueOfBlock <= 5 || isShieldOn) {
 
-                        if (!isMagnetOn) {
+                        if (!isShieldOn) {
                             for (int r = 0; r < valueOfBlock; r++) {
                                 if (snake.size() != 1) {
                                     rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
@@ -591,14 +612,13 @@ public class Game {
                         rootLayout.getChildren().remove(blockslist.remove(i));
                     } else {
                         isGameRunning = false;
-
                         for (int j = 0; j < valueOfBlock; j++) {
                             //buggy code, need to fix
                             Timeline localTimeline = new Timeline();
                             ImageView tail = snake.get(snake.size() - 1);
                             KeyValue keyValueX = new KeyValue(tail.scaleXProperty(), -0.7);
                             KeyValue keyValueY = new KeyValue(tail.scaleYProperty(), -0.7);
-                            Duration duration = Duration.millis(500 * (j + 1));
+                            Duration duration = Duration.millis(100 * (j + 1));
                             KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
 
                             localTimeline.getKeyFrames().add(keyFrame);
@@ -624,9 +644,7 @@ public class Game {
                             });
 
                             localTimeline.play();
-
                         }
-
                     }
 
                     String newScore = "Score: ";
@@ -639,7 +657,8 @@ public class Game {
                 }
             }
         }
-        System.out.println(snake.size());
+//        System.out.println(snake.size());
+//        System.out.println(isMagnetOn);
         for (int j=0;j<tokenslist.size();j++){
 
 //            if (tokenslist.get(j).getBoundsInParent().intersects(snakeLocalHead.getBoundsInParent())){
@@ -649,21 +668,10 @@ public class Game {
                     tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
-
+                System.out.println(snake.size());
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
-                    for (int k = 0; k < lenToInc; k++) {
-                            double toSetX = snake.get(0).getLayoutX();
-                            double toSetY = snake.get(0).getLayoutY() + 25*snake.size();
-                            ImageView img = new ImageView("/view/snake_tail.png");
-                            img.setFitHeight(25);
-                            img.setFitWidth(25);
-                            snake.add(img);
-                            snake.get(snake.size() - 1).setLayoutX(toSetX);
-                            snake.get(snake.size() - 1).setLayoutY(toSetY);
-                            rootLayout.getChildren().add(snake.get(snake.size() - 1));
-
-                    }
+                    incSnakeLength(lenToInc);
 
                     correctSnakePostions();
                 }
@@ -679,7 +687,6 @@ public class Game {
                 if (tokenslist.get(j).getClass() == Magnet.class){
                     turnOnMagnet();
                 }
-                if (!isMagnetOn) {
                     ImageView imageView = new ImageView("view/Animations/Explosion.gif");
                     Token toDestroyToken = tokenslist.get(j);
                     imageView.setLayoutY(toDestroyToken.getLayoutY());
@@ -688,13 +695,30 @@ public class Game {
                     imageView.setFitHeight(toDestroyToken.getPrefHeight());
                     rootLayout.getChildren().add(imageView);
                     destroyBlockAnimation(imageView);
-                }
-                else{
-                    Timeline localTimeline = new Timeline();
-                }
-                rootLayout.getChildren().remove(tokenslist.remove(j));
+                    rootLayout.getChildren().remove(tokenslist.remove(j));
+
+
+
             }
+
+//            if (isMagnetOn){
+//                ImageView snakeHead = snake.get(0);
+//                if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
+//                        tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
+//                        snake.get(0).getLayoutY()+ 20,
+//                        tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
+//                    System.out.println("Getting here");
+//                    Token p = tokenslist.get(j);
+//                    final TranslateTransition transition = new TranslateTransition(Duration.millis(100), p);
+//
+//                    transition.setToX(snakeHead.getLayoutX());
+//                    transition.setToY(snakeHead.getLayoutY());
+//                    transition.play();
+//                }
+//            }
         }
+
+
 //        System.out.println(walllist.size());
 //        System.out.println(TOKEN_RADIUS);
         for (int i=0;i<walllist.size();i++){
@@ -712,6 +736,21 @@ public class Game {
                     }
                 }
             }
+        }
+    }
+
+    private void incSnakeLength(int lenToInc) {
+        for (int k = 0; k < lenToInc; k++) {
+                double toSetX = snake.get(0).getLayoutX();
+                double toSetY = snake.get(0).getLayoutY() + 25 * snake.size();
+                ImageView img = new ImageView("/view/snake_tail.png");
+                img.setFitHeight(25);
+                img.setFitWidth(25);
+                snake.add(img);
+                snake.get(snake.size() - 1).setLayoutX(toSetX);
+                snake.get(snake.size() - 1).setLayoutY(toSetY);
+                rootLayout.getChildren().add(snake.get(snake.size() - 1));
+
         }
     }
 
@@ -771,7 +810,8 @@ public class Game {
     }
 
     private void turnOnMagnet() {
-        if (TOKEN_RADIUS == 10) {
+        if (!isMagnetOn) {
+            isMagnetOn =true;
             TOKEN_RADIUS = 100;
             timer = new Timer();
             timer.schedule(new changeBackRadius(), 5 * 1000);
@@ -779,8 +819,8 @@ public class Game {
     }
 
     private void turnOnShield() {
-        if (!isMagnetOn) {
-            isMagnetOn = true;
+        if (!isShieldOn) {
+            isShieldOn = true;
             timer = new Timer();
             timer.schedule(new changeBackShield(), 5 * 1000);
         }
@@ -794,6 +834,7 @@ public class Game {
         @Override
         public void run() {
             TOKEN_RADIUS =10;
+            isMagnetOn = false;
             timer.cancel();
         }
     }
@@ -801,7 +842,7 @@ public class Game {
     private class changeBackShield extends TimerTask {
         @Override
         public void run() {
-            isMagnetOn = false;
+            isShieldOn = false;
             timer.cancel();
         }
     }
