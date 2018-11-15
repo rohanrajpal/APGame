@@ -599,7 +599,6 @@ public class Game {
 
     }
     private void checkIfElementsCollide(){
-//        System.out.println(snake.size());
         for (int i=0;i<blockslist.size();i++){
 //            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
 //                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
@@ -696,7 +695,6 @@ public class Game {
                     int lenToInc = tokenslist.get(j).getValue();
                     incSnakeLength(lenToInc);
 
-//                    correctSnakePostions();
                 }
 
                 if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
@@ -710,17 +708,17 @@ public class Game {
                 if (tokenslist.get(j).getClass() == Magnet.class){
                     turnOnMagnet();
                 }
-                    ImageView imageView = new ImageView("view/Animations/Explosion.gif");
-                    Token toDestroyToken = tokenslist.get(j);
-                    imageView.setLayoutY(toDestroyToken.getLayoutY());
-                    imageView.setLayoutX(toDestroyToken.getLayoutX());
-                    imageView.setFitWidth(toDestroyToken.getPrefWidth());
-                    imageView.setFitHeight(toDestroyToken.getPrefHeight());
-                    rootLayout.getChildren().add(imageView);
-                    destroyBlockAnimation(imageView);
-                    rootLayout.getChildren().remove(tokenslist.remove(j));
+                ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+                Token toDestroyToken = tokenslist.get(j);
+                imageView.setLayoutY(toDestroyToken.getLayoutY());
+                imageView.setLayoutX(toDestroyToken.getLayoutX());
+                imageView.setFitWidth(toDestroyToken.getPrefWidth());
+                imageView.setFitHeight(toDestroyToken.getPrefHeight());
+                rootLayout.getChildren().add(imageView);
+                destroyBlockAnimation(imageView);
+                rootLayout.getChildren().remove(tokenslist.remove(j));
 
-                    isGameRunning = true;
+                isGameRunning = true;
             }
 
 //            if (isMagnetOn){
@@ -793,8 +791,8 @@ public class Game {
 
     private void correctSnakePostions() {
         for (int i=1;i<snake.size();i++){
-            snake.get(i).setLayoutX(snake.get(0).getLayoutX());
-            snake.get(i).setLayoutY(snake.get(0).getLayoutY()+25*i);
+            snake.get(i).setLayoutX(snake.get(i-1).getLayoutX());
+            snake.get(i).setLayoutY(snake.get(i-1).getLayoutY()+25);
         }
     }
 
