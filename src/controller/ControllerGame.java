@@ -41,9 +41,10 @@ public class ControllerGame  implements Initializable {
 
     }
     public static void serializegame (GameModel g,MouseEvent event)throws IOException,ClassNotFoundException {
-
         GameModel.serialize(g);
-
+    }
+    public static void serializegameondeath(GameModel g)throws IOException,ClassNotFoundException{
+        GameModel.serialize(g);
     }
 
 }
