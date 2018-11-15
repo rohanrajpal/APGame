@@ -141,26 +141,20 @@ public class Game {
     }
 
     private Button createRestartButton() {
-        ImageButton imgResart = new ImageButton("../view/Helper_images/icon-restart.png");
-        imgResart.setLayoutX(170);
-        imgResart.setLayoutY(130);
-        imgResart.setPrefHeight(20);
-        imgResart.setPrefWidth(20);
-        imgResart.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-            }
-        });
-
-        return imgResart;
+        ImageButton imgRestart = new ImageButton("../view/Helper_images/icon-restart.png");
+        imgRestart.setLayoutX(113);
+        imgRestart.setLayoutY(170);
+        imgRestart.setfit(80,80);
+        imgRestart.setInterim("restart");
+        imgRestart.setLe(Totalscore,new GameModel(new SnakeModel(5,178,375),0,Totalscore));
+        return imgRestart;
     }
 
     private Button createGoBacktoMenuButton() {
-        ImageButton imgResume = new ImageButton("../view/Helper_images/error.png");
-        imgResume.setLayoutX(110);
-        imgResume.setLayoutY(170);
-        imgResume.setInterim("StartPage");
+        ImageButton imgexit = new ImageButton("../view/Helper_images/error.png");
+        imgexit.setLayoutX(180);
+        imgexit.setLayoutY(70);
+        imgexit.setInterim("StartPage");
         rootLayout.getChildren().removeAll();
 //        for(int i=0;i<blockslist.size();i++) {
 //            if (blockslist.get(i).getLayoutY() > 600 || blockslist.get(i).getLayoutY() < -50) {
@@ -184,7 +178,8 @@ public class Game {
         this.GameStructure.setWalllist(this.walllist);
         this.GameStructure.setSnake(new SnakeModel(this.snake.size(),168,375));
         this.GameStructure.setPoints(this.points);
-        imgResume.setLe(Totalscore,this.GameStructure);
+        this.GameStructure.setlatestpoints(this.Totalscore);
+        imgexit.setLe(Totalscore,this.GameStructure);
 //        imgResume.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
 //            public void handle(ActionEvent event) {
@@ -192,12 +187,12 @@ public class Game {
 //                rootLayout.getChildren().remove(subGameScene);
 //            }
 //        });
-        return imgResume;
+        return imgexit;
     }
 
     private Button createResumeButton() {
         ImageButton imgResume = new ImageButton("../view/Helper_images/resume-button.png");
-        imgResume.setLayoutX(110);
+        imgResume.setLayoutX(50);
         imgResume.setLayoutY(70);
 
         imgResume.setOnAction(new EventHandler<ActionEvent>() {
@@ -598,14 +593,25 @@ public class Game {
         snakeSpeed = 0.5 * (snake.size() + 5);
 
     }
+    private void ondeath(){
+        isGameRunning = false;
+        System.out.println("Game Over");
+
+        try {
+            ControllerGame.serializegameondeath(new GameModel(new SnakeModel(5, 178, 375), 0,Totalscore));
+            ControllerLeaderboard.serializegameondeath(Totalscore,(Stage)this.gameScene.getWindow());
+        }
+        catch (Exception e){
+
+        }
+    }
     private void checkIfElementsCollide(){
-        for (int i=0;i<blockslist.size();i++){
-//            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
-//                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
-//                    snake.get(0).getLayoutY()+ 20,
-//                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
-            if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent()))
-            {
+        //            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
+        //                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
+        //                    snake.get(0).getLayoutY()+ 20,
+        //                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
+        for (int i=0;i<blockslist.size();i++)
+            if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent())) {
                 isGameRunning = false;
 
                 System.out.println(snake.size());
@@ -669,14 +675,10 @@ public class Game {
                     String newScore = "Score: ";
                     scoreLabelText.setText(newScore + points);
                     isGameRunning = true;
-                }
-                else{
-                    isGameRunning = false;
-                    System.out.println("Game Over");
-                    openPauseMenu();
+                } else {
+                      ondeath();
                 }
             }
-        }
 //        System.out.println(snake.size());
 //        System.out.println(isMagnetOn);
         for (int j=0;j<tokenslist.size();j++){

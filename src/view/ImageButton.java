@@ -16,7 +16,7 @@ public class ImageButton extends Button {
 
     private final String STYLE_NORMAL = "-fx-background-color: transparent; -fx-padding: 5, 5, 5, 5;";
     private final String STYLE_PRESSED = "-fx-background-color: transparent; -fx-padding: 6 4 4 6;";
-
+    ImageView image;
     public void setLe(int le, GameModel g) {
         this.points = le;
         this.GAME=g;
@@ -40,11 +40,10 @@ public class ImageButton extends Button {
         return STYLE_PRESSED;
     }
 
-
-
     public ImageButton(String imageurl) {
 
-        setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imageurl))));
+        image=new ImageView(new Image(getClass().getResourceAsStream(imageurl)));
+        setGraphic(image);
         setStyle(STYLE_NORMAL);
 
         setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -61,6 +60,19 @@ public class ImageButton extends Button {
                 if(interim.equals("back")){
                     interim=" ";
                     ControllerLeaderboard.back(event);
+                }
+                if(interim.equals("restart")){
+                    interim=" ";
+                    try {
+                        ControllerGame.serializegame(GAME,event);
+                        ControllerLeaderboard.addpoints(points,event,"restart");
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
                 }
                 if(interim.equals("start")){
                     interim=" ";
@@ -102,7 +114,7 @@ public class ImageButton extends Button {
                     interim=" ";
                     try {
                         ControllerGame.serializegame(GAME,event);
-                        ControllerLeaderboard.addpoints(points,event);
+                        ControllerLeaderboard.addpoints(points,event,"startpage");
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -114,6 +126,12 @@ public class ImageButton extends Button {
         });
 
     }
-
+    public void setPreserveRatio(boolean t){
+        image.setPreserveRatio(t);
+    }
+    public void setfit(double x,double y) {
+        image.setFitHeight(x);
+        image.setFitWidth(y);
+    }
 
 }

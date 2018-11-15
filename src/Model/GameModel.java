@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class GameModel implements Serializable {
     private SnakeModel snake;
+    private int latestpoints;
     public SnakeModel getSnake() {
         return snake;
     }
@@ -18,6 +19,12 @@ public class GameModel implements Serializable {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+    public void  setlatestpoints(int points) {
+        this.latestpoints = points;
+    }
+    public int getlatestPoints(){
+        return latestpoints;
     }
 
     private int points;
@@ -51,14 +58,14 @@ public class GameModel implements Serializable {
 
 
 
-    public GameModel(SnakeModel snake,int Points) {
+    public GameModel(SnakeModel snake,int Points,int latest) {
         this.snake = snake;
         snake.setlength(5);
         blockslist=new ArrayList<>();
         walllist=new ArrayList<>();
         tokenslist=new ArrayList<>();
         this.points=Points;
-        this.points=Points;
+        this.latestpoints=latest;
     }
     public	static	void serialize(GameModel d) throws IOException {
         ObjectOutputStream out	=	null;
@@ -74,7 +81,7 @@ public class GameModel implements Serializable {
     }
     public	static	GameModel deserialize() throws IOException,ClassNotFoundException {
         ObjectInputStream in	=	null;
-        GameModel s1=new GameModel(new SnakeModel(5,168,375),0);
+        GameModel s1=new GameModel(new SnakeModel(5,168,375),0,0);
         try	{
 
             FileInputStream file = new FileInputStream("GameModelStore.txt");
