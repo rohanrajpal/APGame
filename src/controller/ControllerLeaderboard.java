@@ -36,7 +36,7 @@ public class ControllerLeaderboard implements Initializable {
         gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
 
     }
-    public static void addpoints(int points,MouseEvent event) throws IOException, ClassNotFoundException {
+    public static void serializegameondeath(int points,Stage stage)throws IOException,ClassNotFoundException{
         LeaderBoardModel L= LeaderBoardModel.deserialize();
         if(L.getLeaders().size()>=10) {
             if (points > L.getLeaders().get(L.getLeaders().size() - 1).getscore()) {
@@ -51,7 +51,28 @@ public class ControllerLeaderboard implements Initializable {
         }
         LeaderBoardModel.serialize(L);
         StartPage gui=new StartPage();
-        gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+        gui.show(stage);
+    }
+    public static void addpoints(int points,MouseEvent event,String togo) throws IOException, ClassNotFoundException {
+        LeaderBoardModel L= LeaderBoardModel.deserialize();
+        if(L.getLeaders().size()>=10) {
+            if (points > L.getLeaders().get(L.getLeaders().size() - 1).getscore()) {
+                L.getLeaders().remove(L.getLeaders().size() - 1);
+                L.getLeaders().add(new LeaderBoardelements(points, new Date()));
+                java.util.Collections.sort(L.getLeaders());
+            }
+        }
+        else{
+            L.getLeaders().add(new LeaderBoardelements(points, new Date()));
+            java.util.Collections.sort(L.getLeaders());
+        }
+        LeaderBoardModel.serialize(L);
+        if(togo.equals("startpage")) {
+            back(event);
+        }
+        else if(togo.equals("restart")){
+            ControllerMainMenu.start(event);
+        }
     }
     public  void leaderboard() throws IOException {
 

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import java.io.*;
 import java.net.URL;
@@ -17,6 +18,8 @@ import java.util.ResourceBundle;
 
 import Gui.LeaderBoard;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import view.ImageButton;
@@ -65,6 +68,22 @@ public class ControllerMainMenu  implements Initializable {
         ImageButton ib1=new ImageButton("/view/Helper_images/play-button.png");
         ImageButton ib2=new ImageButton("/view/Helper_images/resume-button.png");
         ImageButton ib3=new ImageButton("/view/Helper_images/error.png");
+        Label l=new Label();
+        int points=0;
+        try {
+            GameModel g=GameModel.deserialize();
+            points=g.getlatestPoints();
+        }
+        catch (Exception e){
+            points=0;
+        }
+        l.setTextFill(Color.rgb(255,255,255));
+        l.setText(Integer.toString(points));
+        l.setFont(new Font(50));
+        l.setMinHeight(80);
+        l.setMinWidth(80);
+        l.setLayoutX(187);
+        l.setLayoutY(300);
         ib.setInterim("leaderboard");
         ib1.setInterim("start");
         ib2.setInterim("resume");
@@ -81,6 +100,7 @@ public class ControllerMainMenu  implements Initializable {
         pane1.getChildren().add(ib1);
         pane1.getChildren().add(ib2);
         pane1.getChildren().add(ib3);
+        pane1.getChildren().add(l);
     }
     public static void leaderboard(MouseEvent actionEvent) throws IOException {
         LeaderBoard gui=new LeaderBoard();
@@ -97,7 +117,7 @@ public class ControllerMainMenu  implements Initializable {
 
             LeaderBoardModel.serialize(L);
         }
-        GameModel model=new GameModel(new SnakeModel(5,168,375),0);
+        GameModel model=new GameModel(new SnakeModel(5,178,375),0,0);
         Game gui=new Game(model,model.getBlockslist(),model.getTokenslist(),model.getWalllist(),L);
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
@@ -112,7 +132,7 @@ public class ControllerMainMenu  implements Initializable {
 
             LeaderBoardModel.serialize(L);
         }
-        GameModel model=new GameModel(new SnakeModel(5,168,375),0);
+        GameModel model=new GameModel(new SnakeModel(5,168,375),0,0);
         try{
             model=GameModel.deserialize();
 
