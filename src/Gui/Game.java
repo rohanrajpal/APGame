@@ -333,20 +333,20 @@ public class Game {
     }
 
 
-    private void setNewElementsPosition(Token token) {
-        token.setLayoutX(TokenPositions.get(randomPositionDecider.nextInt(TokenPositions.size())));
+    private void setNewElementsPosition(Token token,int pos) {
+        token.setLayoutX(TokenPositions.get(pos));
         token.setLayoutY(-100);
         token.setY(token.getLayoutY());
         token.setX(token.getLayoutX());
     }
-    private void setNewElementsPosition(Block block) {
-        block.setLayoutX(blockPositions.get(randomPositionDecider.nextInt(blockPositions.size())));
+    private void setNewElementsPosition(Block block,int pos) {
+        block.setLayoutX(blockPositions.get(pos));
         block.setLayoutY(-100);
         block.setY(block.getLayoutY());
         block.setX(block.getLayoutX());
     }
-    private void setNewElementsPosition(Wallswrapper Wall) {
-        int rnd=wallPositions[randomPositionDecider.nextInt(wallPositions.length)];
+    private void setNewElementsPosition(Wallswrapper Wall,int pos) {
+        int rnd=wallPositions[pos];
         for(int i=0;i<Wall.getLength();i++) {
             Wall.getWalls().get(i).setLayoutX(rnd);
             Wall.getWalls().get(i).setLayoutY(-250+(63*(i)));
@@ -357,11 +357,17 @@ public class Game {
     private void createwall() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
             int k = (randomPositionDecider.nextInt(4)) + 1;
+            ArrayList<Integer> tempindex=new ArrayList();
+            for(int i=0;i<k;i++){
+                tempindex.add(i);
+            }
             k+=walllist.size();
+            int count=0;
             for (int i = walllist.size(); i < k; i++) {
                 int value = randomPositionDecider.nextInt(3) + 1;
                 walllist.add(new Wallswrapper(value));
-                setNewElementsPosition(walllist.get(walllist.size()-1));
+                setNewElementsPosition(walllist.get(walllist.size()-1),tempindex.get(count));
+                count++;
                 rootLayout.getChildren().addAll(walllist.get(walllist.size()-1).getWalls());
             }
         }));
@@ -372,15 +378,34 @@ public class Game {
     private void createBlocks() {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
-            int k=(randomPositionDecider.nextInt(4))+1;
+            int k=(randomPositionDecider.nextInt(5))+1;
+            ArrayList<Integer> tempindex=new ArrayList();
+            for(int i=0;i<k;i++){
+                tempindex.add(i);
+            }
+            int k2 = (randomPositionDecider.nextInt(k)) + 1;
             k+=blockslist.size();
+            int count=0;
+            int k1=1;
+            if(snake.size()>1) {
+                k1 = (randomPositionDecider.nextInt(snake.size() - 1)) + 1;
+            }
+            else{
+                k1=1;
+            }
+            System.out.println(k2);
             for (int i=blockslist.size();i<k;i++){
                 int value = randomPositionDecider.nextInt(5)+1;
                 int value2 = randomPositionDecider.nextInt(50)+1;
                 int[] valArr = {value,value2};
-
-                blockslist.add(new Block(Integer.toString(valArr[randomPositionDecider.nextInt(2)])));
-                setNewElementsPosition(blockslist.get(blockslist.size()-1));
+                if(k2==(i-blockslist.size()+1)){
+                    blockslist.add(new Block(Integer.toString(k1)));
+                }
+                else {
+                    blockslist.add(new Block(Integer.toString(valArr[randomPositionDecider.nextInt(2)])));
+                }
+                setNewElementsPosition(blockslist.get(blockslist.size()-1),tempindex.get(count));
+                count++;
                 rootLayout.getChildren().add(blockslist.get(blockslist.size()-1));
             }
         }));
@@ -389,12 +414,16 @@ public class Game {
     }
     private void createTokens(){
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), ev -> {
-            int k=(randomPositionDecider.nextInt(4))+1;
+            int k=(randomPositionDecider.nextInt(7))+1;
+            ArrayList<Integer> tempindex=new ArrayList();
+            for(int i=0;i<k;i++){
+                tempindex.add(i);
+            }
             k+=tokenslist.size();
+            int count=0;
             for (int i=tokenslist.size();i<k;i++){
                 int option = randomPositionDecider.nextInt(8)+1;
                 int value = randomPositionDecider.nextInt(5)+1;
-
                 if(option==2){
                     tokenslist.add(new Bomb(""));
                 }
@@ -408,7 +437,8 @@ public class Game {
                     tokenslist.add(new Ball(Integer.toString(value)));
                 }
 
-                setNewElementsPosition(tokenslist.get(tokenslist.size()-1));
+                setNewElementsPosition(tokenslist.get(tokenslist.size()-1),tempindex.get(count));
+                count++;
                 rootLayout.getChildren().add(tokenslist.get(tokenslist.size()-1));
             }
         }));
@@ -423,7 +453,6 @@ public class Game {
             @Override
             public void handle() {
                 if (isGameRunning) {
-
                     moveBlocks();
                     moveWalls();
                     relocateelementsbelowscreen();
@@ -513,9 +542,7 @@ public class Game {
         if(snake.get(0).getLayoutX()>20) {
 
             for (int i = 0; i < snake.size(); i++) {
-
                 ImageView p = snake.get(i);
-
                 final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
                 transition.setFromX(p.getTranslateX());
                 transition.setFromY(p.getTranslateY());
@@ -528,7 +555,6 @@ public class Game {
                 });
                 GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
                 //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - snakeSpeed);
-
             }
         }
     }
@@ -536,7 +562,7 @@ public class Game {
         if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
             for (int i = 0; i < snake.size(); i++) {
                 ImageView p = snake.get(i);
-                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
+                final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1) * (60)), p);
                 transition.setFromX(p.getTranslateX());
                 transition.setFromY(p.getTranslateY());
                 transition.setToX(p.getTranslateX());
@@ -557,6 +583,7 @@ public class Game {
             }
             else{
                 moveLeft();
+
             }
         }
 
@@ -614,7 +641,6 @@ public class Game {
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent())) {
                 isGameRunning = false;
 
-                System.out.println(snake.size());
                 int valueOfBlock = blockslist.get(i).getValue();
                 if (valueOfBlock < snake.size() || isShieldOn) {
                     if (valueOfBlock <= 5 || isShieldOn) {
@@ -651,7 +677,7 @@ public class Game {
                             int finalI = i;
                             localTimeline.setOnFinished(event -> {
                                 if (finalJ == valueOfBlock - 1) {
-                                    System.out.println(finalJ);
+
                                     Block toDestroyBlock = blockslist.get(finalI);
                                     ImageView imageView = new ImageView("view/Animations/Explosion.gif");
                                     imageView.setLayoutY(toDestroyBlock.getLayoutY());
@@ -692,7 +718,6 @@ public class Game {
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
 
                 isGameRunning =false;
-                System.out.println(snake.size());
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
                     int lenToInc = tokenslist.get(j).getValue();
                     incSnakeLength(lenToInc);
