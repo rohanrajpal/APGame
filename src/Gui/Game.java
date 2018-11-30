@@ -24,6 +24,7 @@ import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import view.ImageButton;
@@ -356,19 +357,21 @@ public class Game {
     }
     private void createwall() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
-            int k = (randomPositionDecider.nextInt(4)) + 1;
-            ArrayList<Integer> tempindex=new ArrayList();
-            for(int i=0;i<k;i++){
-                tempindex.add(i);
-            }
-            k+=walllist.size();
-            int count=0;
-            for (int i = walllist.size(); i < k; i++) {
-                int value = randomPositionDecider.nextInt(3) + 1;
-                walllist.add(new Wallswrapper(value));
-                setNewElementsPosition(walllist.get(walllist.size()-1),tempindex.get(count));
-                count++;
-                rootLayout.getChildren().addAll(walllist.get(walllist.size()-1).getWalls());
+            if (isGameRunning) {
+                int k = (randomPositionDecider.nextInt(4)) + 1;
+                ArrayList<Integer> tempindex = new ArrayList();
+                for (int i = 0; i < k; i++) {
+                    tempindex.add(i);
+                }
+                k += walllist.size();
+                int count = 0;
+                for (int i = walllist.size(); i < k; i++) {
+                    int value = randomPositionDecider.nextInt(3) + 1;
+                    walllist.add(new Wallswrapper(value));
+                    setNewElementsPosition(walllist.get(walllist.size() - 1), tempindex.get(count));
+                    count++;
+                    rootLayout.getChildren().addAll(walllist.get(walllist.size() - 1).getWalls());
+                }
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -379,8 +382,7 @@ public class Game {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-
-
+            System.out.println("fdd");
             int k = (randomPositionDecider.nextInt(5)) + 1;
             ArrayList<Integer> tempindex = new ArrayList();
             for (int i = 0; i < k; i++) {
@@ -416,32 +418,31 @@ public class Game {
     }
     private void createTokens(){
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), ev -> {
-            int k=(randomPositionDecider.nextInt(7))+1;
-            ArrayList<Integer> tempindex=new ArrayList();
-            for(int i=0;i<k;i++){
-                tempindex.add(i);
-            }
-            k+=tokenslist.size();
-            int count=0;
-            for (int i=tokenslist.size();i<k;i++){
-                int option = randomPositionDecider.nextInt(8)+1;
-                int value = randomPositionDecider.nextInt(5)+1;
-                if(option==2){
-                    tokenslist.add(new Bomb(""));
+            if (isGameRunning) {
+                int k = (randomPositionDecider.nextInt(7)) + 1;
+                ArrayList<Integer> tempindex = new ArrayList();
+                for (int i = 0; i < k; i++) {
+                    tempindex.add(i);
                 }
-                else if(option==3){
-                    tokenslist.add(new Shield(""));
-                }
-                else if(option==4){
-                    tokenslist.add(new Magnet(""));
-                }
-                else {
-                    tokenslist.add(new Ball(Integer.toString(value)));
-                }
+                k += tokenslist.size();
+                int count = 0;
+                for (int i = tokenslist.size(); i < k; i++) {
+                    int option = randomPositionDecider.nextInt(8) + 1;
+                    int value = randomPositionDecider.nextInt(5) + 1;
+                    if (option == 2) {
+                        tokenslist.add(new Bomb(""));
+                    } else if (option == 3) {
+                        tokenslist.add(new Shield(""));
+                    } else if (option == 4) {
+                        tokenslist.add(new Magnet(""));
+                    } else {
+                        tokenslist.add(new Ball(Integer.toString(value)));
+                    }
 
-                setNewElementsPosition(tokenslist.get(tokenslist.size()-1),tempindex.get(count));
-                count++;
-                rootLayout.getChildren().add(tokenslist.get(tokenslist.size()-1));
+                    setNewElementsPosition(tokenslist.get(tokenslist.size() - 1), tempindex.get(count));
+                    count++;
+                    rootLayout.getChildren().add(tokenslist.get(tokenslist.size() - 1));
+                }
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -463,6 +464,26 @@ public class Game {
                     moveSnake();
                     checkhighscore();
                     UpdateSnakeSize();
+                    Stage stage = (Stage) rootLayout.getScene().getWindow();
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        public void handle(WindowEvent we) {
+                            System.out.println("Stage is closing");
+                            try {
+                                GameStructure.setBlockslist(blockslist);
+                                GameStructure.setTokenslist(tokenslist);
+                                GameStructure.setWalllist(walllist);
+                                GameStructure.setSnake(new SnakeModel(snake.size(),168,375));
+                                GameStructure.setPoints(points);
+                                GameStructure.setlatestpoints(Totalscore);
+                                ControllerGame.serializegameondeath(GameStructure);
+                                ControllerLeaderboard.addpointswithstage(points);
+                            }
+                            catch (Exception e){
+                                System.out.println("onclose error");
+                            }
+
+                        }
+                    });
                 }
             }
         };

@@ -17,7 +17,7 @@ public class SnakevsBloc extends Application
         catch (Exception e){
 
         }
-        StartPage gui=new StartPage();
+        StartPage gui=new StartPage(0);
         gui.show(primaryStage);
     }
 }
