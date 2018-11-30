@@ -33,18 +33,14 @@ public class ControllerMainMenu  implements Initializable {
 
     }
 
-    public void init() {
+    public void init(int choice) {
         try {
             GameModel g = GameModel.deserialize();
-
-                createstartpage1();
-
+                createstartpage1(choice);
         }
         catch (Exception e){
-
             createstartpage2();
         }
-
     }
     public void createstartpage2(){
         ImageButton ib=new ImageButton("/view/Helper_images/leaderboard-button.png");
@@ -63,7 +59,7 @@ public class ControllerMainMenu  implements Initializable {
         pane1.getChildren().add(ib1);
         pane1.getChildren().add(ib3);
     }
-    public void createstartpage1(){
+    public void createstartpage1(int choice){
         ImageButton ib=new ImageButton("/view/Helper_images/leaderboard-button.png");
         ImageButton ib1=new ImageButton("/view/Helper_images/play-button.png");
         ImageButton ib2=new ImageButton("/view/Helper_images/resume-button.png");
@@ -77,30 +73,49 @@ public class ControllerMainMenu  implements Initializable {
         catch (Exception e){
             points=0;
         }
-        l.setTextFill(Color.rgb(255,255,255));
-        l.setText(Integer.toString(points));
-        l.setFont(new Font(50));
-        l.setMinHeight(80);
-        l.setMinWidth(80);
-        l.setLayoutX(187);
-        l.setLayoutY(300);
-        ib.setInterim("leaderboard");
-        ib1.setInterim("start");
-        ib2.setInterim("resume");
-        ib3.setInterim("exit");
-        ib.setLayoutX(60);
-        ib.setLayoutY(383);
-        ib1.setLayoutX(164);
-        ib1.setLayoutY(383);
-        ib2.setLayoutX(274);
-        ib2.setLayoutY(383);
-        ib3.setLayoutX(164);
-        ib3.setLayoutY(475);
-        pane1.getChildren().add(ib);
-        pane1.getChildren().add(ib1);
-        pane1.getChildren().add(ib2);
-        pane1.getChildren().add(ib3);
-        pane1.getChildren().add(l);
+
+            l.setTextFill(Color.rgb(255, 255, 255));
+            l.setText(Integer.toString(points));
+            l.setFont(new Font(50));
+
+            l.setMinHeight(80);
+            l.setMinWidth(80);
+            l.setLayoutX(187);
+            l.setLayoutY(300);
+        if(choice==0) {
+            ib.setInterim("leaderboard");
+            ib1.setInterim("start");
+            ib2.setInterim("resume");
+            ib3.setInterim("exit");
+            ib.setLayoutX(60);
+            ib.setLayoutY(383);
+            ib1.setLayoutX(164);
+            ib1.setLayoutY(383);
+            ib2.setLayoutX(274);
+            ib2.setLayoutY(383);
+            ib3.setLayoutX(164);
+            ib3.setLayoutY(475);
+            pane1.getChildren().add(ib);
+            pane1.getChildren().add(ib1);
+            pane1.getChildren().add(ib2);
+            pane1.getChildren().add(ib3);
+            pane1.getChildren().add(l);
+        }
+        else{
+            ib.setInterim("leaderboard");
+            ib1.setInterim("start");
+            ib3.setInterim("exit");
+            ib.setLayoutX(174);
+            ib.setLayoutY(475);
+            ib1.setLayoutX(244);
+            ib1.setLayoutY(383);
+            ib3.setLayoutX(100);
+            ib3.setLayoutY(383);
+            pane1.getChildren().add(ib);
+            pane1.getChildren().add(ib1);
+            pane1.getChildren().add(ib3);
+            pane1.getChildren().add(l);
+        }
     }
     public static void leaderboard(MouseEvent actionEvent) throws IOException {
         LeaderBoard gui=new LeaderBoard();
@@ -146,7 +161,7 @@ public class ControllerMainMenu  implements Initializable {
             double x=model.getBlockslist().get(i).getX();
             double y=model.getBlockslist().get(i).getY();
             model.getBlockslist().set(i,new Block(model.getBlockslist().get(i).gettext(),model.getBlockslist().get(i).getImagecolor()));
-           model.getBlockslist().get(i).setLayoutX(x);
+            model.getBlockslist().get(i).setLayoutX(x);
             model.getBlockslist().get(i).setLayoutY(y);
             model.getBlockslist().get(i).setX(x);
             model.getBlockslist().get(i).setY(y);

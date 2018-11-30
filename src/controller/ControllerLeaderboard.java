@@ -32,7 +32,7 @@ public class ControllerLeaderboard implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
     public static void back(MouseEvent event){
-        StartPage gui=new StartPage();
+        StartPage gui=new StartPage(0);
         gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
 
     }
@@ -50,7 +50,7 @@ public class ControllerLeaderboard implements Initializable {
             java.util.Collections.sort(L.getLeaders());
         }
         LeaderBoardModel.serialize(L);
-        StartPage gui=new StartPage();
+        StartPage gui=new StartPage(1);
         gui.show(stage);
     }
     public static void addpoints(int points,MouseEvent event,String togo) throws IOException, ClassNotFoundException {
@@ -73,6 +73,22 @@ public class ControllerLeaderboard implements Initializable {
         else if(togo.equals("restart")){
             ControllerMainMenu.start(event);
         }
+    }
+
+    public static void addpointswithstage(int points) throws IOException, ClassNotFoundException {
+        LeaderBoardModel L= LeaderBoardModel.deserialize();
+        if(L.getLeaders().size()>=10) {
+            if (points > L.getLeaders().get(L.getLeaders().size() - 1).getscore()) {
+                L.getLeaders().remove(L.getLeaders().size() - 1);
+                L.getLeaders().add(new LeaderBoardelements(points, new Date()));
+                java.util.Collections.sort(L.getLeaders());
+            }
+        }
+        else{
+            L.getLeaders().add(new LeaderBoardelements(points, new Date()));
+            java.util.Collections.sort(L.getLeaders());
+        }
+        LeaderBoardModel.serialize(L);
     }
     public  void leaderboard() throws IOException {
 

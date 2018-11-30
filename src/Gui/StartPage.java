@@ -17,11 +17,12 @@ import java.io.IOException;
 public class StartPage{
     private AnchorPane rootLayout;
 
-    public StartPage(){
-        initmainlayout();
+    public StartPage(int choice){
+
+        initmainlayout(choice);
     }
 
-    private void initmainlayout() {
+    private void initmainlayout(int choice) {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -35,7 +36,7 @@ public class StartPage{
                 }
             });
             ControllerMainMenu controller = loader.getController();
-            controller.init();
+            controller.init(choice);
         } catch (IOException e) {
             e.printStackTrace();
         }
