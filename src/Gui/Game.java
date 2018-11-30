@@ -382,7 +382,8 @@ public class Game {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-            System.out.println("fdd");
+                correctSnakePostions();
+//            System.out.println("fdd");
             int k = (randomPositionDecider.nextInt(5)) + 1;
             ArrayList<Integer> tempindex = new ArrayList();
             for (int i = 0; i < k; i++) {
@@ -675,59 +676,42 @@ public class Game {
                                 }
                             }
                         }
+                        destroyBlockAndUpdateScore(i);
+                        isGameRunning = true;
 
-                        points += blockslist.get(i).getValue();
-                        Totalscore += points;
-                        ImageView imageView = new ImageView("view/Animations/Explosion.gif");
-                        imageView.setLayoutY(blockslist.get(i).getLayoutY());
-                        imageView.setLayoutX(blockslist.get(i).getLayoutX());
-                        rootLayout.getChildren().add(imageView);
-                        destroyBlockAnimation(imageView);
-                        rootLayout.getChildren().remove(blockslist.remove(i));
                     } else {
-                        isGameRunning = false;
+
+//                        for (int j = 0; j < valueOfBlock; j++) {
+//                            rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+//                        }
+
+                        Timeline localTimeline = new Timeline();
+
+                        Duration duration = Duration.seconds(1);
+                        KeyFrame keyFrame = new KeyFrame(duration);
+                        localTimeline.getKeyFrames().add(keyFrame);
+
+                        int finalI = i;
+                        localTimeline.setOnFinished(event -> {
+//                            System.out.println("executed");
+                            destroyBlockAndUpdateScore(finalI);
+                            isGameRunning = true;
+                        });
+                        localTimeline.play();
                         for (int j = 0; j < valueOfBlock; j++) {
-                            //buggy code, need to fix
-                            Timeline localTimeline = new Timeline();
-                            ImageView tail = snake.get(snake.size() - 1);
-                            KeyValue keyValueX = new KeyValue(tail.scaleXProperty(), -0.7);
-                            KeyValue keyValueY = new KeyValue(tail.scaleYProperty(), -0.7);
-                            Duration duration = Duration.millis(100 * (j + 1));
-                            KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
-
-                            localTimeline.getKeyFrames().add(keyFrame);
-                            int finalJ = j;
-                            int finalI = i;
-                            localTimeline.setOnFinished(event -> {
-                                if (finalJ == valueOfBlock - 1) {
-
-                                    Block toDestroyBlock = blockslist.get(finalI);
-                                    ImageView imageView = new ImageView("view/Animations/Explosion.gif");
-                                    imageView.setLayoutY(toDestroyBlock.getLayoutY());
-                                    imageView.setLayoutX(toDestroyBlock.getLayoutX());
-                                    rootLayout.getChildren().add(imageView);
-                                    destroyBlockAnimation(imageView);
-                                    points += blockslist.get(finalI).getValue();
-                                    Totalscore += points;
-                                    rootLayout.getChildren().remove(blockslist.remove(finalI));
-                                    isGameRunning = true;
-                                }
-                                if (snake.size() > 1) {
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-                                }
-                            });
-
-                            localTimeline.play();
+                            rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
                         }
+//                        rootLayout.getChildren().remove(blockslist.remove(i));
+//                        isGameRunning=true;
                     }
 
-                    String newScore = "Score: ";
-                    scoreLabelText.setText(newScore + points);
-                    isGameRunning = true;
+//                    destroyBlockAndUpdateScore(i);
+
                 } else {
-                      ondeath();
+                    ondeath();
                 }
             }
+
 //        System.out.println(snake.size());
 //        System.out.println(isMagnetOn);
         for (int j=0;j<tokenslist.size();j++){
@@ -809,6 +793,20 @@ public class Game {
         }
     }
 
+    private void destroyBlockAndUpdateScore(int i) {
+        points += blockslist.get(i).getValue();
+        Totalscore += points;
+        ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+        imageView.setLayoutY(blockslist.get(i).getLayoutY());
+        imageView.setLayoutX(blockslist.get(i).getLayoutX());
+        rootLayout.getChildren().add(imageView);
+        destroyBlockAnimation(imageView);
+        rootLayout.getChildren().remove(blockslist.remove(i));
+
+        String newScore = "Score: ";
+        scoreLabelText.setText(newScore + points);
+    }
+
     private void incSnakeLength(int lenToInc) {
         for (int k = 0; k < lenToInc; k++) {
                 double toSetX = snake.get(snake.size()-1).getLayoutX();
@@ -823,7 +821,14 @@ public class Game {
 
         }
     }
-
+    private void correctSnakePostions() {
+        if (!isLeftKeyPressed && !isRightKeyPressed){
+            for (int i=1;i<snake.size();i++){
+                snake.get(i).setLayoutX(snake.get(i-1).getLayoutX());
+                snake.get(i).setLayoutY(snake.get(i-1).getLayoutY()+25);
+            }
+        }
+    }
     private void destroyBlockAnimation(ImageView imageView) {
         Timeline newlocalTimeline = new Timeline();
         Duration duration = Duration.millis(500);
@@ -839,12 +844,6 @@ public class Game {
         newlocalTimeline.play();
     }
 
-    private void correctSnakePostions() {
-        for (int i=1;i<snake.size();i++){
-            snake.get(i).setLayoutX(snake.get(i-1).getLayoutX());
-            snake.get(i).setLayoutY(snake.get(i-1).getLayoutY()+25);
-        }
-    }
 
     private void destroyAllBlocks() {
         ArrayList<ImageView> gifArrList = new ArrayList<ImageView>();
