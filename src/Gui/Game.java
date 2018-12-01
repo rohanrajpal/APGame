@@ -109,14 +109,11 @@ public class Game {
         blockPositions.add(160);
         blockPositions.add(240);
         blockPositions.add(320);
-        TokenPositions.add(0);
-        TokenPositions.add(50);
-        TokenPositions.add(100);
-        TokenPositions.add(150);
+        TokenPositions.add(40);
+        TokenPositions.add(120);
         TokenPositions.add(200);
-        TokenPositions.add(250);
-        TokenPositions.add(300);
-        TokenPositions.add(350);
+        TokenPositions.add(280);
+        TokenPositions.add(360);
         wallPositions=new int[]{80-5,160-5,240-5,320-5};
 
         isGameRunning = true;
@@ -336,11 +333,12 @@ public class Game {
         createSnake();
         createGameLoop();
         createBlocks();
-        createTokens();
+        //createTokens();
         createwall();
+        moveBlocks();
+        moveWalls();
         createscoreLabelText();
     }
-
     /**
      * Calls necessary functions to deserialize a game
      */
@@ -348,8 +346,10 @@ public class Game {
         createSnake();
         createGameLoop();
         createExistingBlocks();
-        createExistingTokens();
+        // createExistingTokens();
         createExistingwall();
+        moveBlocks();
+        moveWalls();
         createscoreLabelText();
     }
 
@@ -362,6 +362,7 @@ public class Game {
                 rootLayout.getChildren().add(blockslist.get(i));
             }
         }
+        createExistingTokens();
         createBlocks();
     }
 
@@ -375,7 +376,7 @@ public class Game {
             }
         }
 
-            createTokens();
+        //createTokens();
 
     }
 
@@ -383,17 +384,14 @@ public class Game {
      * Creates an existing wall when we deserialize.
      */
     public void createExistingwall(){
-
-
-            for(int i=0;i<walllist.size();i++){
-                for (int j=0;j<walllist.get(i).getLength();j++) {
-                    if (walllist.get(i).getWalls().get(j).getLayoutY() < 600 || walllist.get(i).getWalls().get(j).getLayoutY() > -50) {
-                        rootLayout.getChildren().add(walllist.get(i).getWalls().get(j));
-                    }
+        for(int i=0;i<walllist.size();i++){
+            for (int j=0;j<walllist.get(i).getLength();j++) {
+                if (walllist.get(i).getWalls().get(j).getLayoutY() < 600 || walllist.get(i).getWalls().get(j).getLayoutY() > -50) {
+                    rootLayout.getChildren().add(walllist.get(i).getWalls().get(j));
                 }
             }
+        }
         createwall();
-
     }
 
     /**
@@ -412,9 +410,9 @@ public class Game {
      * @param token
      * @param pos
      */
-    private void setNewElementsPosition(Token token,int pos) {
+    private void setNewElementsPosition(Token token,int pos,int k) {
         token.setLayoutX(TokenPositions.get(pos));
-        token.setLayoutY(-100);
+        token.setLayoutY(k);
         token.setY(token.getLayoutY());
         token.setX(token.getLayoutX());
     }
@@ -440,17 +438,18 @@ public class Game {
         int rnd=wallPositions[pos];
         for(int i=0;i<Wall.getLength();i++) {
             Wall.getWalls().get(i).setLayoutX(rnd);
-            Wall.getWalls().get(i).setLayoutY(-250+(63*(i)));
+            Wall.getWalls().get(i).setLayoutY(-180-(63*(i)));
             Wall.getWalls().get(i).setY(Wall.getWalls().get(i).getLayoutY());
             Wall.getWalls().get(i).setX(Wall.getWalls().get(i).getLayoutX());
         }
     }
 
+
     /**
      * Creates the wall every 6 seconds using the timeline
      */
     private void createwall() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), ev -> {
             if (isGameRunning) {
                 int k = (randomPositionDecider.nextInt(4)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
@@ -481,39 +480,64 @@ public class Game {
             if (isGameRunning) {
                 correctSnakePostions();
 //            System.out.println("fdd");
-            int k = (randomPositionDecider.nextInt(5)) + 1;
-            ArrayList<Integer> tempindex = new ArrayList();
-            for (int i = 0; i < k; i++) {
-                tempindex.add(i);
-            }
-            int k2 = (randomPositionDecider.nextInt(k)) + 1;
-            k += blockslist.size();
-            int count = 0;
-            int k1 = 1;
-            if (snake.size() > 1) {
-                k1 = (randomPositionDecider.nextInt(snake.size() - 1)) + 1;
-            } else {
-                k1 = 1;
-            }
-            System.out.println(k2);
-            for (int i = blockslist.size(); i < k; i++) {
-                int value = randomPositionDecider.nextInt(5) + 1;
-                int value2 = randomPositionDecider.nextInt(50) + 1;
-                int[] valArr = {value, value2};
-                if (k2 == (i - blockslist.size() + 1)) {
-                    blockslist.add(new Block(Integer.toString(k1)));
-                } else {
-                    blockslist.add(new Block(Integer.toString(valArr[randomPositionDecider.nextInt(2)])));
+                int k = (randomPositionDecider.nextInt(5)) + 1;
+                ArrayList<Integer> tempindex = new ArrayList();
+                for (int i = 0; i < k; i++) {
+                    tempindex.add(i);
                 }
-                setNewElementsPosition(blockslist.get(blockslist.size() - 1), tempindex.get(count));
-                count++;
-                rootLayout.getChildren().add(blockslist.get(blockslist.size() - 1));
+                int k2 = (randomPositionDecider.nextInt(k)) + 1;
+                k += blockslist.size();
+                int count = 0;
+                int k1 = 1;
+                if (snake.size() > 1) {
+                    k1 = (randomPositionDecider.nextInt(snake.size() - 1)) + 1;
+                } else {
+                    k1 = 1;
+                }
+                System.out.println(k2);
+                for (int i = blockslist.size(); i < k; i++) {
+                    int value = randomPositionDecider.nextInt(5) + 1;
+                    int value2 = randomPositionDecider.nextInt(50) + 1;
+                    int[] valArr = {value, value2};
+                    if (k2 == (i - blockslist.size() + 1)) {
+                        blockslist.add(new Block(Integer.toString(k1)));
+                    } else {
+                        blockslist.add(new Block(Integer.toString(valArr[randomPositionDecider.nextInt(2)])));
+                    }
+                    setNewElementsPosition(blockslist.get(blockslist.size() - 1), tempindex.get(count));
+                    count++;
+                    rootLayout.getChildren().add(blockslist.get(blockslist.size() - 1));
+                }
             }
-        }
-        }));
+            for(int io=0;io<2;io++) {
+                int k = (randomPositionDecider.nextInt(5)) + 1;
+                ArrayList<Integer> tempindex = new ArrayList();
+                for (int i = 0; i < k; i++) {
+                    tempindex.add(i);
+                }
+                k += tokenslist.size();
+                int count = 0;
+                for (int i = tokenslist.size(); i < k; i++) {
+                    int option = randomPositionDecider.nextInt(8) + 1;
+                    int value = randomPositionDecider.nextInt(5) + 1;
+                    if (option == 2) {
+                        tokenslist.add(new Bomb(""));
+                    } else if (option == 3) {
+                        tokenslist.add(new Shield(""));
+                    } else if (option == 4) {
+                        tokenslist.add(new Magnet(""));
+                    } else {
+                        tokenslist.add(new Ball(Integer.toString(value)));
+                    }
+                    setNewElementsPosition(tokenslist.get(tokenslist.size() - 1), tempindex.get(count),(-150*(io+1)));
+                    count++;
+                    rootLayout.getChildren().add(tokenslist.get(tokenslist.size() - 1));
+                }
+            }}));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
+
 
     /**
      * Creates a new token every 8 seconds
@@ -521,7 +545,7 @@ public class Game {
     private void createTokens(){
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), ev -> {
             if (isGameRunning) {
-                int k = (randomPositionDecider.nextInt(7)) + 1;
+                int k = (randomPositionDecider.nextInt(5)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
                 for (int i = 0; i < k; i++) {
                     tempindex.add(i);
@@ -541,7 +565,7 @@ public class Game {
                         tokenslist.add(new Ball(Integer.toString(value)));
                     }
 
-                    setNewElementsPosition(tokenslist.get(tokenslist.size() - 1), tempindex.get(count));
+                    setNewElementsPosition(tokenslist.get(tokenslist.size() - 1), tempindex.get(count),-100);
                     count++;
                     rootLayout.getChildren().add(tokenslist.get(tokenslist.size() - 1));
                 }
