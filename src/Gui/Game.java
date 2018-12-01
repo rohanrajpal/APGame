@@ -33,6 +33,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ *
+ */
 public class Game {
     private static final int GAME_WIDTH =400 ;
     private static final int GAME_HEIGHT = 600;
@@ -75,6 +78,16 @@ public class Game {
     private boolean isShieldOn = false;
     SnakeLengthLabel snakeLen;
 
+    /**
+     *The initial consutructor which when called creates necessary objects and calls
+     * the required functions.
+     * Default token positions and listeners are added
+     * @param G The Gamemodel class
+     * @param bl    The previous deserialized blocklist
+     * @param tk    The previous token list
+     * @param wa
+     * @param le
+     */
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
         this.templeaderboard=le;
         this.GameStructure=G;
@@ -108,6 +121,12 @@ public class Game {
         makepausebutton();
     }
 
+
+    /**
+     * This pauses the game when you click it.
+     * I have a boolean which when set to false pauses the game.
+     * The restart and exit button are then shown.
+     */
     private void makepausebutton() {
         ImageButton ib=new ImageButton("/view/Helper_images/pause.png");
         ib.setLayoutX(313);
