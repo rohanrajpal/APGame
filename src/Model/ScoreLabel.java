@@ -15,6 +15,10 @@ import static javafx.scene.text.Font.font;
 public class ScoreLabel extends Label {
     private static final String SCORE_FONT = "src/view/Font/Proxima_Font.otf";
 
+    /**
+     * Constructor to create a Score Label to display current score
+     * @param text
+     */
     public ScoreLabel(String text) {
         super(text);
 
@@ -28,6 +32,9 @@ public class ScoreLabel extends Label {
         setText(text);
     }
 
+    /**
+     * function to set font of the score
+     */
     private void setTheFont() {
         try {
             setFont(Font.loadFont(new FileInputStream(new File(SCORE_FONT)),20));

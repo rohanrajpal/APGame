@@ -29,15 +29,37 @@ public class ControllerLeaderboard implements Initializable {
     @FXML
     private GridPane Grid1;
     @Override
+    /**
+     * default initialise from javafx
+     */
     public void initialize(URL location, ResourceBundle resources) {
     }
+
+    /**
+     * going back to mainmenu from leaderboard
+     * @param event
+     */
     public static void back(MouseEvent event){
         StartPage gui=new StartPage(0);
         gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
 
     }
+    public static void back2(MouseEvent event){
+        StartPage gui=new StartPage(1);
+        gui.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+
+    }
+
+    /**
+     * serialise when mouse event is not available ( on death )
+     * @param points
+     * @param stage
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void serializegameondeath(int points,Stage stage)throws IOException,ClassNotFoundException{
         LeaderBoardModel L= LeaderBoardModel.deserialize();
+
         if(L.getLeaders().size()>=10) {
             if (points > L.getLeaders().get(L.getLeaders().size() - 1).getscore()) {
                 L.getLeaders().remove(L.getLeaders().size() - 1);
@@ -53,6 +75,15 @@ public class ControllerLeaderboard implements Initializable {
         StartPage gui=new StartPage(1);
         gui.show(stage);
     }
+
+    /**
+     * save points when restarting
+     * @param points
+     * @param event
+     * @param togo
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void addpoints(int points,MouseEvent event,String togo) throws IOException, ClassNotFoundException {
         LeaderBoardModel L= LeaderBoardModel.deserialize();
         if(L.getLeaders().size()>=10) {
@@ -75,6 +106,12 @@ public class ControllerLeaderboard implements Initializable {
         }
     }
 
+    /**
+     * save points when mouse event is not available ( on death )
+     * @param points
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void addpointswithstage(int points) throws IOException, ClassNotFoundException {
         LeaderBoardModel L= LeaderBoardModel.deserialize();
         if(L.getLeaders().size()>=10) {
@@ -90,13 +127,19 @@ public class ControllerLeaderboard implements Initializable {
         }
         LeaderBoardModel.serialize(L);
     }
-    public  void leaderboard() throws IOException {
+
+    /**
+     * setting static components of leaderboard page
+     * @throws IOException
+     */
+    public  void leaderboard(int choice) throws IOException {
 
         LeaderBoardModel L=new LeaderBoardModel();
 
         try{
             LeaderBoardModel temp=LeaderBoardModel.deserialize();
             L.setLeaders(temp.getLeaders());
+            System.out.println(L.getLeaders().size()+" after deseialise");
         }
         catch(Exception E) {
 
@@ -104,7 +147,12 @@ public class ControllerLeaderboard implements Initializable {
         }
 
         ImageButton ib=new ImageButton("/view/Helper_images/back-button.png");
-        ib.setInterim("back");
+        if(choice==0) {
+            ib.setInterim("back");
+        }
+        else{
+            ib.setInterim("back2");
+        }
         GridPane.setHalignment(ib, HPos.CENTER);
         Grid1.add(ib,0,0);
         for(int i=0;i<L.getLeaders().size();i++){

@@ -1,4 +1,7 @@
+import Gui.Game;
 import Gui.StartPage;
+import Model.GameModel;
+import Model.SnakeModel;
 import javafx.stage.Stage;
 import javafx.application.*;
 import javafx.stage.StageStyle;
@@ -17,7 +20,15 @@ public class SnakevsBloc extends Application
         catch (Exception e){
 
         }
-        StartPage gui=new StartPage(0);
+        GameModel g=new GameModel(new SnakeModel(5,178,375),0,0,0);
+        try {
+             g = GameModel.deserialize();
+        }
+        catch (Exception e){
+
+        }
+        System.out.println(g.startpagestage);
+        StartPage gui=new StartPage(g.startpagestage);
         gui.show(primaryStage);
     }
 }

@@ -7,6 +7,10 @@ import javafx.scene.paint.Color;
 import static javafx.scene.text.Font.font;
 
 public class SnakeLengthLabel extends Label {
+    /**
+     * Constructor which creates a label to show current snake length
+     * @param text
+     */
     public SnakeLengthLabel(String text) {
         super(text);
         setPrefHeight(25);

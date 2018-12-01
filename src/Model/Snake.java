@@ -9,10 +9,17 @@ public class Snake {
     private ArrayList<ImageView> mainSnakeList;
     private Pane rootLayout;
     SnakeLengthLabel snakeLen;
+
+    /**
+     * Constructor to create a snake model
+     * @param snakeInpLength
+     * @param posX
+     * @param posY
+     * @param rootLayoutInp
+     */
     public Snake(int snakeInpLength, int posX, int posY, Pane rootLayoutInp) {
         this.rootLayout = rootLayoutInp;
         mainSnakeList = new ArrayList<>();
-
         for(int i=0;i<snakeInpLength;i++) {
             ImageView img = new ImageView("/view/snake_tail.png");
             img.setFitHeight(25);
@@ -22,7 +29,6 @@ public class Snake {
             mainSnakeList.get(i).setLayoutY(posY+(i*25));
             rootLayout.getChildren().add(mainSnakeList.get(i));
         }
-
         snakeLen = new SnakeLengthLabel("5");
         snakeLen.setLayoutX(mainSnakeList.get(0).getLayoutX());
         snakeLen.setLayoutY(mainSnakeList.get(0).getLayoutY()-25);
