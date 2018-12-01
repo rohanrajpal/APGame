@@ -95,6 +95,12 @@ public class Block extends Label implements Serializable {
 
         setBackground(new Background(bImage));
     }
+
+    /**
+     * Block based on txt and imagecolor given which is then initialized.
+     * @param txt
+     * @param Imagecolor
+     */
     public Block(String txt,String Imagecolor){
         super(txt);
         setPrefWidth(78);

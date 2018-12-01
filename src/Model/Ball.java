@@ -18,6 +18,11 @@ import static javafx.scene.text.Font.font;
 public class Ball extends Token implements Serializable {
     private static final String AddTail_src = "view/snake_tail.png";
     private static final String BLOCK_FONT = "src/view/Font/Proxima_Font.otf";
+
+    /**
+     * Sets and defines the ball and how it should look like.
+     * @param text
+     */
     public Ball(String text){
         super(text);
         setBlockLabelFont();
@@ -34,6 +39,9 @@ public class Ball extends Token implements Serializable {
         super("");
     }
 
+    /**
+     * Sets the font to proxima nova
+     */
     public void setBlockLabelFont() {
         try {
             setFont(Font.loadFont(new FileInputStream(new File(BLOCK_FONT)),15));
