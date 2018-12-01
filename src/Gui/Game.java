@@ -479,7 +479,7 @@ public class Game {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-                correctSnakePostions();
+
 //            System.out.println("fdd");
                 int k = (randomPositionDecider.nextInt(5)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
@@ -593,6 +593,7 @@ public class Game {
                     moveSnake();
                     checkhighscore();
                     UpdateSnakeSize();
+
                     Stage stage = (Stage) rootLayout.getScene().getWindow();
                     if(stage!=null)
                     stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -913,6 +914,7 @@ public class Game {
                 rootLayout.getChildren().remove(tokenslist.remove(j));
 
                 isGameRunning = true;
+                correctSnakePostions();
             }
 
 //            if (isMagnetOn){
@@ -961,22 +963,39 @@ public class Game {
 //                            rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 //                        }
 
-                        Timeline localTimeline = new Timeline();
+//                        Timeline localTimeline = new Timeline();
+//
+//                        Duration duration = Duration.seconds(1);
+//                        KeyFrame keyFrame = new KeyFrame(duration);
+//                        localTimeline.getKeyFrames().add(keyFrame);
+//
+//                        int finalI = i;
+//                        localTimeline.setOnFinished(event -> {
+                            System.out.println("executed");
+//                            destroyBlockAndUpdateScore(finalI);
+//                            isGameRunning = true;
+//                        });
+//                        localTimeline.play();
+//
+                        Timeline anim = new Timeline();
+                        anim.setCycleCount(1);
+                        for (int j = 0; j < valueOfBlock; j++) {
+                            Duration duration = Duration.millis(j*100);
+                            KeyFrame keyFrame = new KeyFrame(duration,event -> {
+                                rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                            });
+                            anim.getKeyFrames().add(keyFrame);
 
-                        Duration duration = Duration.seconds(1);
-                        KeyFrame keyFrame = new KeyFrame(duration);
-                        localTimeline.getKeyFrames().add(keyFrame);
 
+                        }
+
+                        anim.play();
                         int finalI = i;
-                        localTimeline.setOnFinished(event -> {
-//                            System.out.println("executed");
+                        anim.setOnFinished(event -> {
                             destroyBlockAndUpdateScore(finalI);
                             isGameRunning = true;
                         });
-                        localTimeline.play();
-                        for (int j = 0; j < valueOfBlock; j++) {
-                            rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-                        }
+
 //                        rootLayout.getChildren().remove(blockslist.remove(i));
 //                        isGameRunning=true;
                     }
