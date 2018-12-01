@@ -22,7 +22,7 @@ public class ScoreLabel extends Label {
     public ScoreLabel(String text) {
         super(text);
 
-        setPrefWidth(150);
+        setPrefWidth(300);
         setPrefHeight(50);
 
         setAlignment(Pos.CENTER);

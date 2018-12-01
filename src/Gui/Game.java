@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -31,6 +32,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import view.ImageButton;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -479,7 +481,7 @@ public class Game {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-
+                correctSnakePostions();
 //            System.out.println("fdd");
                 int k = (randomPositionDecider.nextInt(5)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
@@ -914,7 +916,13 @@ public class Game {
                 rootLayout.getChildren().remove(tokenslist.remove(j));
 
                 isGameRunning = true;
-                correctSnakePostions();
+                Timeline waitForStableSnake = new Timeline();
+                waitForStableSnake.setCycleCount(1);
+                KeyFrame kf = new KeyFrame(Duration.millis(100),event -> {
+                    correctSnakePostions();
+                });
+                waitForStableSnake.getKeyFrames().add(kf);
+                waitForStableSnake.play();
             }
 
 //            if (isMagnetOn){
@@ -939,73 +947,69 @@ public class Game {
      * Collision with blocks
      */
     private void collisonWithBlocks() {
-        for (int i=0;i<blockslist.size();i++)
+        for (int i=0;i<blockslist.size();i++) {
+            Bounds bd = blockslist.get(i).getBoundsInParent();
+//            System.out.println(bd.getMinX());
+            Bounds snakBd =snake.get(0).getBoundsInParent();
+
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent())) {
-                isGameRunning = false;
+//                System.out.println(bd+"\n"+snakBd);
 
-                int valueOfBlock = blockslist.get(i).getValue();
-                if (valueOfBlock < snake.size() || isShieldOn) {
-                    if (valueOfBlock <= 5 || isShieldOn) {
+                if(snakBd.intersects(bd.getMinX(),bd.getMinY()+70,
+                        bd.getWidth(),bd.getHeight()-78)){
+                    isGameRunning = false;
 
-                        if (!isShieldOn) {
-                            for (int r = 0; r < valueOfBlock; r++) {
-                                if (snake.size() != 1) {
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                    int valueOfBlock = blockslist.get(i).getValue();
+                    if (valueOfBlock < snake.size() || isShieldOn) {
+                        if (valueOfBlock <= 5 || isShieldOn) {
+
+                            if (!isShieldOn) {
+                                for (int r = 0; r < valueOfBlock; r++) {
+                                    if (snake.size() != 1) {
+                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                    }
                                 }
                             }
+                            destroyBlockAndUpdateScore(i);
+                            isGameRunning = true;
+
+                        } else {
+                            Timeline anim = new Timeline();
+                            anim.setCycleCount(1);
+                            for (int j = 0; j < valueOfBlock; j++) {
+                                Duration duration = Duration.millis(j * 100);
+                                KeyFrame keyFrame = new KeyFrame(duration, event -> {
+                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                });
+                                anim.getKeyFrames().add(keyFrame);
+
+
+                            }
+
+                            anim.play();
+                            int finalI = i;
+                            anim.setOnFinished(event -> {
+                                destroyBlockAndUpdateScore(finalI);
+                                isGameRunning = true;
+                            });
+
                         }
-                        destroyBlockAndUpdateScore(i);
-                        isGameRunning = true;
+
 
                     } else {
-
-//                        for (int j = 0; j < valueOfBlock; j++) {
-//                            rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-//                        }
-
-//                        Timeline localTimeline = new Timeline();
-//
-//                        Duration duration = Duration.seconds(1);
-//                        KeyFrame keyFrame = new KeyFrame(duration);
-//                        localTimeline.getKeyFrames().add(keyFrame);
-//
-//                        int finalI = i;
-//                        localTimeline.setOnFinished(event -> {
-                            System.out.println("executed");
-//                            destroyBlockAndUpdateScore(finalI);
-//                            isGameRunning = true;
-//                        });
-//                        localTimeline.play();
-//
-                        Timeline anim = new Timeline();
-                        anim.setCycleCount(1);
-                        for (int j = 0; j < valueOfBlock; j++) {
-                            Duration duration = Duration.millis(j*100);
-                            KeyFrame keyFrame = new KeyFrame(duration,event -> {
-                                rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-                            });
-                            anim.getKeyFrames().add(keyFrame);
-
-
-                        }
-
-                        anim.play();
-                        int finalI = i;
-                        anim.setOnFinished(event -> {
-                            destroyBlockAndUpdateScore(finalI);
-                            isGameRunning = true;
-                        });
-
-//                        rootLayout.getChildren().remove(blockslist.remove(i));
-//                        isGameRunning=true;
+                        ondeath();
                     }
-
-//                    destroyBlockAndUpdateScore(i);
-
-                } else {
-                    ondeath();
+                }
+                else{
+                    if (snakBd.getMinX() > bd.getMinX()){
+                        facesWallleft=true;
+                    }
+                    else{
+                        facesWallright=true;
+                    }
                 }
             }
+        }
     }
 
     /**
