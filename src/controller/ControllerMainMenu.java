@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
@@ -94,10 +95,10 @@ public class ControllerMainMenu  implements Initializable {
             l.setTextFill(Color.rgb(255, 255, 255));
             l.setText(Integer.toString(points));
             l.setFont(new Font(50));
-
+            l.setAlignment(Pos.CENTER);
             l.setMinHeight(80);
             l.setMinWidth(80);
-            l.setLayoutX(187);
+            l.setLayoutX(162);
             l.setLayoutY(300);
         if(choice==0) {
             ib.setInterim("leaderboard");

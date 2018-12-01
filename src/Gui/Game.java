@@ -116,7 +116,7 @@ public class Game {
         TokenPositions.add(200);
         TokenPositions.add(280);
         TokenPositions.add(360);
-        wallPositions=new int[]{80-5,160-5,240-5,320-5};
+        wallPositions=new int[]{80-10,160-10,240-10,320-10};
 
         isGameRunning = true;
 
@@ -452,7 +452,7 @@ public class Game {
      * Creates the wall every 6 seconds using the timeline
      */
     private void createwall() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), ev -> {
             if (isGameRunning) {
                 int k = (randomPositionDecider.nextInt(4)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
@@ -481,53 +481,56 @@ public class Game {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-//                correctSnakePostions();
+                //correctSnakePostions();
 //            System.out.println("fdd");
-                int k = (randomPositionDecider.nextInt(5)) + 1;
-                ArrayList<Integer> tempindex = new ArrayList();
-                for (int i = 0; i < k; i++) {
-                    tempindex.add(i);
-                }
-                k += blockslist.size();
-                int count = 0;
-                for (int i = blockslist.size(); i < k; i++) {
-                    int value = randomPositionDecider.nextInt(snake.size()) + 1;
-                    int value2 = randomPositionDecider.nextInt(100) + 1;
-                    int[] valArr = {value, value2};
-                    if(i==blockslist.size()){
-                        blockslist.add(new Block(Integer.toString(valArr[0])));
+                {
+                    int k = (randomPositionDecider.nextInt(5)) + 1;
+                    ArrayList<Integer> tempindex = new ArrayList();
+                    for (int i = 0; i < 5; i++) {
+                        tempindex.add(i);
                     }
-                    else {
-                        blockslist.add(new Block(Integer.toString(valArr[1])));
+                    Collections.shuffle(tempindex);
+                    k += blockslist.size();
+                    int count = 0;
+                    for (int i = blockslist.size(); i < k; i++) {
+                        int value = randomPositionDecider.nextInt(snake.size()) + 1;
+                        int value2 = randomPositionDecider.nextInt(100) + 1;
+                        int[] valArr = {value, value2};
+                        if (i == blockslist.size()) {
+                            blockslist.add(new Block(Integer.toString(valArr[0])));
+                        } else {
+                            blockslist.add(new Block(Integer.toString(valArr[1])));
+                        }
+                        setNewElementsPosition(blockslist.get(blockslist.size() - 1), tempindex.get(count));
+                        count++;
+                        rootLayout.getChildren().add(blockslist.get(blockslist.size() - 1));
                     }
-                    setNewElementsPosition(blockslist.get(blockslist.size() - 1), tempindex.get(count));
-                    count++;
-                    rootLayout.getChildren().add(blockslist.get(blockslist.size() - 1));
                 }
-            }
-            for(int io=0;io<2;io++) {
-                int k = (randomPositionDecider.nextInt(5)) + 1;
-                ArrayList<Integer> tempindex = new ArrayList();
-                for (int i = 0; i < k; i++) {
-                    tempindex.add(i);
-                }
-                k += tokenslist.size();
-                int count = 0;
-                for (int i = tokenslist.size(); i < k; i++) {
-                    int option = randomPositionDecider.nextInt(8) + 1;
-                    int value = randomPositionDecider.nextInt(5) + 1;
-                    if (option == 2) {
-                        tokenslist.add(new Bomb(""));
-                    } else if (option == 3) {
-                        tokenslist.add(new Shield(""));
-                    } else if (option == 4) {
-                        tokenslist.add(new Magnet(""));
-                    } else {
-                        tokenslist.add(new Ball(Integer.toString(value)));
+                for (int io = 0; io < 2; io++) {
+                    int k1 = (randomPositionDecider.nextInt(5)) + 1;
+                    ArrayList<Integer> tempindex1 = new ArrayList();
+                    for (int i = 0; i < 5; i++) {
+                        tempindex1.add(i);
                     }
-                    setNewElementsPosition(tokenslist.get(tokenslist.size() - 1), tempindex.get(count),(-150*(io+1)));
-                    count++;
-                    rootLayout.getChildren().add(tokenslist.get(tokenslist.size() - 1));
+                    Collections.shuffle(tempindex1);
+                    k1 += tokenslist.size();
+                    int count1 = 0;
+                    for (int i = tokenslist.size(); i < k1; i++) {
+                        int option = randomPositionDecider.nextInt(8) + 1;
+                        int value = randomPositionDecider.nextInt(5) + 1;
+                        if (option == 2) {
+                            tokenslist.add(new Bomb(""));
+                        } else if (option == 3) {
+                            tokenslist.add(new Shield(""));
+                        } else if (option == 4) {
+                            tokenslist.add(new Magnet(""));
+                        } else {
+                            tokenslist.add(new Ball(Integer.toString(value)));
+                        }
+                        setNewElementsPosition(tokenslist.get(tokenslist.size() - 1), tempindex1.get(count1), (-150 * (io + 1)));
+                        count1++;
+                        rootLayout.getChildren().add(tokenslist.get(tokenslist.size() - 1));
+                    }
                 }
             }}));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -762,7 +765,6 @@ public class Game {
             }
             else{
                 moveLeft();
-
             }
         }
 
@@ -802,8 +804,8 @@ public class Game {
     private void UpdateSnakeSize(){
         snakeLen.setText(String.valueOf(snake.size()));
         snakeLen.setLayoutX(snake.get(0).getLayoutX());
-        downSpeed = 0.3*(snake.size()+11);
-        snakeSpeed = 0.3 * (snake.size() + 5);
+        downSpeed = 0.4*(snake.size()+9);
+        snakeSpeed = 0.4 * (snake.size() + 5);
 
     }
 
