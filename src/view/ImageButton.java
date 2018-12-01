@@ -40,6 +40,10 @@ public class ImageButton extends Button {
         return STYLE_PRESSED;
     }
 
+    /**
+     * constructor for button control
+     * @param imageurl
+     */
     public ImageButton(String imageurl) {
 
         image=new ImageView(new Image(getClass().getResourceAsStream(imageurl)));
@@ -60,6 +64,10 @@ public class ImageButton extends Button {
                 if(interim.equals("back")){
                     interim=" ";
                     ControllerLeaderboard.back(event);
+                }
+                if(interim.equals("back2")){
+                    interim=" ";
+                    ControllerLeaderboard.back2(event);
                 }
                 if(interim.equals("restart")){
                     interim=" ";
@@ -86,7 +94,16 @@ public class ImageButton extends Button {
                 if(interim.equals("leaderboard"))  {
                     interim=" ";
                     try {
-                        ControllerMainMenu.leaderboard(event);
+                        ControllerMainMenu.leaderboard(event,0);
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                }
+                if(interim.equals("leaderboard1"))  {
+                    interim=" ";
+                    try {
+                        ControllerMainMenu.leaderboard(event,1);
                     }
                     catch (Exception e){
                         System.out.println(e.getMessage());
@@ -126,9 +143,20 @@ public class ImageButton extends Button {
         });
 
     }
+
+    /**
+     * sets preserve ratio of image
+     * @param t
+     */
     public void setPreserveRatio(boolean t){
         image.setPreserveRatio(t);
     }
+
+    /**
+     * sets height and width of images
+     * @param x
+     * @param y
+     */
     public void setfit(double x,double y) {
         image.setFitHeight(x);
         image.setFitWidth(y);

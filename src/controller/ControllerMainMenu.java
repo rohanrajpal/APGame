@@ -29,10 +29,18 @@ public class ControllerMainMenu  implements Initializable {
     @FXML
     private Pane pane1;
     @Override
+    /**
+     * default initialise from javafx
+     */
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
+    /**
+     * deault call to homepage when there is  a serializable file and when there is not.
+     * choice is to chose between on death(1) or normal exit(0)
+     * @param choice
+     */
     public void init(int choice) {
         try {
             GameModel g = GameModel.deserialize();
@@ -42,6 +50,10 @@ public class ControllerMainMenu  implements Initializable {
             createstartpage2();
         }
     }
+
+    /**
+     * static components generation when there is no seializable data
+     */
     public void createstartpage2(){
         ImageButton ib=new ImageButton("/view/Helper_images/leaderboard-button.png");
         ImageButton ib1=new ImageButton("/view/Helper_images/play-button.png");
@@ -59,6 +71,11 @@ public class ControllerMainMenu  implements Initializable {
         pane1.getChildren().add(ib1);
         pane1.getChildren().add(ib3);
     }
+
+    /**
+     * static components generation when there is seializable data ( choice is 0 for normal exit and 1 for on death )
+     * @param choice
+     */
     public void createstartpage1(int choice){
         ImageButton ib=new ImageButton("/view/Helper_images/leaderboard-button.png");
         ImageButton ib1=new ImageButton("/view/Helper_images/play-button.png");
@@ -102,7 +119,7 @@ public class ControllerMainMenu  implements Initializable {
             pane1.getChildren().add(l);
         }
         else{
-            ib.setInterim("leaderboard");
+            ib.setInterim("leaderboard1");
             ib1.setInterim("start");
             ib3.setInterim("exit");
             ib.setLayoutX(174);
@@ -117,10 +134,26 @@ public class ControllerMainMenu  implements Initializable {
             pane1.getChildren().add(l);
         }
     }
-    public static void leaderboard(MouseEvent actionEvent) throws IOException {
-        LeaderBoard gui=new LeaderBoard();
+
+    /**
+     * link to call leaderboard gui on click of mouse
+     * @param actionEvent
+     * @throws IOException
+     */
+    public static void leaderboard(MouseEvent actionEvent,int choice) throws IOException {
+        LeaderBoard gui=new LeaderBoard(choice);
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
+    public static void leaderboardondeath(MouseEvent actionEvent,int choice) throws IOException {
+        LeaderBoard gui=new LeaderBoard(choice);
+        gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
+    }
+    /**
+     * link to start game by calling game gui on mouse click
+     * @param actionEvent
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public static void start(MouseEvent actionEvent) throws ClassNotFoundException,IOException{
 
         LeaderBoardModel L=new LeaderBoardModel();
@@ -132,11 +165,18 @@ public class ControllerMainMenu  implements Initializable {
 
             LeaderBoardModel.serialize(L);
         }
-        GameModel model=new GameModel(new SnakeModel(5,178,375),0,0);
+        GameModel model=new GameModel(new SnakeModel(5,178,375),0,0,0);
         Game gui=new Game(model,model.getBlockslist(),model.getTokenslist(),model.getWalllist(),L);
         gui.createNewGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
+
+    /**
+     * link to resume saved game by calling game gui on mouse click with serialised data
+     * @param actionEvent
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public static void resume(MouseEvent actionEvent)throws ClassNotFoundException,IOException{
         LeaderBoardModel L=new LeaderBoardModel();
         try{
@@ -147,7 +187,7 @@ public class ControllerMainMenu  implements Initializable {
 
             LeaderBoardModel.serialize(L);
         }
-        GameModel model=new GameModel(new SnakeModel(5,168,375),0,0);
+        GameModel model=new GameModel(new SnakeModel(5,168,375),0,0,0);
         try{
             model=GameModel.deserialize();
 
@@ -205,6 +245,10 @@ public class ControllerMainMenu  implements Initializable {
         gui.creatExistingGame();
         gui.show((Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
+
+    /**
+     * function to exit game when player clicks on cross
+     */
     public static void exit(){
         System.exit(0);
     }

@@ -11,13 +11,26 @@ public class LeaderBoardModel implements Serializable {
         Leaders = new ArrayList<>();
     }
 
+    /**
+     * functon to get current list of LeaderBoard records
+     * @return
+     */
     public ArrayList<LeaderBoardelements> getLeaders() {
         return Leaders;
     }
-
+    /**
+     * functon to set current list of LeaderBoard records
+     * @return
+     */
     public void setLeaders(ArrayList<LeaderBoardelements> leaders) {
         Leaders = leaders;
     }
+
+    /**
+     * function to serialize current leaderBoard elements
+     * @param d
+     * @throws IOException
+     */
     public	static	void serialize(LeaderBoardModel d) throws IOException	{
         ObjectOutputStream out	=	null;
         try	{
@@ -30,6 +43,13 @@ public class LeaderBoardModel implements Serializable {
             out.close();
         }
     }
+
+    /**
+     * function to deserialize current leaderBoard elements
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public	static	LeaderBoardModel deserialize() throws IOException,ClassNotFoundException {
         ObjectInputStream	in	=	null;
         LeaderBoardModel s1=new LeaderBoardModel();

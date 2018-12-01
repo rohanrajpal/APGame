@@ -21,28 +21,51 @@ public class Token extends Label implements Serializable {
     protected double x;
     protected  double y;
     private String text;
+
+    /**
+     * function to get x co-ordinate of token
+     * @return
+     */
     public double getX() {
         return x;
     }
+    /**
+     * function to set x co-ordinate of token
+     */
+    public void setX(double x) {
+        this.x = x;
+    }
+    /**
+     * function to get y co-ordinate of token
+     * @return
+     */
+    public double getY() {
+        return y;
+    }
+    /**
+     * function to set y co-ordinate of token
+     */
+    public void setY(double y) {
+        this.y = y;
+    }
+    /**
+     * function to get text of token
+     * @return
+     */
     public String gettext() {
         return text;
     }
-
+    /**
+     * function to set text of token
+     */
     public void settext(String text) {
         this.text = text;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
+    /**
+     * Constructor to initialise a token
+     * @param text
+     */
     public Token(String text) {
         super(text);
         this.text=text;
@@ -51,6 +74,10 @@ public class Token extends Label implements Serializable {
 
     }
 
+    /**
+     * function to get value of a token
+     * @return
+     */
 
     public int getValue(){
         return Integer.parseInt(getText());

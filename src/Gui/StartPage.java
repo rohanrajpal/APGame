@@ -16,12 +16,18 @@ import java.io.IOException;
 
 public class StartPage{
     private AnchorPane rootLayout;
-
+    /**
+     * Constructor to call functions on StartPage object creation
+     */
     public StartPage(int choice){
 
         initmainlayout(choice);
     }
 
+    /**
+     * Init function to load startpage fxml according to on death or normal exit
+     * @param choice
+     */
     private void initmainlayout(int choice) {
         try {
             // Load root layout from fxml file.
@@ -41,6 +47,10 @@ public class StartPage{
             e.printStackTrace();
         }
     }
+    /**
+     * function to show primary stage
+     * @param primaryStage
+     */
     public void show(Stage primaryStage){
         rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override

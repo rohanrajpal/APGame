@@ -15,18 +15,29 @@ public class wall extends Label implements Serializable {
     private static final String wall_image= "view/Blocks/wall.png";
     private double x;
     private double y;
+    /**
+     * function to get x co-ordinate of wall
+     * @return
+     */
     public double getX() {
         return x;
     }
-
+    /**
+     * function to set x co-ordinate of token
+     */
     public void setX(double x) {
         this.x = x;
     }
-
+    /**
+     * function to get y co-ordinate of token
+     * @return
+     */
     public double getY() {
         return y;
     }
-
+    /**
+     * function to set y co-ordinate of token
+     */
     public void setY(double y) {
         this.y = y;
     }

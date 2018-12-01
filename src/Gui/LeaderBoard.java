@@ -19,11 +19,18 @@ public class LeaderBoard {
 
     private Pane rootLayout;
 
-    public LeaderBoard(){
-        initmainlayout();
+    /**
+     * Constructor to call functions on LeaderBoard Sobject creation
+     */
+    public LeaderBoard(int choice){
+        initmainlayout(choice);
 
     }
-    private void initmainlayout() {
+
+    /**
+     * Init function to load leaderboard fxml
+     */
+    private void initmainlayout(int choice) {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -37,13 +44,18 @@ public class LeaderBoard {
                 }
             });
             ControllerLeaderboard controller = loader.getController();
-            controller.leaderboard();
+            controller.leaderboard(choice);
             // Show the scene containing the root layout.
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * function to show primary stage
+     * @param primaryStage
+     */
     public void show(Stage primaryStage){
         rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override

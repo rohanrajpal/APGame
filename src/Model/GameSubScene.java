@@ -6,6 +6,10 @@ import javafx.scene.layout.*;
 
 public class GameSubScene extends SubScene {
     public static final String IMG_PATH ="../view/black_back.jpg";
+
+    /**
+     * Constructor to create a sub scene to display over current scene
+     */
     public GameSubScene(){
         super(new AnchorPane(),300,300);
         setLayoutX(50);
@@ -19,6 +23,10 @@ public class GameSubScene extends SubScene {
 //        rootnext.setBackground(new Background(imgBackToSet));
     }
 
+    /**
+     * function to get pane of the sub scene
+     * @return
+     */
     public AnchorPane getPane(){
         return (AnchorPane) this.getRoot();
     }

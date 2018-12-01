@@ -173,7 +173,7 @@ public class Game {
         imgRestart.setLayoutY(170);
         imgRestart.setfit(80,80);
         imgRestart.setInterim("restart");
-        imgRestart.setLe(Totalscore,new GameModel(new SnakeModel(5,178,375),0,Totalscore));
+        imgRestart.setLe(Totalscore,new GameModel(new SnakeModel(5,178,375),0,Totalscore,0));
         return imgRestart;
     }
 
@@ -211,6 +211,7 @@ public class Game {
         this.GameStructure.setSnake(new SnakeModel(this.snake.size(),168,375));
         this.GameStructure.setPoints(this.points);
         this.GameStructure.setlatestpoints(this.Totalscore);
+        this.GameStructure.startpagestage=0;
         imgexit.setLe(Totalscore,this.GameStructure);
 //        imgResume.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
@@ -605,6 +606,7 @@ public class Game {
                                 GameStructure.setSnake(new SnakeModel(snake.size(),168,375));
                                 GameStructure.setPoints(points);
                                 GameStructure.setlatestpoints(Totalscore);
+                                GameStructure.startpagestage=0;
                                 ControllerGame.serializegameondeath(GameStructure);
                                 ControllerLeaderboard.addpointswithstage(points);
                             }
@@ -630,14 +632,15 @@ public class Game {
                 this.templeaderboard.getLeaders().add(new LeaderBoardelements(Totalscore, new Date()));
                 java.util.Collections.sort(this.templeaderboard.getLeaders());
             }
-        }
-        try {
-            LeaderBoardModel.serialize(this.templeaderboard);
-        }
-        catch (Exception e){
+            try {
+                LeaderBoardModel.serialize(this.templeaderboard);
+            }
+            catch (Exception e){
 
-            System.out.println(e.getMessage());
+                System.out.println(e.getMessage());
+            }
         }
+
 
     }
 
@@ -818,8 +821,8 @@ public class Game {
         System.out.println("Game Over");
 
         try {
-            ControllerGame.serializegameondeath(new GameModel(new SnakeModel(5, 178, 375), 0,Totalscore));
-            ControllerLeaderboard.serializegameondeath(Totalscore,(Stage)this.gameScene.getWindow());
+            ControllerGame.serializegameondeath(new GameModel(new SnakeModel(5, 178, 375), 0,points,1));
+            ControllerLeaderboard.serializegameondeath(points,(Stage)this.gameScene.getWindow());
         }
         catch (Exception e){
 

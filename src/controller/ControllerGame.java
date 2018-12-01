@@ -18,10 +18,16 @@ public class ControllerGame  implements Initializable {
     @FXML
     private Pane pane1;
     @Override
+    /**
+     * default initialise from javafx
+     */
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
+    /**
+     * init function to load controller to javafx
+     */
     public void init() {
 //        ImageButton ib=new ImageButton("/view/Helper_images/pause.png");
 //        ib.setLayoutX(313);
@@ -36,13 +42,32 @@ public class ControllerGame  implements Initializable {
 //        });
 //        pane1.getChildren().add(ib);
     }
+
+    /**
+     * no body pause function to handle some cases
+     * @param event
+     */
     public static void pause(MouseEvent event){
 
-
     }
+
+    /**
+     * serialise during a mousepress event
+     * @param g
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void serializegame (GameModel g,MouseEvent event)throws IOException,ClassNotFoundException {
         GameModel.serialize(g);
     }
+
+    /**
+     * seialize when there is no mousepress ( on death )
+     * @param g
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void serializegameondeath(GameModel g)throws IOException,ClassNotFoundException{
         GameModel.serialize(g);
     }

@@ -10,6 +10,11 @@ import java.io.Serializable;
 
 public class Bomb extends Token implements Serializable {
     private static final String DestroyAll_src = "view/tokens/token_destroyall.png";
+
+    /**
+     * Constructor to create bomb image with particular value
+     * @param text
+     */
     public Bomb(String text) {
         super(text);
         BackgroundImage bImage = new BackgroundImage(new Image(DestroyAll_src, 40, 40,
@@ -17,7 +22,9 @@ public class Bomb extends Token implements Serializable {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, null);
         setBackground(new Background(bImage));
     }
-
+    /**
+     * Constructor to create bomb image with default value
+     */
     public Bomb() {
         super("");
     }
