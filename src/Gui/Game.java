@@ -970,13 +970,13 @@ public class Game {
                             Timeline anim = new Timeline();
                             anim.setCycleCount(1);
                             for (int j = 0; j < valueOfBlock; j++) {
-                                Duration duration = Duration.millis(j * 100);
-                                KeyFrame keyFrame = new KeyFrame(duration, event -> {
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-                                });
-                                anim.getKeyFrames().add(keyFrame);
-
-
+                                if (snake.size()>0){
+                                    Duration duration = Duration.millis(j * 100);
+                                    KeyFrame keyFrame = new KeyFrame(duration, event -> {
+                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                    });
+                                    anim.getKeyFrames().add(keyFrame);
+                                }
                             }
 
                             anim.play();

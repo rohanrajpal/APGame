@@ -43,10 +43,10 @@ public class wall extends Label implements Serializable {
     }
 
     public wall(){
-        setPrefWidth(10);
+        setPrefWidth(30);
         setPrefHeight(80);
         setAlignment(Pos.CENTER);
-        BackgroundImage bImage = new BackgroundImage(new Image(wall_image,10,80,
+        BackgroundImage bImage = new BackgroundImage(new Image(wall_image,30,80,
                 false,true), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
         setBackground(new Background(bImage));
