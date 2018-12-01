@@ -488,24 +488,17 @@ public class Game {
                 for (int i = 0; i < k; i++) {
                     tempindex.add(i);
                 }
-                int k2 = (randomPositionDecider.nextInt(k)) + 1;
                 k += blockslist.size();
                 int count = 0;
-                int k1 = 1;
-                if (snake.size() > 1) {
-                    k1 = (randomPositionDecider.nextInt(snake.size() - 1)) + 1;
-                } else {
-                    k1 = 1;
-                }
-                System.out.println(k2);
                 for (int i = blockslist.size(); i < k; i++) {
-                    int value = randomPositionDecider.nextInt(5) + 1;
-                    int value2 = randomPositionDecider.nextInt(50) + 1;
+                    int value = randomPositionDecider.nextInt(snake.size()) + 1;
+                    int value2 = randomPositionDecider.nextInt(100) + 1;
                     int[] valArr = {value, value2};
-                    if (k2 == (i - blockslist.size() + 1)) {
-                        blockslist.add(new Block(Integer.toString(k1)));
-                    } else {
-                        blockslist.add(new Block(Integer.toString(valArr[randomPositionDecider.nextInt(2)])));
+                    if(i==blockslist.size()){
+                        blockslist.add(new Block(Integer.toString(valArr[0])));
+                    }
+                    else {
+                        blockslist.add(new Block(Integer.toString(valArr[1])));
                     }
                     setNewElementsPosition(blockslist.get(blockslist.size() - 1), tempindex.get(count));
                     count++;
