@@ -5,6 +5,7 @@ import controller.ControllerGame;
 import controller.ControllerLeaderboard;
 import controller.ControllerMainMenu;
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -77,6 +78,8 @@ public class Game {
     private double snakeSpeed=5;
     private boolean isShieldOn = false;
     SnakeLengthLabel snakeLen;
+    private ScoreLabel magLabel;
+    private ScoreLabel shieldLabel;
 
     /**
      *The initial consutructor which when called creates necessary objects and calls
@@ -959,6 +962,10 @@ public class Game {
             }
     }
 
+    /**
+     * Shows the destroy animation and then updates the score
+     * @param i
+     */
     private void destroyBlockAndUpdateScore(int i) {
         points += blockslist.get(i).getValue();
         Totalscore += points;
@@ -973,6 +980,10 @@ public class Game {
         scoreLabelText.setText(newScore + points);
     }
 
+    /**
+     * Increases the snake length by the lentoInc
+     * @param lenToInc
+     */
     private void incSnakeLength(int lenToInc) {
         for (int k = 0; k < lenToInc; k++) {
                 double toSetX = snake.get(snake.size()-1).getLayoutX();
@@ -987,6 +998,10 @@ public class Game {
 
         }
     }
+
+    /**
+     * Corrects the snake postion if it gets messed up
+     */
     private void correctSnakePostions() {
         if (!isLeftKeyPressed && !isRightKeyPressed){
             for (int i=1;i<snake.size();i++){
@@ -995,6 +1010,11 @@ public class Game {
             }
         }
     }
+
+    /**
+     * Shows the destroy block animation
+     * @param imageView
+     */
     private void destroyBlockAnimation(ImageView imageView) {
         Timeline newlocalTimeline = new Timeline();
         Duration duration = Duration.millis(500);
@@ -1010,7 +1030,9 @@ public class Game {
         newlocalTimeline.play();
     }
 
-
+    /**
+     * Destorys all the blocks on the screen.
+     */
     private void destroyAllBlocks() {
         ArrayList<ImageView> gifArrList = new ArrayList<ImageView>();
         for (int i = 0;i<blockslist.size();i++){
@@ -1044,41 +1066,127 @@ public class Game {
         scoreLabelText.setText(newScore+points);
     }
 
+    /**
+     * Turns the magnet On
+     */
     private void turnOnMagnet() {
         if (!isMagnetOn) {
             isMagnetOn =true;
+            if (magLabel == null)
+                createMagnetLabel();
+            showMagnetLabel();
             TOKEN_RADIUS = 100;
             timer = new Timer();
             timer.schedule(new changeBackRadius(), 5 * 1000);
         }
     }
 
+    /**
+     * Turns the shield on
+     */
     private void turnOnShield() {
         if (!isShieldOn) {
             isShieldOn = true;
+            if (shieldLabel==null)
+                createShieldLabel();
+            showShieldLabel();
             timer = new Timer();
             timer.schedule(new changeBackShield(), 5 * 1000);
         }
     }
 
-    private double calcculateDistance(double x1,double x2,double y1,double y2){
-        return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
+    /**
+     * Display the shield label
+     */
+    private void showShieldLabel() {
+        rootLayout.getChildren().add(shieldLabel);
     }
 
+    /**
+     * Shows the magnet label
+     */
+    private void showMagnetLabel() {
+        rootLayout.getChildren().add(magLabel);
+    }
+
+    /**
+     * Creates the magnet label
+     */
+    private void createMagnetLabel() {
+        magLabel = new ScoreLabel("M");
+        System.out.println("Showing?");
+        magLabel.setLayoutY(20);
+        magLabel.setLayoutX(100);
+    }
+
+    /**
+     * Creates the shield label
+     */
+    private void createShieldLabel(){
+        shieldLabel = new ScoreLabel("S");
+        shieldLabel.setLayoutY(20);
+        shieldLabel.setLayoutX(150);
+    }
+
+    /**
+     * Changes the radius back to default
+     */
     private class changeBackRadius extends TimerTask {
         @Override
         public void run() {
-            TOKEN_RADIUS =10;
-            isMagnetOn = false;
-            timer.cancel();
+            Platform.runLater(() ->
+            {
+                TOKEN_RADIUS =10;
+                removeMagLabel();
+                isMagnetOn = false;
+                if (!isShieldOn)
+                timer.cancel();
+            });
+
         }
+
     }
 
+    /**
+     * Turns off the shield after 5 seconds.
+     */
     private class changeBackShield extends TimerTask {
         @Override
         public void run() {
-            isShieldOn = false;
-            timer.cancel();
+            Platform.runLater(()->{
+                isShieldOn = false;
+                removeShieldLabel();
+                if (!isMagnetOn)
+                timer.cancel();
+            });
+
         }
+    }
+
+    /**
+     * Remove the shield label
+     */
+    private void removeShieldLabel() {
+//        System.out.println("Executed");
+        rootLayout.getChildren().remove(shieldLabel);
+    }
+
+    /**
+     * Remove the magnet label
+     */
+    private void removeMagLabel() {
+        rootLayout.getChildren().remove(magLabel);
+    }
+
+    /**
+     * Does the eucledian distance calculation
+     * @param x1
+     * @param x2
+     * @param y1
+     * @param y2
+     * @return
+     */
+    private double calcculateDistance(double x1,double x2,double y1,double y2){
+        return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
     }
 }
