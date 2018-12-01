@@ -6,11 +6,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeaderBoardModel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LeaderBoardModel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -94,7 +100,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="10" />
-          <entry key="JAVA" value="41" />
+          <entry key="JAVA" value="43" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -111,8 +117,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9191" />
-          <entry key="PLAIN_TEXT" value="632" />
+          <entry key="JAVA" value="9514" />
+          <entry key="PLAIN_TEXT" value="668" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -242,11 +248,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="920" column="46" selection-start-line="920" selection-start-column="46" selection-end-line="920" selection-end-column="46" />
+            <state relative-caret-position="270">
+              <caret line="1180" column="33" selection-start-line="1180" selection-start-column="33" selection-end-line="1180" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#43474#43475#0" expanded="true" />
@@ -261,10 +267,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Ball.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/LeaderBoardModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            <state relative-caret-position="140">
+              <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Model/GameModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -273,13 +288,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/animation/AnimationTimer.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/Ball.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
+            <state relative-caret-position="480">
+              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
               <folding>
-                <element signature="e#1734#1735#0" expanded="true" />
-                <element signature="e#1795#1796#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -335,15 +349,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/SnakeModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/ControllerMainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2920">
@@ -368,15 +373,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>leaderboard</find>
-      <find>ondeath</find>
-      <find>high</find>
-      <find>Game</find>
-      <find>Gamestr</find>
-      <find>goba</find>
-      <find>ondeat</find>
-      <find>collisonwith</find>
-      <find>createblock</find>
       <find>pause</find>
       <find>openPauseMenu</find>
       <find>collisonwithbloc</find>
@@ -398,6 +394,15 @@
       <find>collisionwithtoke</find>
       <find>createtokens</find>
       <find>collisionwithtoken</find>
+      <find>movesnake</find>
+      <find>moveLeft</find>
+      <find>snake</find>
+      <find>pane</find>
+      <find>movesn</find>
+      <find>collisionwithtok</find>
+      <find>moveleft</find>
+      <find>snakespeed</find>
+      <find>incsna</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -441,9 +446,7 @@
         <option value="$PROJECT_DIR$/GameModelStore.txt" />
         <option value="$PROJECT_DIR$/src/Gui/LeaderBoard.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerLeaderboard.java" />
-        <option value="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" />
         <option value="$PROJECT_DIR$/LeaderBoardModel.txt" />
-        <option value="$PROJECT_DIR$/src/Model/GameModel.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerMainMenu.java" />
         <option value="$PROJECT_DIR$/src/SnakevsBloc.java" />
         <option value="$PROJECT_DIR$/src/Model/Wallswrapper.java" />
@@ -451,6 +454,8 @@
         <option value="$PROJECT_DIR$/src/Model/wall.java" />
         <option value="$PROJECT_DIR$/src/Model/GameSubScene.java" />
         <option value="$PROJECT_DIR$/src/Gui/Game.java" />
+        <option value="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" />
+        <option value="$PROJECT_DIR$/src/Model/GameModel.java" />
       </list>
     </option>
   </component>
@@ -522,20 +527,6 @@
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="Animations" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="APGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="APGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="Helper_images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="APGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="APGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="InGameMenu_back" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -547,7 +538,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543689321855" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543695351944" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -962,11 +953,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543672616796</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Radius increases only on tokens">
+      <created>1543689399731</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1543689399731</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110993000" />
+    <option name="totallyTimeSpent" value="116680000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1067,7 +1065,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Completed the coming deadline" />
     <MESSAGE value="Gg" />
     <MESSAGE value="Added tokens" />
     <MESSAGE value="Mini collision" />
@@ -1092,7 +1089,8 @@
     <MESSAGE value="Added block takes time to eat the snake and then dies out" />
     <MESSAGE value="Added images" />
     <MESSAGE value="Fixed snake death bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed snake death bug" />
+    <MESSAGE value="Radius increases only on tokens" />
+    <option name="LAST_COMMIT_MESSAGE" value="Radius increases only on tokens" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/view/checkingpositon.fxml">
@@ -1244,13 +1242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/LeaderBoardModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/StartPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
@@ -1262,18 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="99" selection-start-column="99" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/GameModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#935#936#0" expanded="true" />
-            <element signature="e#977#978#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1395,8 +1374,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="920" column="46" selection-start-line="920" selection-start-column="46" selection-end-line="920" selection-end-column="46" />
+        <state relative-caret-position="270">
+          <caret line="1180" column="33" selection-start-line="1180" selection-start-column="33" selection-end-line="1180" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#43474#43475#0" expanded="true" />
@@ -1405,6 +1384,23 @@
             <element signature="e#43669#43670#0" expanded="true" />
             <element signature="e#45175#45176#0" expanded="true" />
             <element signature="e#45232#45233#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/LeaderBoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/GameModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

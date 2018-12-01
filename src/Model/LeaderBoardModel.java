@@ -20,7 +20,7 @@ public class LeaderBoardModel implements Serializable {
     }
     /**
      * functon to set current list of LeaderBoard records
-     * @return
+
      */
     public void setLeaders(ArrayList<LeaderBoardelements> leaders) {
         Leaders = leaders;

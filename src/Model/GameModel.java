@@ -52,7 +52,6 @@ public class GameModel implements Serializable {
     }
     /**
      * function to set the available blocks
-     * @return
      */
     public void setBlockslist(ArrayList<Block> blockslist) {
         this.blockslist = blockslist;
@@ -66,7 +65,6 @@ public class GameModel implements Serializable {
     }
     /**
      * function to set the available walls
-     * @return
      */
     public void setWalllist(ArrayList<Wallswrapper> walllist) {
         this.walllist = walllist;
@@ -80,7 +78,6 @@ public class GameModel implements Serializable {
     }
     /**
      * function to set the available tokens
-     * @return
      */
 
     public void setTokenslist(ArrayList<Token> tokenslist) {
@@ -88,7 +85,6 @@ public class GameModel implements Serializable {
     }
     /**
      * function to set the current snake model
-     * @return
      */
     public void setSnake(SnakeModel snake) {
         this.snake = snake;
