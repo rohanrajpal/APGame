@@ -8,11 +8,14 @@
     <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LeaderBoardModel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LeaderBoardModel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/GameSubScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/GameSubScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/wall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameSubScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameSubScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/black_back.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/black_back.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -113,8 +116,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8485" />
-          <entry key="PLAIN_TEXT" value="511" />
+          <entry key="JAVA" value="8585" />
+          <entry key="PLAIN_TEXT" value="540" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -244,28 +247,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="155" column="30" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="30" />
+            <state relative-caret-position="212">
+              <caret line="973" column="47" selection-start-line="973" selection-start-column="47" selection-end-line="973" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#41496#41497#0" expanded="true" />
-                <element signature="e#41553#41554#0" expanded="true" />
-                <element signature="e#41637#41638#0" expanded="true" />
-                <element signature="e#41691#41692#0" expanded="true" />
-                <element signature="e#43197#43198#0" expanded="true" />
-                <element signature="e#43254#43255#0" expanded="true" />
+                <element signature="e#41321#41322#0" expanded="true" />
+                <element signature="e#41378#41379#0" expanded="true" />
+                <element signature="e#41462#41463#0" expanded="true" />
+                <element signature="e#41516#41517#0" expanded="true" />
+                <element signature="e#43022#43023#0" expanded="true" />
+                <element signature="e#43079#43080#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/GameSubScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
+            <state relative-caret-position="95">
               <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
             </state>
           </provider>
@@ -354,7 +357,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>snakeLen</find>
       <find>ser</find>
       <find>le</find>
       <find>sys</find>
@@ -384,6 +386,7 @@
       <find>createblock</find>
       <find>pause</find>
       <find>openPauseMenu</find>
+      <find>collisonwithbloc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -434,9 +437,9 @@
         <option value="$PROJECT_DIR$/src/SnakevsBloc.java" />
         <option value="$PROJECT_DIR$/src/Model/Wallswrapper.java" />
         <option value="$PROJECT_DIR$/src/view/ImageButton.java" />
-        <option value="$PROJECT_DIR$/src/Gui/Game.java" />
         <option value="$PROJECT_DIR$/src/Model/wall.java" />
         <option value="$PROJECT_DIR$/src/Model/GameSubScene.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Game.java" />
       </list>
     </option>
   </component>
@@ -533,7 +536,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543670708656" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543671284630" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -920,11 +923,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543670304324</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Made the in game menu better">
+      <created>1543670742735</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1543670742735</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98209000" />
+    <option name="totallyTimeSpent" value="98784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -935,15 +945,15 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" weight="0.3295302" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18791947" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18791947" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5013423" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3286119" />
-      <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.0" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.2917847" />
+      <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.2917847" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -1047,7 +1057,8 @@
     <MESSAGE value="Added some javadoc comments" />
     <MESSAGE value="Added more Javadoc" />
     <MESSAGE value="Improved wall width" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved wall width" />
+    <MESSAGE value="Made the in game menu better" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the in game menu better" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/layout/Background.java" />
@@ -1328,29 +1339,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="155" column="30" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#41496#41497#0" expanded="true" />
-            <element signature="e#41553#41554#0" expanded="true" />
-            <element signature="e#41637#41638#0" expanded="true" />
-            <element signature="e#41691#41692#0" expanded="true" />
-            <element signature="e#43197#43198#0" expanded="true" />
-            <element signature="e#43254#43255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/black_back.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/GameSubScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
+        <state relative-caret-position="95">
           <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="973" column="47" selection-start-line="973" selection-start-column="47" selection-end-line="973" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#41321#41322#0" expanded="true" />
+            <element signature="e#41378#41379#0" expanded="true" />
+            <element signature="e#41462#41463#0" expanded="true" />
+            <element signature="e#41516#41517#0" expanded="true" />
+            <element signature="e#43022#43023#0" expanded="true" />
+            <element signature="e#43079#43080#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

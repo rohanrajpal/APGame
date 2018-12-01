@@ -953,9 +953,10 @@ public class Game {
                     isGameRunning = false;
 
                     int valueOfBlock = blockslist.get(i).getValue();
-                    if (valueOfBlock < snake.size() || isShieldOn) {
+//                    if (valueOfBlock < snake.size() || isShieldOn) {
                         if (valueOfBlock <= 5 || isShieldOn) {
-
+                            if (valueOfBlock>snake.size())
+                                ondeath();
                             if (!isShieldOn) {
                                 for (int r = 0; r < valueOfBlock; r++) {
                                     if (snake.size() != 1) {
@@ -969,7 +970,10 @@ public class Game {
                         } else {
                             Timeline anim = new Timeline();
                             anim.setCycleCount(1);
-                            for (int j = 0; j < valueOfBlock; j++) {
+                            boolean killsnake=false;
+                            if (valueOfBlock >= snake.size())
+                                killsnake= true;
+                            for (int j = 0; j < Math.min(valueOfBlock,snake.size()); j++) {
                                 if (snake.size()>0){
                                     Duration duration = Duration.millis(j * 100);
                                     KeyFrame keyFrame = new KeyFrame(duration, event -> {
@@ -981,17 +985,18 @@ public class Game {
 
                             anim.play();
                             int finalI = i;
+                            boolean finalKillsnake = killsnake;
                             anim.setOnFinished(event -> {
                                 destroyBlockAndUpdateScore(finalI);
                                 isGameRunning = true;
+                                if (finalKillsnake)
+                                    ondeath();
                             });
 
                         }
 
 
-                    } else {
-                        ondeath();
-                    }
+
                 }
                 else{
                     if (snakBd.getMinX() > bd.getMinX()){
