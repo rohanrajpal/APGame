@@ -5,10 +5,13 @@
     <bookmark url="file://$PROJECT_DIR$/src/SnakevsBloc.java" line="23" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
+    <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LeaderBoardModel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LeaderBoardModel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Ball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Model/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Model/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -93,6 +96,7 @@
         <counts>
           <entry key="Image" value="9" />
           <entry key="JAVA" value="37" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -109,8 +113,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8460" />
-          <entry key="PLAIN_TEXT" value="486" />
+          <entry key="JAVA" value="8590" />
+          <entry key="PLAIN_TEXT" value="518" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -243,8 +247,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1010">
-              <caret line="1178" column="27" lean-forward="true" selection-start-line="1178" selection-start-column="27" selection-end-line="1178" selection-end-column="27" />
+            <state relative-caret-position="81">
+              <caret line="904" column="54" lean-forward="true" selection-start-line="904" selection-start-column="54" selection-end-line="904" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#39201#39202#0" expanded="true" />
@@ -254,6 +258,15 @@
                 <element signature="e#40042#40043#0" expanded="true" />
                 <element signature="e#40099#40100#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LeaderBoardModel.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="99" lean-forward="true" selection-start-column="99" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -344,12 +357,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>colli</find>
-      <find>moveri</find>
-      <find>createscoreLabelText</find>
-      <find>createblo</find>
-      <find>setNewElementsPosition</find>
-      <find>creat</find>
       <find>createBlocks</find>
       <find>createwall</find>
       <find>createsnak</find>
@@ -374,6 +381,12 @@
       <find>createkeylis</find>
       <find>TURNONMA</find>
       <find>updatesc</find>
+      <find>createblocks</find>
+      <find>collide</find>
+      <find>collisionwit</find>
+      <find>correc</find>
+      <find>gameloop</find>
+      <find>collid</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -405,7 +418,6 @@
         <option value="$PROJECT_DIR$/src/Model/TokenAll.java" />
         <option value="$PROJECT_DIR$/src/Model/GameSubScene.java" />
         <option value="$PROJECT_DIR$/src/Model/LeaderBoardelements.java" />
-        <option value="$PROJECT_DIR$/LeaderBoardModel.txt" />
         <option value="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" />
         <option value="$PROJECT_DIR$/src/Model/SnakeModel.java" />
         <option value="$PROJECT_DIR$/src/Model/Wallswrapper.java" />
@@ -424,9 +436,10 @@
         <option value="$PROJECT_DIR$/src/controller/ControllerMainMenu.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerGame.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerLeaderboard.java" />
-        <option value="$PROJECT_DIR$/src/Gui/Game.java" />
         <option value="$PROJECT_DIR$/src/Model/Ball.java" />
         <option value="$PROJECT_DIR$/src/Model/Block.java" />
+        <option value="$PROJECT_DIR$/LeaderBoardModel.txt" />
+        <option value="$PROJECT_DIR$/src/Gui/Game.java" />
       </list>
     </option>
   </component>
@@ -516,7 +529,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543655600377" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543663487779" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -896,11 +909,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543650957313</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Final javadoc from my side">
+      <created>1543655624116</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1543655624116</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97302000" />
+    <option name="totallyTimeSpent" value="100869000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -911,7 +931,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" weight="0.3295302" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18791947" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18791947" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
@@ -919,7 +939,7 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.4206799" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4986577" weight="0.2917847" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.2917847" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -1022,7 +1042,8 @@
     <MESSAGE value="Temporary snake fix and pause of big blocks" />
     <MESSAGE value="Added some javadoc comments" />
     <MESSAGE value="Added more Javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more Javadoc" />
+    <MESSAGE value="Final javadoc from my side" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final javadoc from my side" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/view/GAMELAYOUT.fxml">
@@ -1046,9 +1067,6 @@
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/storage/LeaderBoardModel.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LeaderBoardModel.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/scene/layout/BackgroundImage.java" />
@@ -1286,10 +1304,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LeaderBoardModel.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="99" lean-forward="true" selection-start-column="99" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1010">
-          <caret line="1178" column="27" lean-forward="true" selection-start-line="1178" selection-start-column="27" selection-end-line="1178" selection-end-column="27" />
+        <state relative-caret-position="81">
+          <caret line="904" column="54" lean-forward="true" selection-start-line="904" selection-start-column="54" selection-end-line="904" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#39201#39202#0" expanded="true" />
