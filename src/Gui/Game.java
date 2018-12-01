@@ -832,7 +832,7 @@ public class Game {
         //                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
         //                    snake.get(0).getLayoutY()+ 20,
         //                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
-        collisonWithBlocks();
+        collisionWithBlocks();
 
 //        System.out.println(snake.size());
 //        System.out.println(isMagnetOn);
@@ -939,7 +939,7 @@ public class Game {
     /**
      * Collision with blocks
      */
-    private void collisonWithBlocks() {
+    private void collisionWithBlocks() {
         for (int i=0;i<blockslist.size();i++) {
             Bounds bd = blockslist.get(i).getBoundsInParent();
 //            System.out.println(bd.getMinX());
@@ -955,13 +955,16 @@ public class Game {
                     int valueOfBlock = blockslist.get(i).getValue();
 //                    if (valueOfBlock < snake.size() || isShieldOn) {
                         if (valueOfBlock <= 5 || isShieldOn) {
-                            if (valueOfBlock>snake.size())
+                            if (valueOfBlock >= snake.size()){
                                 ondeath();
+                                break;
+                            }
+
+
                             if (!isShieldOn) {
                                 for (int r = 0; r < valueOfBlock; r++) {
-                                    if (snake.size() != 1) {
-                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-                                    }
+                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+
                                 }
                             }
                             destroyBlockAndUpdateScore(i);
