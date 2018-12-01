@@ -124,7 +124,7 @@ public class Game {
 
     /**
      * This pauses the game when you click it.
-     * I have a boolean which when set to false pauses the game.
+     * I have a boolean which when set to false pauses the game will pause.
      * The restart and exit button are then shown.
      */
     private void makepausebutton() {
@@ -148,6 +148,9 @@ public class Game {
         rootLayout.getChildren().add(ib);
     }
 
+    /**
+     * This is called when the user will press the pause button
+     */
     private void openPauseMenu() {
         subGameScene = new GameSubScene();
         rootLayout.getChildren().add(subGameScene);
@@ -160,6 +163,10 @@ public class Game {
 //        subGameScene;
     }
 
+    /**
+     * This function is called when the pause menu is created.
+     * @return Button
+     */
     private Button createRestartButton() {
         ImageButton imgRestart = new ImageButton("../view/Helper_images/icon-restart.png");
         imgRestart.setLayoutX(113);
@@ -170,6 +177,11 @@ public class Game {
         return imgRestart;
     }
 
+    /**
+     * The function of this button is to serialize the current
+     * game and return to the main menu.
+     * @return
+     */
     private Button createGoBacktoMenuButton() {
         ImageButton imgexit = new ImageButton("../view/Helper_images/error.png");
         imgexit.setLayoutX(180);
@@ -210,6 +222,10 @@ public class Game {
         return imgexit;
     }
 
+    /**
+     * The resume button will go back to the main game.
+     * @return
+     */
     private Button createResumeButton() {
         ImageButton imgResume = new ImageButton("../view/Helper_images/resume-button.png");
         imgResume.setLayoutX(50);
@@ -225,6 +241,9 @@ public class Game {
         return imgResume;
     }
 
+    /**
+     * This loads the initial layout created using FXML
+     */
     private void initmainlayout() {
         try {
             // Load root layout from fxml file.
@@ -247,6 +266,11 @@ public class Game {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This initializes all the key listeners
+     * This game also has cheat codes to activate the power ups.
+     */
     private void createKeyListeners() {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -284,6 +308,11 @@ public class Game {
         });
 
     }
+
+    /**
+     * We have controlled on how to show the whole game by deciding how to show the primary stage.
+     * @param primaryStage
+     */
     public void show(Stage primaryStage){
         rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
@@ -296,6 +325,10 @@ public class Game {
         primaryStage.show();
     }
 
+    /**
+     * calls necessary functions to create a new game.
+     *
+     */
     public void createNewGame() {
         createSnake();
         createGameLoop();
@@ -304,6 +337,10 @@ public class Game {
         createwall();
         createscoreLabelText();
     }
+
+    /**
+     * Calls necessary functions to deserialize a game
+     */
     public void creatExistingGame(){
         createSnake();
         createGameLoop();
@@ -312,6 +349,10 @@ public class Game {
         createExistingwall();
         createscoreLabelText();
     }
+
+    /**
+     * Creates existing blocks in the same space when we deserialize.
+     */
     public void createExistingBlocks(){
         for(int i=0;i<blockslist.size();i++) {
             if (blockslist.get(i).getLayoutY() < 600 || blockslist.get(i).getLayoutY() > -50) {
@@ -320,6 +361,10 @@ public class Game {
         }
         createBlocks();
     }
+
+    /**
+     * Creates token in the same space when we deserialize the game.
+     */
     public void createExistingTokens(){
         for(int i=0;i<tokenslist.size();i++){
             if(tokenslist.get(i).getLayoutY()<600 || tokenslist.get(i).getLayoutY()>-50){
@@ -330,6 +375,10 @@ public class Game {
             createTokens();
 
     }
+
+    /**
+     * Creates an existing wall when we deserialize.
+     */
     public void createExistingwall(){
 
 
@@ -344,6 +393,9 @@ public class Game {
 
     }
 
+    /**
+     * The score label created and its position is decided.
+     */
     private void createscoreLabelText() {
 
         scoreLabelText = new ScoreLabel("Score : "+this.points);
@@ -352,19 +404,35 @@ public class Game {
         rootLayout.getChildren().add(scoreLabelText);
     }
 
-
+    /**
+     * Takes the position to be set and then sets the position according to it.
+     * @param token
+     * @param pos
+     */
     private void setNewElementsPosition(Token token,int pos) {
         token.setLayoutX(TokenPositions.get(pos));
         token.setLayoutY(-100);
         token.setY(token.getLayoutY());
         token.setX(token.getLayoutX());
     }
+
+    /**
+     * Takes the position to be set and then sets the position according to it.
+     * @param block
+     * @param pos
+     */
     private void setNewElementsPosition(Block block,int pos) {
         block.setLayoutX(blockPositions.get(pos));
         block.setLayoutY(-100);
         block.setY(block.getLayoutY());
         block.setX(block.getLayoutX());
     }
+
+    /**
+     * Takes the position to be set and then sets the position according to it.
+     * @param Wall
+     * @param pos
+     */
     private void setNewElementsPosition(Wallswrapper Wall,int pos) {
         int rnd=wallPositions[pos];
         for(int i=0;i<Wall.getLength();i++) {
@@ -374,6 +442,10 @@ public class Game {
             Wall.getWalls().get(i).setX(Wall.getWalls().get(i).getLayoutX());
         }
     }
+
+    /**
+     * Creates the wall every 6 seconds using the timeline
+     */
     private void createwall() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
             if (isGameRunning) {
@@ -397,6 +469,9 @@ public class Game {
         timeline.play();
     }
 
+    /**
+     * Creates the blocks according to the timeline
+     */
     private void createBlocks() {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
@@ -436,6 +511,10 @@ public class Game {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
+
+    /**
+     * Creates a new token every 8 seconds
+     */
     private void createTokens(){
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), ev -> {
             if (isGameRunning) {
@@ -470,7 +549,9 @@ public class Game {
 
     }
 
-
+    /**
+     * This is the main Game Loop, which keeps on calling the functiosn inside of it.
+     */
     private void createGameLoop() {
         AnimationTimerExt TimerGame = new AnimationTimerExt(20) {
             @Override
@@ -485,6 +566,7 @@ public class Game {
                     checkhighscore();
                     UpdateSnakeSize();
                     Stage stage = (Stage) rootLayout.getScene().getWindow();
+                    if(stage!=null)
                     stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                         public void handle(WindowEvent we) {
                             System.out.println("Stage is closing");
@@ -510,6 +592,9 @@ public class Game {
         TimerGame.start();
     }
 
+    /**
+     * This checks if a game makes a high score when the snake dies.
+     */
     private void checkhighscore() {
         if(this.templeaderboard.getLeaders().size()>=10) {
             if (Totalscore > this.templeaderboard.getLeaders().get(this.templeaderboard.getLeaders().size() - 1).getscore()) {
@@ -528,6 +613,9 @@ public class Game {
 
     }
 
+    /**
+     * Movewalls is a function to move a wall according to the downspeed selected.
+     */
     private void moveWalls() {
         for(int j=0;j<walllist.size();j++) {
             for (int i = 0; i < walllist.get(j).getLength(); i++) {
@@ -537,18 +625,29 @@ public class Game {
         }
     }
 
+    /**
+     * Moves the power ups according to the downspeed
+     */
     private void movePowerUps() {
         for (int i=0;i<tokenslist.size();i++){
             tokenslist.get(i).setLayoutY(tokenslist.get(i).getLayoutY()+downSpeed);
 //            tokenslist.get(i).setY(tokenslist.get(i).getLayoutY());
         }
     }
+
+    /**
+     * Moves the blocks according the the downspeed.
+     */
     private void moveBlocks() {
         for (int i=0;i<blockslist.size();i++){
             blockslist.get(i).setLayoutY(blockslist.get(i).getLayoutY()+downSpeed);
 //            blockslist.get(i).setY( blockslist.get(i).getLayoutY());
         }
     }
+
+    /**
+     * Relocates or removes the elements when they go below the screen.
+     */
     private void relocateelementsbelowscreen() {
             for(int j=0;j<blockslist.size();j++) {
                 if (blockslist.get(j).getLayoutY() > 600) {
@@ -581,6 +680,10 @@ public class Game {
 
 
     }
+
+    /**
+     * Function to smoothly move left
+     */
     private void moveLeft(){
         if(snake.get(0).getLayoutX()>20) {
 
@@ -601,6 +704,10 @@ public class Game {
             }
         }
     }
+
+    /**
+     * Function to smoothly move right
+     */
     private void moveRight(){
         if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
             for (int i = 0; i < snake.size(); i++) {
@@ -619,6 +726,10 @@ public class Game {
             }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
         }
     }
+
+    /**
+     * Moves snakes based on the keys pressed.
+     */
     private void moveSnake(){
         if (isLeftKeyPressed && !isRightKeyPressed){
             if (facesWallleft){
@@ -641,6 +752,9 @@ public class Game {
 
     }
 
+    /**
+     * Creates the snake and sets the default snake lengths.
+     */
     private void createSnake() {
         for(int i=0;i<GameStructure.getSnake().getlength();i++) {
             ImageView img = new ImageView("/view/snake_tail.png");
@@ -656,6 +770,10 @@ public class Game {
         snakeLen.setLayoutY(snake.get(0).getLayoutY()-25);
         rootLayout.getChildren().add(snakeLen);
     }
+
+    /**
+     * Changes the downSpeed and snakeSpeed based on snake size.
+     */
     private void UpdateSnakeSize(){
         snakeLen.setText(String.valueOf(snake.size()));
         snakeLen.setLayoutX(snake.get(0).getLayoutX());
@@ -663,6 +781,10 @@ public class Game {
         snakeSpeed = 0.5 * (snake.size() + 5);
 
     }
+
+    /**
+     * Serialize the score on death.
+     */
     private void ondeath(){
         isGameRunning = false;
         System.out.println("Game Over");
@@ -675,11 +797,116 @@ public class Game {
 
         }
     }
+
+    /**
+     * The main collide function to check collision with blocks, tokens and walls
+     */
     private void checkIfElementsCollide(){
         //            if (SNAKEHEAD_RADIUS+BLOCK_RADIUS >calcculateDistance(snake.get(0).getLayoutX() + 20
         //                    ,blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
         //                    snake.get(0).getLayoutY()+ 20,
         //                    blockslist.get(i).getLayoutY()+ blockslist.get(i).getPrefHeight()/2))
+        collisonWithBlocks();
+
+//        System.out.println(snake.size());
+//        System.out.println(isMagnetOn);
+        collisionWithTokens();
+
+
+//        System.out.println(walllist.size());
+//        System.out.println(TOKEN_RADIUS);
+        collisionWithWalls();
+    }
+
+    /**
+     * Collison with walls
+     */
+    private void collisionWithWalls() {
+        for (int i=0;i<walllist.size();i++){
+                int len = walllist.get(i).getWalls().size();
+
+//            System.out.println(x.getBoundsInLocal());
+            for (int j=0;j<len;j++){
+                wall x = walllist.get(i).getWalls().get(j);
+                if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())){
+                    if(snake.get(0).getLayoutX()-x.getLayoutX()>=-5) {
+                        facesWallleft = true;
+                    }
+                    else{
+                        facesWallright = true;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Collison with tokens
+     */
+    private void collisionWithTokens() {
+        for (int j=0;j<tokenslist.size();j++){
+
+//            if (tokenslist.get(j).getBoundsInParent().intersects(snakeLocalHead.getBoundsInParent())){
+//                System.out.println("simple?");
+//            }
+            if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
+                    tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
+                    snake.get(0).getLayoutY()+ 20,
+                    tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
+
+                isGameRunning =false;
+                if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
+                    int lenToInc = tokenslist.get(j).getValue();
+                    incSnakeLength(lenToInc);
+
+                }
+
+                if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
+                    destroyAllBlocks();
+                }
+
+                if(tokenslist.get(j).getClass() == (Shield.class)){
+                    turnOnShield();
+                }
+
+                if (tokenslist.get(j).getClass() == Magnet.class){
+                    turnOnMagnet();
+                }
+                ImageView imageView = new ImageView("view/Animations/Explosion.gif");
+                Token toDestroyToken = tokenslist.get(j);
+                imageView.setLayoutY(toDestroyToken.getLayoutY());
+                imageView.setLayoutX(toDestroyToken.getLayoutX());
+                imageView.setFitWidth(toDestroyToken.getPrefWidth());
+                imageView.setFitHeight(toDestroyToken.getPrefHeight());
+                rootLayout.getChildren().add(imageView);
+                destroyBlockAnimation(imageView);
+                rootLayout.getChildren().remove(tokenslist.remove(j));
+
+                isGameRunning = true;
+            }
+
+//            if (isMagnetOn){
+//                ImageView snakeHead = snake.get(0);
+//                if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
+//                        tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
+//                        snake.get(0).getLayoutY()+ 20,
+//                        tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
+//                    System.out.println("Getting here");
+//                    Token p = tokenslist.get(j);
+//                    final TranslateTransition transition = new TranslateTransition(Duration.millis(100), p);
+//
+//                    transition.setToX(snakeHead.getLayoutX());
+//                    transition.setToY(snakeHead.getLayoutY());
+//                    transition.play();
+//                }
+//            }
+        }
+    }
+
+    /**
+     * Collision with blocks
+     */
+    private void collisonWithBlocks() {
         for (int i=0;i<blockslist.size();i++)
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent())) {
                 isGameRunning = false;
@@ -730,86 +957,6 @@ public class Game {
                     ondeath();
                 }
             }
-
-//        System.out.println(snake.size());
-//        System.out.println(isMagnetOn);
-        for (int j=0;j<tokenslist.size();j++){
-
-//            if (tokenslist.get(j).getBoundsInParent().intersects(snakeLocalHead.getBoundsInParent())){
-//                System.out.println("simple?");
-//            }
-            if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
-                    tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
-                    snake.get(0).getLayoutY()+ 20,
-                    tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
-
-                isGameRunning =false;
-                if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
-                    int lenToInc = tokenslist.get(j).getValue();
-                    incSnakeLength(lenToInc);
-
-                }
-
-                if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
-                    destroyAllBlocks();
-                }
-
-                if(tokenslist.get(j).getClass() == (Shield.class)){
-                    turnOnShield();
-                }
-                
-                if (tokenslist.get(j).getClass() == Magnet.class){
-                    turnOnMagnet();
-                }
-                ImageView imageView = new ImageView("view/Animations/Explosion.gif");
-                Token toDestroyToken = tokenslist.get(j);
-                imageView.setLayoutY(toDestroyToken.getLayoutY());
-                imageView.setLayoutX(toDestroyToken.getLayoutX());
-                imageView.setFitWidth(toDestroyToken.getPrefWidth());
-                imageView.setFitHeight(toDestroyToken.getPrefHeight());
-                rootLayout.getChildren().add(imageView);
-                destroyBlockAnimation(imageView);
-                rootLayout.getChildren().remove(tokenslist.remove(j));
-
-                isGameRunning = true;
-            }
-
-//            if (isMagnetOn){
-//                ImageView snakeHead = snake.get(0);
-//                if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
-//                        tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
-//                        snake.get(0).getLayoutY()+ 20,
-//                        tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
-//                    System.out.println("Getting here");
-//                    Token p = tokenslist.get(j);
-//                    final TranslateTransition transition = new TranslateTransition(Duration.millis(100), p);
-//
-//                    transition.setToX(snakeHead.getLayoutX());
-//                    transition.setToY(snakeHead.getLayoutY());
-//                    transition.play();
-//                }
-//            }
-        }
-
-
-//        System.out.println(walllist.size());
-//        System.out.println(TOKEN_RADIUS);
-        for (int i=0;i<walllist.size();i++){
-                int len = walllist.get(i).getWalls().size();
-
-//            System.out.println(x.getBoundsInLocal());
-            for (int j=0;j<len;j++){
-                wall x = walllist.get(i).getWalls().get(j);
-                if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())){
-                    if(snake.get(0).getLayoutX()-x.getLayoutX()>=-5) {
-                        facesWallleft = true;
-                    }
-                    else{
-                        facesWallright = true;
-                    }
-                }
-            }
-        }
     }
 
     private void destroyBlockAndUpdateScore(int i) {
