@@ -452,7 +452,7 @@ public class Game {
      * Creates the wall every 6 seconds using the timeline
      */
     private void createwall() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
             if (isGameRunning) {
                 int k = (randomPositionDecider.nextInt(4)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
@@ -481,7 +481,7 @@ public class Game {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-                correctSnakePostions();
+//                correctSnakePostions();
 //            System.out.println("fdd");
                 int k = (randomPositionDecider.nextInt(5)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList();
@@ -710,24 +710,66 @@ public class Game {
     /**
      * Function to smoothly move left
      */
-    private void moveLeft(){
-        if(snake.get(0).getLayoutX()>20) {
+    private void moveLeft() {
+        if (snake.get(0).getLayoutX() > 20) {
+            ImageView previous = snake.get(0);
+
+//            AnimationTimer animate = new AnimationTimer() {
+//                @Override
+//                public void handle(long now) {
+//                    for (int i = 0; i < snake.size(); i++) {
+//                        ImageView p = snake.get(i);
+//                        ImageView previously = null;
+//                        if (i == 0) {
+//                            p.setLayoutX(p.getLayoutX() - (snakeSpeed));
+//                        } else {
+//                            previously = snake.get(i - 1);
+//                            p.setLayoutX(previously.getLayoutX());
+//                        }
+//                    }
+//                }
+//            };
+//            animate.start();
 
             for (int i = 0; i < snake.size(); i++) {
                 ImageView p = snake.get(i);
-                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
-                transition.setFromX(p.getTranslateX());
-                transition.setFromY(p.getTranslateY());
-                transition.setToX(p.getTranslateX());
-                transition.setToY(p.getTranslateY());
+                if (i>0)
+                    previous =snake.get(i-1);
+                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (100)), p);
+//                transition.setFromX(p.getTranslateX());
+//                transition.setFromY(p.getTranslateY());
+//                transition.setToX(p.getTranslateX());
+//                transition.setToY(p.getTranslateY());
                 transition.playFromStart();
+                ImageView finalPrevious = previous;
+                int finalI = i;
                 transition.setOnFinished(t -> {
-                    p.setLayoutX(p.getLayoutX() - (snakeSpeed));
-                    p.setLayoutY(p.getLayoutY());
+                    if (finalI ==0){
+                        p.setLayoutX(finalPrevious.getLayoutX() - (snakeSpeed));
+                    }
+                    else{
+                        p.setLayoutX(finalPrevious.getLayoutX());
+                    }
+//                    p.setLayoutY(p.getLayoutY());
                 });
                 GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
                 //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - snakeSpeed);
             }
+
+
+//
+////            Timeline anim = new Timeline();
+////            anim.setCycleCount(1);
+////
+////            snake.get(0).setLayoutX(snake.get(0).getLayoutX() - snakeSpeed);
+////
+////            for (int i=1;i<snake.size();i++){
+////                KeyFrame kf = new KeyFrame(Duration.millis(100),event -> {
+////
+////                });
+////
+////            }
+//        }
         }
     }
 
@@ -803,8 +845,8 @@ public class Game {
     private void UpdateSnakeSize(){
         snakeLen.setText(String.valueOf(snake.size()));
         snakeLen.setLayoutX(snake.get(0).getLayoutX());
-        downSpeed = 0.5*(snake.size()+11);
-        snakeSpeed = 0.5 * (snake.size() + 5);
+        downSpeed = 0.3*(snake.size()+11);
+        snakeSpeed = 0.3 * (snake.size() + 5);
 
     }
 
@@ -875,7 +917,14 @@ public class Game {
 //            if (tokenslist.get(j).getBoundsInParent().intersects(snakeLocalHead.getBoundsInParent())){
 //                System.out.println("simple?");
 //            }
-            if (SNAKEHEAD_RADIUS+TOKEN_RADIUS > calcculateDistance(snake.get(0).getLayoutX() + 20,
+            int localRad = TOKEN_RADIUS;
+            if (tokenslist.get(j).getClass() != (new Ball()).getClass()){
+                localRad = 10;
+            }
+
+            System.out.println(localRad);
+
+            if (SNAKEHEAD_RADIUS+localRad > calcculateDistance(snake.get(0).getLayoutX() + 20,
                     tokenslist.get(j).getLayoutX()+tokenslist.get(j).getPrefWidth()/2,
                     snake.get(0).getLayoutY()+ 20,
                     tokenslist.get(j).getLayoutY()+tokenslist.get(j).getPrefHeight()/2)) {
@@ -909,13 +958,13 @@ public class Game {
                 rootLayout.getChildren().remove(tokenslist.remove(j));
 
                 isGameRunning = true;
-                Timeline waitForStableSnake = new Timeline();
-                waitForStableSnake.setCycleCount(1);
-                KeyFrame kf = new KeyFrame(Duration.millis(100),event -> {
-                    correctSnakePostions();
-                });
-                waitForStableSnake.getKeyFrames().add(kf);
-                waitForStableSnake.play();
+//                Timeline waitForStableSnake = new Timeline();
+//                waitForStableSnake.setCycleCount(1);
+//                KeyFrame kf = new KeyFrame(Duration.millis(100),event -> {
+//                    correctSnakePostions();
+//                });
+//                waitForStableSnake.getKeyFrames().add(kf);
+//                waitForStableSnake.play();
             }
 
 //            if (isMagnetOn){
@@ -1043,7 +1092,14 @@ public class Game {
                 img.setFitHeight(25);
                 img.setFitWidth(25);
                 snake.add(img);
-                snake.get(snake.size() - 1).setLayoutX(toSetX);
+                double offSet = 0;
+                if (isLeftKeyPressed && !isRightKeyPressed){
+                    offSet = -snakeSpeed;
+                }
+                else if (isRightKeyPressed&& !isLeftKeyPressed){
+                    offSet = snakeSpeed;
+                }
+                snake.get(snake.size() - 1).setLayoutX(toSetX+offSet);
                 snake.get(snake.size() - 1).setLayoutY(toSetY);
                 rootLayout.getChildren().add(snake.get(snake.size() - 1));
 
