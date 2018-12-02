@@ -5,9 +5,23 @@
     <bookmark url="file://$PROJECT_DIR$/src/SnakevsBloc.java" line="34" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/Animations/ctdnobg.gif" afterDir="false" />
+    <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="Shortcut to correct snake positions">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -92,7 +106,8 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="10" />
-          <entry key="JAVA" value="43" />
+          <entry key="JAVA" value="45" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -109,8 +124,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9520" />
-          <entry key="PLAIN_TEXT" value="671" />
+          <entry key="JAVA" value="10326" />
+          <entry key="PLAIN_TEXT" value="764" />
           <entry key="XML" value="16" />
         </counts>
       </usages-collector>
@@ -243,8 +258,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="1143" column="26" lean-forward="true" selection-start-line="1143" selection-start-column="26" selection-end-line="1143" selection-end-column="26" />
+            <state relative-caret-position="170">
+              <caret line="1232" column="35" lean-forward="true" selection-start-line="1232" selection-start-column="35" selection-end-line="1232" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#40094#40105#0" expanded="true" />
@@ -257,6 +272,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameModelStore.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -357,8 +377,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pause</find>
-      <find>openPauseMenu</find>
       <find>collisonwithbloc</find>
       <find>createtoke</find>
       <find>createblocks</find>
@@ -387,6 +405,8 @@
       <find>moveleft</find>
       <find>snakespeed</find>
       <find>incsna</find>
+      <find>dest</find>
+      <find>createke</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -439,6 +459,8 @@
         <option value="$PROJECT_DIR$/src/Model/GameSubScene.java" />
         <option value="$PROJECT_DIR$/src/Model/LeaderBoardModel.java" />
         <option value="$PROJECT_DIR$/src/Model/GameModel.java" />
+        <option value="$USER_HOME$/Desktop/Snake Game/LearningAnimationTimer/src/SimpleAudioPlayer.java" />
+        <option value="$PROJECT_DIR$/src/controller/SimpleAudioPlayer.java" />
         <option value="$PROJECT_DIR$/src/Gui/Game.java" />
       </list>
     </option>
@@ -454,6 +476,23 @@
     <option name="y" value="25" />
     <option name="width" value="1750" />
     <option name="height" value="970" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Internationalization</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>LossyEncoding</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -522,7 +561,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543732022077" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543734265169" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -535,11 +574,11 @@
       <recent name="C:\Users\Rohan\IdeaProjects\APGame3\src\view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\controller" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\Animations" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\Helper_images" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\Gui" />
       <recent name="C:\Users\Rohan\IdeaProjects\APGame\src\view\tokens" />
-      <recent name="C:\Users\BHARATH\eclipse-workspace\APGame\src\Model\storage" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -679,6 +718,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SimpleAudioPlayer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.SimpleAudioPlayer" />
+      <module name="APGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SnakevsBloc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SnakevsBloc" />
       <module name="APGame" />
@@ -703,10 +755,12 @@
       <item itemvalue="Application.SnakevsBloc" />
       <item itemvalue="Application.StartPage" />
       <item itemvalue="Application.LeaderBoard" />
+      <item itemvalue="Application.SimpleAudioPlayer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SnakevsBloc" />
+        <item itemvalue="Application.SimpleAudioPlayer" />
         <item itemvalue="Application.StartPage" />
         <item itemvalue="Application.LeaderBoard" />
       </list>
@@ -930,11 +984,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543689399731</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Created a countdown timer">
+      <created>1543732101160</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1543732101160</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116857000" />
+    <option name="totallyTimeSpent" value="119151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -945,15 +1006,15 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Learn" order="3" weight="0.3295302" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18791947" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18791947" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5013423" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3286119" />
-      <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" visible="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4986577" weight="0.2917847" />
+      <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.49932885" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4986577" visible="true" weight="0.2917847" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -1035,8 +1096,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Gg" />
-    <MESSAGE value="Added tokens" />
     <MESSAGE value="Mini collision" />
     <MESSAGE value="Implemented collision logic and made a score label" />
     <MESSAGE value="Reducing length of snake on collision" />
@@ -1060,20 +1119,11 @@
     <MESSAGE value="Added images" />
     <MESSAGE value="Fixed snake death bug" />
     <MESSAGE value="Radius increases only on tokens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Radius increases only on tokens" />
+    <MESSAGE value="Created a countdown timer" />
+    <MESSAGE value="Shortcut to correct snake positions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Shortcut to correct snake positions" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/checkingpositon.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/storage/LeaderBoardModel.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/scene/layout/BackgroundImage.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/io/ObjectOutputStream.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Integer.java" />
@@ -1178,9 +1228,6 @@
           <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameModelStore.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/LeaderBoard.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1316,19 +1363,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/GameModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="1143" column="26" lean-forward="true" selection-start-line="1143" selection-start-column="26" selection-end-line="1143" selection-end-column="26" />
+        <state relative-caret-position="2400">
+          <caret line="144" column="39" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#40094#40105#0" expanded="true" />
-            <element signature="e#43474#43475#0" expanded="true" />
-            <element signature="e#43531#43532#0" expanded="true" />
-            <element signature="e#43615#43616#0" expanded="true" />
-            <element signature="e#43669#43670#0" expanded="true" />
-            <element signature="e#45175#45176#0" expanded="true" />
-            <element signature="e#45232#45233#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1340,12 +1380,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/GameModel.java">
+    <entry file="file://$USER_HOME$/Desktop/Snake Game/LearningAnimationTimer/src/SimpleAudioPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2400">
-          <caret line="144" column="39" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
+        <state relative-caret-position="209">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#0#5122#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SimpleAudioPlayer.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameModelStore.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="1232" column="35" lean-forward="true" selection-start-line="1232" selection-start-column="35" selection-end-line="1232" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#40094#40105#0" expanded="true" />
+            <element signature="e#43474#43475#0" expanded="true" />
+            <element signature="e#43531#43532#0" expanded="true" />
+            <element signature="e#43615#43616#0" expanded="true" />
+            <element signature="e#43669#43670#0" expanded="true" />
+            <element signature="e#45175#45176#0" expanded="true" />
+            <element signature="e#45232#45233#0" expanded="true" />
           </folding>
         </state>
       </provider>

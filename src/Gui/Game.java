@@ -37,7 +37,7 @@ public class Game {
 
     private ScoreLabel scoreLabelText;
     private int Totalscore=0;
-    private int points=0;
+    private int points;
     private Pane rootLayout;
     private Scene gameScene;
     private boolean isLeftKeyPressed;
@@ -53,21 +53,21 @@ public class Game {
     private ArrayList<Integer> TokenPositions;
     private LeaderBoardModel templeaderboard;
 
-    Timer timer;
+    private Timer timer;
     private Timeline timeline;
 
     private boolean facesWallleft= false;
     private boolean facesWallright=false;
     private boolean isMagnetOn =false;
     private int[] wallPositions;
-    Random randomPositionDecider;
-    GameSubScene subGameScene;
+    private Random randomPositionDecider;
+    private GameSubScene subGameScene;
 
     private boolean isGameRunning;
     private double downSpeed= 8;
     private double snakeSpeed=5;
     private boolean isShieldOn = false;
-    SnakeLengthLabel snakeLen;
+    private SnakeLengthLabel snakeLen;
     private ScoreLabel magLabel;
     private ScoreLabel shieldLabel;
 
@@ -78,8 +78,8 @@ public class Game {
      * @param G The Gamemodel class
      * @param bl    The previous deserialized blocklist
      * @param tk    The previous token list
-     * @param wa
-     * @param le
+     * @param wa    The basic arraylist of walls
+     * @param le    The previous leaderboard model
      */
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
         this.templeaderboard=le;
@@ -122,18 +122,12 @@ public class Game {
         ib.setLayoutX(313);
         ib.setLayoutY(20);
         ib.setInterim("pause");
-        ib.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-//                isGameRunning = false;
-                if (isGameRunning){
-                    isGameRunning = false;
-                }
-                else{
-                    isGameRunning = true;
-                }
+        ib.setOnAction(event -> {
+            boolean prevState = isGameRunning;
+            isGameRunning = false;
+//            isGameRunning = !isGameRunning;
+            if (prevState)
                 openPauseMenu();
-            }
         });
         rootLayout.getChildren().add(ib);
     }
@@ -170,7 +164,7 @@ public class Game {
     /**
      * The function of this button is to serialize the current
      * game and return to the main menu.
-     * @return
+     * @return Returns the created go back to main menu button
      */
     private Button createGoBacktoMenuButton() {
         ImageButton imgexit = new ImageButton("../view/Helper_images/error.png");
@@ -215,19 +209,16 @@ public class Game {
 
     /**
      * The resume button will go back to the main game.
-     * @return
+     * @return  Creates and decides layout of the resume button and then continues
      */
     private Button createResumeButton() {
         ImageButton imgResume = new ImageButton("../view/Helper_images/resume-button.png");
         imgResume.setLayoutX(50);
         imgResume.setLayoutY(70);
 
-        imgResume.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                isGameRunning = true;
-                rootLayout.getChildren().remove(subGameScene);
-            }
+        imgResume.setOnAction(event -> {
+            isGameRunning = true;
+            rootLayout.getChildren().remove(subGameScene);
         });
         return imgResume;
     }
@@ -243,12 +234,9 @@ public class Game {
             rootLayout =  loader.load();
             ControllerGame controller = loader.getController();
             controller.init();
-            rootLayout.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    mousecordinates.xOffset = event.getSceneX();
-                    mousecordinates.yOffset = event.getSceneY();
-                }
+            rootLayout.setOnMousePressed(event -> {
+                mousecordinates.xOffset = event.getSceneX();
+                mousecordinates.yOffset = event.getSceneY();
             });
 
             gameScene=new Scene(rootLayout,400,600);
@@ -263,38 +251,35 @@ public class Game {
      * This game also has cheat codes to activate the power ups.
      */
     private void createKeyListeners() {
-        gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.LEFT){
-                    isLeftKeyPressed = true;
-                }else if (event.getCode() == KeyCode.RIGHT){
-                    isRightKeyPressed = true;
-                }
-                //To check is Magnet is working correctly
-                if (event.getCode() == KeyCode.S){
-                    turnOnShield();
-                }
-                if (event.getCode() == KeyCode.M){
-                    turnOnMagnet();
-                }
-                if (event.getCode() == KeyCode.D){
-                    destroyAllBlocks();
-                }
-                if (event.getCode() == KeyCode.I){
-                    incSnakeLength(1);
-                }
+        gameScene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.LEFT){
+                isLeftKeyPressed = true;
+            }else if (event.getCode() == KeyCode.RIGHT){
+                isRightKeyPressed = true;
+            }
+            //To check is Magnet is working correctly
+            if (event.getCode() == KeyCode.S){
+                turnOnShield();
+            }
+            if (event.getCode() == KeyCode.M){
+                turnOnMagnet();
+            }
+            if (event.getCode() == KeyCode.D){
+                destroyAllBlocks();
+            }
+            if (event.getCode() == KeyCode.I){
+                incSnakeLength(1);
+            }
+            if (event.getCode() == KeyCode.C){
+                correctSnakePostions();
             }
         });
 
-        gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.LEFT){
-                    isLeftKeyPressed = false;
-                }else if (event.getCode() == KeyCode.RIGHT){
-                    isRightKeyPressed = false;
-                }
+        gameScene.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.LEFT){
+                isLeftKeyPressed = false;
+            }else if (event.getCode() == KeyCode.RIGHT){
+                isRightKeyPressed = false;
             }
         });
 
@@ -302,15 +287,12 @@ public class Game {
 
     /**
      * We have controlled on how to show the whole game by deciding how to show the primary stage.
-     * @param primaryStage
+     * @param primaryStage The main stage where the scene is added
      */
     public void show(Stage primaryStage){
-        rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - mousecordinates.xOffset);
-                primaryStage.setY(event.getScreenY() - mousecordinates.yOffset);
-            }
+        rootLayout.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() - mousecordinates.xOffset);
+            primaryStage.setY(event.getScreenY() - mousecordinates.yOffset);
         });
         primaryStage.setScene(gameScene);
         primaryStage.show();
@@ -347,10 +329,10 @@ public class Game {
     /**
      * Creates existing blocks in the same space when we deserialize.
      */
-    public void createExistingBlocks(){
-        for(int i=0;i<blockslist.size();i++) {
-            if (blockslist.get(i).getLayoutY() < 600 || blockslist.get(i).getLayoutY() > -50) {
-                rootLayout.getChildren().add(blockslist.get(i));
+    private void createExistingBlocks(){
+        for (Block aBlockslist : blockslist) {
+            if (aBlockslist.getLayoutY() < 600 || aBlockslist.getLayoutY() > -50) {
+                rootLayout.getChildren().add(aBlockslist);
             }
         }
         createExistingTokens();
@@ -360,10 +342,10 @@ public class Game {
     /**
      * Creates token in the same space when we deserialize the game.
      */
-    public void createExistingTokens(){
-        for(int i=0;i<tokenslist.size();i++){
-            if(tokenslist.get(i).getLayoutY()<600 || tokenslist.get(i).getLayoutY()>-50){
-                rootLayout.getChildren().add(tokenslist.get(i));
+    private void createExistingTokens(){
+        for (Token aTokenslist : tokenslist) {
+            if (aTokenslist.getLayoutY() < 600 || aTokenslist.getLayoutY() > -50) {
+                rootLayout.getChildren().add(aTokenslist);
             }
         }
 
@@ -374,11 +356,11 @@ public class Game {
     /**
      * Creates an existing wall when we deserialize.
      */
-    public void createExistingwall(){
-        for(int i=0;i<walllist.size();i++){
-            for (int j=0;j<walllist.get(i).getLength();j++) {
-                if (walllist.get(i).getWalls().get(j).getLayoutY() < 600 || walllist.get(i).getWalls().get(j).getLayoutY() > -50) {
-                    rootLayout.getChildren().add(walllist.get(i).getWalls().get(j));
+    private void createExistingwall(){
+        for (Wallswrapper aWalllist : walllist) {
+            for (int j = 0; j < aWalllist.getLength(); j++) {
+                if (aWalllist.getWalls().get(j).getLayoutY() < 600 || aWalllist.getWalls().get(j).getLayoutY() > -50) {
+                    rootLayout.getChildren().add(aWalllist.getWalls().get(j));
                 }
             }
         }
@@ -398,8 +380,8 @@ public class Game {
 
     /**
      * Takes the position to be set and then sets the position according to it.
-     * @param token
-     * @param pos
+     * @param token The token whose position is to be update
+     * @param pos   The final Y layout to be set
      */
     private void setNewElementsPosition(Token token,int pos,int k) {
         token.setLayoutX(TokenPositions.get(pos));
@@ -410,8 +392,8 @@ public class Game {
 
     /**
      * Takes the position to be set and then sets the position according to it.
-     * @param block
-     * @param pos
+     * @param block The block whose position is to be updated
+     * @param pos The index of blocks to get
      */
     private void setNewElementsPosition(Block block,int pos) {
         block.setLayoutX(blockPositions.get(pos));
@@ -422,8 +404,8 @@ public class Game {
 
     /**
      * Takes the position to be set and then sets the position according to it.
-     * @param Wall
-     * @param pos
+     * @param Wall The wall whose position is to be set
+     * @param pos  The index to retrieve the wall from
      */
     private void setNewElementsPosition(Wallswrapper Wall,int pos) {
         int rnd=wallPositions[pos];
@@ -443,7 +425,7 @@ public class Game {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), ev -> {
             if (isGameRunning) {
                 int k = (randomPositionDecider.nextInt(4)) + 1;
-                ArrayList<Integer> tempindex = new ArrayList();
+                ArrayList<Integer> tempindex = new ArrayList<>();
                 for (int i = 0; i < k; i++) {
                     tempindex.add(i);
                 }
@@ -634,9 +616,9 @@ public class Game {
      * Movewalls is a function to move a wall according to the downspeed selected.
      */
     private void moveWalls() {
-        for(int j=0;j<walllist.size();j++) {
-            for (int i = 0; i < walllist.get(j).getLength(); i++) {
-                walllist.get(j).getWalls().get(i).setLayoutY(walllist.get(j).getWalls().get(i).getLayoutY() +downSpeed);
+        for (Wallswrapper aWalllist : walllist) {
+            for (int i = 0; i < aWalllist.getLength(); i++) {
+                aWalllist.getWalls().get(i).setLayoutY(aWalllist.getWalls().get(i).getLayoutY() + downSpeed);
 //                walllist.get(j).getWalls().get(i).setY(walllist.get(j).getWalls().get(i).getLayoutY());
             }
         }
@@ -646,8 +628,8 @@ public class Game {
      * Moves the power ups according to the downspeed
      */
     private void movePowerUps() {
-        for (int i=0;i<tokenslist.size();i++){
-            tokenslist.get(i).setLayoutY(tokenslist.get(i).getLayoutY()+downSpeed);
+        for (Token aTokenslist : tokenslist) {
+            aTokenslist.setLayoutY(aTokenslist.getLayoutY() + downSpeed);
 //            tokenslist.get(i).setY(tokenslist.get(i).getLayoutY());
         }
     }
@@ -656,8 +638,8 @@ public class Game {
      * Moves the blocks according the the downspeed.
      */
     private void moveBlocks() {
-        for (int i=0;i<blockslist.size();i++){
-            blockslist.get(i).setLayoutY(blockslist.get(i).getLayoutY()+downSpeed);
+        for (Block aBlockslist : blockslist) {
+            aBlockslist.setLayoutY(aBlockslist.getLayoutY() + downSpeed);
 //            blockslist.get(i).setY( blockslist.get(i).getLayoutY());
         }
     }
@@ -808,7 +790,7 @@ public class Game {
             ControllerGame.serializegameondeath(new GameModel(new SnakeModel(5, 178, 375), 0,points,1));
             ControllerLeaderboard.serializegameondeath(points,(Stage)this.gameScene.getWindow());
         }
-        catch (Exception e){
+        catch (Exception ignored){
 
         }
     }
@@ -837,17 +819,16 @@ public class Game {
      * Collison with walls
      */
     private void collisionWithWalls() {
-        for (int i=0;i<walllist.size();i++){
-                int len = walllist.get(i).getWalls().size();
+        for (Wallswrapper aWalllist : walllist) {
+            int len = aWalllist.getWalls().size();
 
 //            System.out.println(x.getBoundsInLocal());
-            for (int j=0;j<len;j++){
-                wall x = walllist.get(i).getWalls().get(j);
-                if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())){
-                    if(snake.get(0).getLayoutX()-x.getLayoutX()>=-5) {
+            for (int j = 0; j < len; j++) {
+                wall x = aWalllist.getWalls().get(j);
+                if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())) {
+                    if (snake.get(0).getLayoutX() - x.getLayoutX() >= -5) {
                         facesWallleft = true;
-                    }
-                    else{
+                    } else {
                         facesWallright = true;
                     }
                 }
@@ -973,13 +954,10 @@ public class Game {
                             if (valueOfBlock >= snake.size())
                                 killsnake= true;
                             for (int j = 0; j < Math.min(valueOfBlock,snake.size()); j++) {
-                                if (snake.size()>0){
-                                    Duration duration = Duration.millis(j * 100);
-                                    KeyFrame keyFrame = new KeyFrame(duration, event -> {
-                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-                                    });
-                                    anim.getKeyFrames().add(keyFrame);
-                                }
+                                snake.size();
+                                Duration duration = Duration.millis(j * 100);
+                                KeyFrame keyFrame = new KeyFrame(duration, event -> rootLayout.getChildren().remove(snake.remove(snake.size() - 1)));
+                                anim.getKeyFrames().add(keyFrame);
                             }
 
                             anim.play();
@@ -1011,7 +989,7 @@ public class Game {
 
     /**
      * Shows the destroy animation and then updates the score
-     * @param i
+     * @param i Operations to be done on block with index i
      */
     private void destroyBlockAndUpdateScore(int i) {
         points += blockslist.get(i).getValue();
@@ -1023,13 +1001,13 @@ public class Game {
         destroyBlockAnimation(imageView, 500);
         rootLayout.getChildren().remove(blockslist.remove(i));
 
-        String newScore = "";
+        String newScore = "Score: ";
         scoreLabelText.setText(newScore + points);
     }
 
     /**
      * Increases the snake length by the lentoInc
-     * @param lenToInc
+     * @param lenToInc The length of the snake to be increased
      */
     private void incSnakeLength(int lenToInc) {
         for (int k = 0; k < lenToInc; k++) {
@@ -1067,20 +1045,17 @@ public class Game {
 
     /**
      * Shows the destroy block animation
-     * @param imageView
-     * @param len
+     * @param imageView The imageview which is the animation
+     * @param len   The duration to display the animation
      */
     private void destroyBlockAnimation(ImageView imageView, int len) {
         Timeline newlocalTimeline = new Timeline();
         Duration duration = Duration.millis(len);
         KeyFrame kf = new KeyFrame(duration);
         newlocalTimeline.getKeyFrames().add(kf);
-        newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                rootLayout.getChildren().remove(imageView);
+        newlocalTimeline.setOnFinished(event -> {
+            rootLayout.getChildren().remove(imageView);
 //                        isGameRunning = true;
-            }
         });
         newlocalTimeline.play();
     }
@@ -1089,7 +1064,7 @@ public class Game {
      * Destorys all the blocks on the screen.
      */
     private void destroyAllBlocks() {
-        ArrayList<ImageView> gifArrList = new ArrayList<ImageView>();
+        ArrayList<ImageView> gifArrList = new ArrayList<>();
         for (int i = 0;i<blockslist.size();i++){
             points+=blockslist.get(i).getValue();
             Totalscore+=points;
@@ -1106,14 +1081,11 @@ public class Game {
         Duration duration = Duration.millis(500);
         KeyFrame kf = new KeyFrame(duration);
         newlocalTimeline.getKeyFrames().add(kf);
-        newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                for (int i =0;i<gifArrList.size();i++){
-                    rootLayout.getChildren().remove(gifArrList.get(i));
-                }
-                gifArrList.clear();
+        newlocalTimeline.setOnFinished(event -> {
+            for (ImageView aGifArrList : gifArrList) {
+                rootLayout.getChildren().remove(aGifArrList);
             }
+            gifArrList.clear();
         });
         newlocalTimeline.play();
 
@@ -1245,11 +1217,11 @@ public class Game {
 
     /**
      * Does the eucledian distance calculation
-     * @param x1
-     * @param x2
-     * @param y1
-     * @param y2
-     * @return
+     * @param x1 x coord of first
+     * @param x2 x coord of second
+     * @param y1 y coord of first
+     * @param y2 y coord of second
+     * @return returns the distance
      */
     private double calcculateDistance(double x1,double x2,double y1,double y2){
         return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
