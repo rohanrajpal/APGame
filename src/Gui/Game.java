@@ -5,7 +5,6 @@ import controller.ControllerGame;
 import controller.ControllerLeaderboard;
 import javafx.animation.*;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
@@ -13,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -48,7 +45,7 @@ public class Game {
     private final static int SNAKEHEAD_RADIUS=20;
     private final static int BLOCK_RADIUS=40;
     private static int TOKEN_RADIUS=10;
-
+    private boolean keyreleased;
     private ScoreLabel scoreLabelText;
     private int Totalscore=0;
     private int points;
@@ -84,6 +81,7 @@ public class Game {
     private SnakeLengthLabel snakeLen;
     private ScoreLabel magLabel;
     private ScoreLabel shieldLabel;
+    private ArrayList<Double> snakecor;
 
     /**
      *The initial consutructor which when called creates necessary objects and calls
@@ -99,8 +97,8 @@ public class Game {
         this.templeaderboard=le;
         this.GameStructure=G;
         snake=new ArrayList<>();
+        snakecor=new ArrayList<Double>();
         initmainlayout();
-        createKeyListeners();
         blockslist=bl;
         tokenslist=tk;
         walllist=wa;
@@ -247,11 +245,54 @@ public class Game {
      * This initializes all the key listeners
      * This game also has cheat codes to activate the power ups.
      */
+    AnimationTimer animate= new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            for (int i = snake.size() - 1; i > 0; i--) {
+                snakecor.set(i, snakecor.get(i - 1));
+            }
+            if (snake.get(0).getLayoutX() > 20) {
+                snakecor.set(0, snakecor.get(0)- snakeSpeed);
+            }
+            for (int i = 0; i < snake.size(); i++) {
+                snake.get(i).setLayoutX(snakecor.get(i));
+            }
+        }
+    };;
+    AnimationTimer  animate1 = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            for (int i = snake.size() - 1; i > 0; i--) {
+                snakecor.set(i, snakecor.get(i - 1));
+            }
+            for (int i = 0; i < snake.size(); i++) {
+                snake.get(i).setLayoutX(snakecor.get(i));
+            }
+        }
+    };
+    AnimationTimer  animate2 = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            for (int i = snake.size() - 1; i > 0; i--) {
+                snakecor.set(i, snakecor.get(i - 1));
+            }
+            if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
+                snakecor.set(0, snakecor.get(0)+ snakeSpeed);
+            }
+            for (int i = 0; i < snake.size(); i++) {
+                snake.get(i).setLayoutX(snakecor.get(i));
+            }
+        }
+    };
     private void createKeyListeners() {
         gameScene.setOnKeyPressed(event -> {
+            keyreleased=false;
             if (event.getCode() == KeyCode.LEFT){
+
                 isLeftKeyPressed = true;
-            }else if (event.getCode() == KeyCode.RIGHT){
+            }
+            else if (event.getCode() == KeyCode.RIGHT){
+
                 isRightKeyPressed = true;
             }
             //To check is Magnet is working correctly
@@ -273,6 +314,10 @@ public class Game {
         });
 
         gameScene.setOnKeyReleased(event -> {
+                System.out.println("released");
+                animate.stop();
+                animate2.stop();
+                animate1.start();
             if (event.getCode() == KeyCode.LEFT){
                 isLeftKeyPressed = false;
             }else if (event.getCode() == KeyCode.RIGHT){
@@ -308,6 +353,7 @@ public class Game {
         moveBlocks();
         moveWalls();
         createscoreLabelText();
+        createKeyListeners();
     }
     /**
      * Calls necessary functions to deserialize a game
@@ -321,6 +367,7 @@ public class Game {
         moveBlocks();
         moveWalls();
         createscoreLabelText();
+        createKeyListeners();
     }
 
     /**
@@ -682,45 +729,53 @@ public class Game {
      * Function to smoothly move left
      */
     private void moveLeft() {
-        if (snake.get(0).getLayoutX() > 20) {
-            for (int i = 0; i < snake.size(); i++) {
-                ImageView p = snake.get(i);
-                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
-                transition.setFromX(p.getTranslateX());
-                transition.setFromY(p.getTranslateY());
-                transition.setToX(p.getTranslateX());
-                transition.setToY(p.getTranslateY());
-                transition.playFromStart();
-                transition.setOnFinished(t -> {
-                    p.setLayoutX(p.getLayoutX() - (snakeSpeed));
-                    p.setLayoutY(p.getLayoutY());
-                });
-                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
-                //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - snakeSpeed);
-            }
-        }
+
+        animate1.stop();
+        animate2.stop();
+        animate.start();
+
+//        if (snake.get(0).getLayoutX() > 20) {
+//            for (int i = 0; i < snake.size(); i++) {
+//                ImageView p = snake.get(i);
+//                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
+//                transition.setFromX(p.getTranslateX());
+//                transition.setFromY(p.getTranslateY());
+//                transition.setToX(p.getTranslateX());
+//                transition.setToY(p.getTranslateY());
+//                transition.playFromStart();
+//                transition.setOnFinished(t -> {
+//                    p.setLayoutX(p.getLayoutX() - (snakeSpeed));
+//                    p.setLayoutY(p.getLayoutY());
+//                });
+//                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
+//                //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - snakeSpeed);
+//            }
+//        }
     }
 
     /**
      * Function to smoothly move right
      */
     private void moveRight(){
-        if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
-            for (int i = 0; i < snake.size(); i++) {
-                ImageView p = snake.get(i);
-                final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1) * (60)), p);
-                transition.setFromX(p.getTranslateX());
-                transition.setFromY(p.getTranslateY());
-                transition.setToX(p.getTranslateX());
-                transition.setToY(p.getTranslateY());
-                transition.playFromStart();
-                transition.setOnFinished(t -> {
-                    p.setLayoutX(p.getLayoutX() + snakeSpeed);
-                    p.setLayoutY(p.getLayoutY());
-                });
-                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
-            }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
-        }
+        animate1.stop();
+        animate.stop();
+        animate2.start();
+//        if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
+//            for (int i = 0; i < snake.size(); i++) {
+//                ImageView p = snake.get(i);
+//                final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1) * (60)), p);
+//                transition.setFromX(p.getTranslateX());
+//                transition.setFromY(p.getTranslateY());
+//                transition.setToX(p.getTranslateX());
+//                transition.setToY(p.getTranslateY());
+//                transition.playFromStart();
+//                transition.setOnFinished(t -> {
+//                    p.setLayoutX(p.getLayoutX() + snakeSpeed);
+//                    p.setLayoutY(p.getLayoutY());
+//                });
+//                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
+//            }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
+//        }
     }
 
     /**
@@ -744,7 +799,6 @@ public class Game {
                 moveRight();
             }
         }
-
     }
 
     /**
@@ -759,11 +813,13 @@ public class Game {
             snake.get(i).setLayoutX(GameStructure.getSnake().getX());
             snake.get(i).setLayoutY(GameStructure.getSnake().getY()+(i*25));
             rootLayout.getChildren().add(snake.get(i));
+            snakecor.add(snake.get(i).getLayoutX());
         }
         snakeLen = new SnakeLengthLabel("5");
         snakeLen.setLayoutX(snake.get(0).getLayoutX());
         snakeLen.setLayoutY(snake.get(0).getLayoutY()-25);
         rootLayout.getChildren().add(snakeLen);
+        System.out.println(snake.size());
     }
 
     /**
@@ -941,6 +997,7 @@ public class Game {
                             }
                             if (!isShieldOn) {
                                 for (int r = 0; r < valueOfBlock; r++) {
+                                    snakecor.remove(snakecor.size()-1);
                                     rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 
                                 }
@@ -967,6 +1024,7 @@ public class Game {
                                 KeyFrame keyFrame = new KeyFrame(duration, event -> {
                                     blockhit.play();
                                     blockhit.seek(Duration.millis(0));
+                                    snakecor.remove(snakecor.size()-1);
                                     rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 //                                    int blockVal = Integer.parseInt(blockslist.get(finalI).gettext()) - 1;
                                     blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
@@ -1044,8 +1102,8 @@ public class Game {
                 }
                 snake.get(snake.size() - 1).setLayoutX(toSetX+offSet);
                 snake.get(snake.size() - 1).setLayoutY(toSetY);
+                snakecor.add(toSetX);
                 rootLayout.getChildren().add(snake.get(snake.size() - 1));
-
         }
     }
 
