@@ -81,6 +81,7 @@ public class Game {
     private SnakeLengthLabel snakeLen;
     private ScoreLabel magLabel;
     private ScoreLabel shieldLabel;
+    private boolean isDarkMode;
     private ArrayList<Double> snakecor;
 
     /**
@@ -94,6 +95,7 @@ public class Game {
      * @param le    The previous leaderboard model
      */
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
+        isDarkMode=false;
         this.templeaderboard=le;
         this.GameStructure=G;
         snake=new ArrayList<>();
@@ -310,6 +312,9 @@ public class Game {
             }
             if (event.getCode() == KeyCode.C){
                 correctSnakePostions();
+            }
+            if (event.getCode() == KeyCode.Q){
+                darkMode();
             }
         });
 
@@ -595,6 +600,7 @@ public class Game {
             public void handle() {
                 if (isGameRunning) {
                     //createwall();
+                    darkModeInvisible();
                     moveBlocks();
                     moveWalls();
                     relocateelementsbelowscreen();
@@ -983,10 +989,14 @@ public class Game {
             Bounds bd = blockslist.get(i).getBoundsInParent();
 //            System.out.println(bd.getMinX());
             Bounds snakBd =snake.get(0).getBoundsInParent();
-
+            if (SNAKEHEAD_RADIUS+100 > calcculateDistance(snake.get(0).getLayoutX() + 20,
+                    blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
+                    snake.get(0).getLayoutY()+ 20,
+                    blockslist.get(i).getLayoutY()+blockslist.get(i).getPrefHeight()/2)){
+                blockslist.get(i).setVisible(true);
+            }
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent())) {
 //                System.out.println(bd+"\n"+snakBd);
-
                 if(snakBd.intersects(bd.getMinX(),bd.getMinY()+70,
                         bd.getWidth(),bd.getHeight()-78)){
                     isGameRunning = false;
@@ -1001,9 +1011,10 @@ public class Game {
                             }
                             if (!isShieldOn) {
                                 for (int r = 0; r < valueOfBlock; r++) {
-                                    snakecor.remove(snakecor.size()-1);
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-
+                                    if (snake.size()>0){
+                                        snakecor.remove(snakecor.size()-1);
+                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                    }
                                 }
                             }
                             blast.play();
@@ -1026,12 +1037,15 @@ public class Game {
                                 Duration duration = Duration.millis(j * 100);
                                 int finalJ = j;
                                 KeyFrame keyFrame = new KeyFrame(duration, event -> {
-                                    blockhit.play();
-                                    blockhit.seek(Duration.millis(0));
-                                    snakecor.remove(snakecor.size()-1);
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                    if(snake.size()>0){
+                                        blockhit.play();
+                                        blockhit.seek(Duration.millis(0));
+                                        snakecor.remove(snakecor.size()-1);
+                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 //                                    int blockVal = Integer.parseInt(blockslist.get(finalI).gettext()) - 1;
-                                    blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
+                                        blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
+                                    }
+
                                 }
 
                                 );
@@ -1305,5 +1319,30 @@ public class Game {
      */
     private double calcculateDistance(double x1,double x2,double y1,double y2){
         return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
+    }
+
+    private void darkModeInvisible(){
+        if (isDarkMode){
+            for (int i=0;i<blockslist.size();i++){
+                blockslist.get(i).setVisible(false);
+            }
+        }
+    }
+    private void darkMode(){
+//        blockslist.get(0).setVisible();
+
+        isDarkMode=true;
+        createAndDisplayTimer();
+        timer = new Timer();
+        timer.schedule(new changeBackVisibility(), 5* 1000);
+    }
+
+    private class changeBackVisibility extends TimerTask {
+        @Override
+        public void run() {
+            Platform.runLater(()->{
+                isDarkMode=false;
+            });
+        }
     }
 }
