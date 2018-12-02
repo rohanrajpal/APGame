@@ -881,8 +881,12 @@ public class Game {
                 wall x = aWalllist.getWalls().get(j);
                 if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())) {
                     if (snake.get(0).getLayoutX() - x.getLayoutX() >= -5) {
+                        animate.stop();
+                        animate1.start();
                         facesWallleft = true;
                     } else {
+                        animate2.stop();
+                        animate1.start();
                         facesWallright = true;
                     }
                 }
