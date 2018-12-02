@@ -93,21 +93,19 @@ public class Game {
         points=GameStructure.getPoints();
         randomPositionDecider = new Random();
         blockPositions = new ArrayList<>(5);
-        TokenPositions= new ArrayList<>(8);
+        TokenPositions= new ArrayList<>(5);
         blockPositions.add(0);
-        blockPositions.add(80);
-        blockPositions.add(160);
-        blockPositions.add(240);
-        blockPositions.add(320);
+        blockPositions.add(82);
+        blockPositions.add(163);
+        blockPositions.add(243);
+        blockPositions.add(323);
         TokenPositions.add(40);
         TokenPositions.add(120);
         TokenPositions.add(200);
         TokenPositions.add(280);
         TokenPositions.add(360);
-        wallPositions=new int[]{80-10,160-10,240-10,320-10};
-
+        wallPositions=new int[]{80-13,160-13,240-13,320-13};
         isGameRunning = true;
-
         makepausebutton();
     }
 
@@ -406,14 +404,15 @@ public class Game {
      * Creates the wall every 6 seconds using the timeline
      */
     private void createwall() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), ev -> {
             if (isGameRunning) {
                 int k = (randomPositionDecider.nextInt(4)) + 1;
                 ArrayList<Integer> tempindex = new ArrayList<>();
-                for (int i = 0; i < k; i++) {
+                for (int i = 0; i < 4; i++) {
                     tempindex.add(i);
                 }
                 k += walllist.size();
+                Collections.shuffle(tempindex);
                 int count = 0;
                 for (int i = walllist.size(); i < k; i++) {
                     int value = randomPositionDecider.nextInt(3) + 1;
@@ -426,17 +425,15 @@ public class Game {
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+        moveWalls();
     }
 
     /**
      * Creates the blocks according to the timeline
      */
     private void createBlocks() {
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), ev -> {
             if (isGameRunning) {
-                //correctSnakePostions();
-//            System.out.println("fdd");
                 {
                     int k = (randomPositionDecider.nextInt(5)) + 1;
                     ArrayList<Integer> tempindex = new ArrayList();
@@ -448,7 +445,7 @@ public class Game {
                     int count = 0;
                     for (int i = blockslist.size(); i < k; i++) {
                         int value = randomPositionDecider.nextInt(snake.size()) + 1;
-                        int value2 = randomPositionDecider.nextInt(100) + 1;
+                        int value2 = randomPositionDecider.nextInt(100) + (int)snakeSpeed;
                         int[] valArr = {value, value2};
                         if (i == blockslist.size()) {
                             blockslist.add(new Block(Integer.toString(valArr[0])));
@@ -461,7 +458,7 @@ public class Game {
                     }
                 }
                 for (int io = 0; io < 2; io++) {
-                    int k1 = (randomPositionDecider.nextInt(5)) + 1;
+                    int k1 = (randomPositionDecider.nextInt(3)) + 0;
                     ArrayList<Integer> tempindex1 = new ArrayList();
                     for (int i = 0; i < 5; i++) {
                         tempindex1.add(i);
@@ -537,6 +534,7 @@ public class Game {
             @Override
             public void handle() {
                 if (isGameRunning) {
+                    //createwall();
                     moveBlocks();
                     moveWalls();
                     relocateelementsbelowscreen();
