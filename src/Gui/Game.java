@@ -3,38 +3,26 @@ package Gui;
 import Model.*;
 import controller.ControllerGame;
 import controller.ControllerLeaderboard;
-import controller.ControllerMainMenu;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import view.ImageButton;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -913,7 +901,7 @@ public class Game {
                 imageView.setFitWidth(toDestroyToken.getPrefWidth());
                 imageView.setFitHeight(toDestroyToken.getPrefHeight());
                 rootLayout.getChildren().add(imageView);
-                destroyBlockAnimation(imageView);
+                destroyBlockAnimation(imageView, 500);
                 rootLayout.getChildren().remove(tokenslist.remove(j));
 
                 isGameRunning = true;
@@ -1032,10 +1020,10 @@ public class Game {
         imageView.setLayoutY(blockslist.get(i).getLayoutY());
         imageView.setLayoutX(blockslist.get(i).getLayoutX());
         rootLayout.getChildren().add(imageView);
-        destroyBlockAnimation(imageView);
+        destroyBlockAnimation(imageView, 500);
         rootLayout.getChildren().remove(blockslist.remove(i));
 
-        String newScore = "Score: ";
+        String newScore = "";
         scoreLabelText.setText(newScore + points);
     }
 
@@ -1080,10 +1068,11 @@ public class Game {
     /**
      * Shows the destroy block animation
      * @param imageView
+     * @param len
      */
-    private void destroyBlockAnimation(ImageView imageView) {
+    private void destroyBlockAnimation(ImageView imageView, int len) {
         Timeline newlocalTimeline = new Timeline();
-        Duration duration = Duration.millis(500);
+        Duration duration = Duration.millis(len);
         KeyFrame kf = new KeyFrame(duration);
         newlocalTimeline.getKeyFrames().add(kf);
         newlocalTimeline.setOnFinished(new EventHandler<ActionEvent>() {
@@ -1138,6 +1127,7 @@ public class Game {
     private void turnOnMagnet() {
         if (!isMagnetOn) {
             isMagnetOn =true;
+            createAndDisplayTimer();
             if (magLabel == null)
                 createMagnetLabel();
             showMagnetLabel();
@@ -1146,13 +1136,22 @@ public class Game {
             timer.schedule(new changeBackRadius(), 5 * 1000);
         }
     }
-
+    private void createAndDisplayTimer() {
+        ImageView imageView = new ImageView("view/Animations/ctdnobg.gif");
+        imageView.setLayoutY(20);
+        imageView.setLayoutX(50);
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+        rootLayout.getChildren().add(imageView);
+        destroyBlockAnimation(imageView,5000);
+    }
     /**
      * Turns the shield on
      */
     private void turnOnShield() {
         if (!isShieldOn) {
             isShieldOn = true;
+            createAndDisplayTimer();
             if (shieldLabel==null)
                 createShieldLabel();
             showShieldLabel();
