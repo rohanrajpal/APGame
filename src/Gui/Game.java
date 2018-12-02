@@ -16,12 +16,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import view.ImageButton;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -30,7 +33,18 @@ import java.util.*;
 public class Game {
     private static final int GAME_WIDTH =400 ;
     private static final int GAME_HEIGHT = 600;
-
+    private  String filename="src\\sound\\choose_option.mp3";
+    private  Media media = new Media(Paths.get(filename).toUri().toString());
+    private  MediaPlayer player = new MediaPlayer(media);
+    private String filename1="src\\sound\\blast.mp3";
+    private Media media1 = new Media(Paths.get(filename1).toUri().toString());
+    private  MediaPlayer blast = new MediaPlayer(media1);
+    private String filename2="src\\sound\\coin.mp3";
+    private  Media media2 = new Media(Paths.get(filename2).toUri().toString());
+    private  MediaPlayer coin = new MediaPlayer(media2);
+    private  String filename3="src\\sound\\blockhit.mp3";
+    private  Media media3 = new Media(Paths.get(filename3).toUri().toString());
+    private final MediaPlayer blockhit = new MediaPlayer(media3);
     private final static int SNAKEHEAD_RADIUS=20;
     private final static int BLOCK_RADIUS=40;
     private static int TOKEN_RADIUS=10;
@@ -62,7 +76,7 @@ public class Game {
     private int[] wallPositions;
     private Random randomPositionDecider;
     private GameSubScene subGameScene;
-
+    private boolean highscoredetected;
     private boolean isGameRunning;
     private double downSpeed= 8;
     private double snakeSpeed=5;
@@ -90,6 +104,7 @@ public class Game {
         blockslist=bl;
         tokenslist=tk;
         walllist=wa;
+        highscoredetected=false;
         points=GameStructure.getPoints();
         randomPositionDecider = new Random();
         blockPositions = new ArrayList<>(5);
@@ -487,8 +502,6 @@ public class Game {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
-
-
     /**
      * Creates a new token every 8 seconds
      */
@@ -541,9 +554,10 @@ public class Game {
                     movePowerUps();
                     checkIfElementsCollide();
                     moveSnake();
-                    checkhighscore();
+                    if(!highscoredetected) {
+                        checkhighscore();
+                    }
                     UpdateSnakeSize();
-
                     Stage stage = (Stage) rootLayout.getScene().getWindow();
                     if(stage!=null)
                     stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -581,6 +595,7 @@ public class Game {
                 this.templeaderboard.getLeaders().remove(this.templeaderboard.getLeaders().size() - 1);
                 this.templeaderboard.getLeaders().add(new LeaderBoardelements(Totalscore, new Date()));
                 java.util.Collections.sort(this.templeaderboard.getLeaders());
+                highscoredetected=true;
             }
             try {
                 LeaderBoardModel.serialize(this.templeaderboard);
@@ -589,6 +604,7 @@ public class Game {
 
                 System.out.println(e.getMessage());
             }
+
         }
 
 
@@ -841,12 +857,16 @@ public class Game {
 
                 isGameRunning =false;
                 if (tokenslist.get(j).getClass() == (new Ball()).getClass()) {
+                    coin.play();
+                    coin.seek(Duration.millis(0));
                     int lenToInc = tokenslist.get(j).getValue();
                     incSnakeLength(lenToInc);
 
                 }
 
                 if (tokenslist.get(j).getClass() == (new Bomb()).getClass()){
+                    blast.play();
+                    blast.seek(Duration.millis(0));
                     destroyAllBlocks();
                 }
 
@@ -914,18 +934,19 @@ public class Game {
                     int valueOfBlock = blockslist.get(i).getValue();
 //                    if (valueOfBlock < snake.size() || isShieldOn) {
                         if (valueOfBlock <= 5 || isShieldOn) {
+
                             if (valueOfBlock >= snake.size()){
                                 ondeath();
                                 break;
                             }
-
-
                             if (!isShieldOn) {
                                 for (int r = 0; r < valueOfBlock; r++) {
                                     rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 
                                 }
                             }
+                            blast.play();
+                            blast.seek(Duration.millis(0));
                             destroyBlockAndUpdateScore(i);
                             isGameRunning = true;
 
@@ -938,10 +959,13 @@ public class Game {
 
                             int finalI = i;
                             for (int j = 0; j < Math.min(valueOfBlock,snake.size()); j++) {
+
                                 snake.size();
                                 Duration duration = Duration.millis(j * 100);
                                 int finalJ = j;
                                 KeyFrame keyFrame = new KeyFrame(duration, event -> {
+                                    blockhit.play();
+                                    blockhit.seek(Duration.millis(0));
                                     rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 //                                    int blockVal = Integer.parseInt(blockslist.get(finalI).gettext()) - 1;
                                     blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
@@ -955,6 +979,8 @@ public class Game {
 
                             boolean finalKillsnake = killsnake;
                             anim.setOnFinished(event -> {
+                                blast.play();
+                                blast.seek(Duration.millis(0));
                                 destroyBlockAndUpdateScore(finalI);
                                 isGameRunning = true;
                                 if (finalKillsnake)

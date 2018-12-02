@@ -11,7 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;;import java.io.IOException;
+import java.nio.file.Paths;
+
 public class ImageButton extends Button {
 
     private final String STYLE_NORMAL = "-fx-background-color: transparent; -fx-padding: 5, 5, 5, 5;";
@@ -45,7 +49,9 @@ public class ImageButton extends Button {
      * @param imageurl
      */
     public ImageButton(String imageurl) {
-
+        String filename="src\\sound\\choose_option.mp3";
+        Media media = new Media(Paths.get(filename).toUri().toString());
+        MediaPlayer player = new MediaPlayer(media);
         image=new ImageView(new Image(getClass().getResourceAsStream(imageurl)));
         setGraphic(image);
         setStyle(STYLE_NORMAL);
@@ -60,16 +66,19 @@ public class ImageButton extends Button {
         setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                player.play();
                 setStyle(STYLE_NORMAL);
                 if(interim.equals("back")){
                     interim=" ";
                     ControllerLeaderboard.back(event);
                 }
                 if(interim.equals("back2")){
+                    player.play();
                     interim=" ";
                     ControllerLeaderboard.back2(event);
                 }
                 if(interim.equals("restart")){
+                    player.play();
                     interim=" ";
                     try {
                         ControllerGame.serializegame(GAME,event);
@@ -83,6 +92,7 @@ public class ImageButton extends Button {
 
                 }
                 if(interim.equals("start")){
+                    player.play();
                     interim=" ";
                     try {
                         ControllerMainMenu.start(event);
@@ -92,6 +102,7 @@ public class ImageButton extends Button {
                     }
                 }
                 if(interim.equals("leaderboard"))  {
+                    player.play();
                     interim=" ";
                     try {
                         ControllerMainMenu.leaderboard(event,0);
@@ -101,6 +112,7 @@ public class ImageButton extends Button {
                     }
                 }
                 if(interim.equals("leaderboard1"))  {
+                    player.play();
                     interim=" ";
                     try {
                         ControllerMainMenu.leaderboard(event,1);
@@ -110,6 +122,7 @@ public class ImageButton extends Button {
                     }
                 }
                 if(interim.equals("resume")){
+                    player.play();
                     try {
                         ControllerMainMenu.resume(event);
                     } catch (IOException e) {
@@ -120,14 +133,17 @@ public class ImageButton extends Button {
                     interim=" ";
                 }
                 if(interim.equals("exit")){
+                    player.play();
                     interim=" ";
                     ControllerMainMenu.exit();
                 }
                 if(interim.equals("Pause")){
+                    player.play();
                     interim=" ";
                     ControllerGame.pause(event);
                 }
                 if(interim.equals("StartPage")){
+                    player.play();
                     interim=" ";
                     try {
                         ControllerGame.serializegame(GAME,event);
