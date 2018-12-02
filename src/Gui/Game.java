@@ -172,23 +172,7 @@ public class Game {
         imgexit.setLayoutY(70);
         imgexit.setInterim("StartPage");
         rootLayout.getChildren().removeAll();
-//        for(int i=0;i<blockslist.size();i++) {
-//            if (blockslist.get(i).getLayoutY() > 600 || blockslist.get(i).getLayoutY() < -50) {
-//                    blockslist.remove(i);
-//            }
-//        }
-//        for(int i=0;i<tokenslist.size();i++){
-//            if(tokenslist.get(i).getLayoutY()<600 || tokenslist.get(i).getLayoutY()>-50){
-//                tokenslist.remove(i);
-//            }
-//        }
-//        for(int i=0;i<walllist.size();i++){
-//            for (int j=0;j<walllist.get(i).getLength();j++) {
-//                if (walllist.get(i).getWalls().get(j).getLayoutY() < 600 || walllist.get(i).getWalls().get(j).getLayoutY() > -50) {
-//                    walllist.get(i).getWalls().remove(j);
-//                }
-//            }
-//        }
+
         this.GameStructure.setBlockslist(this.blockslist);
         this.GameStructure.setTokenslist(this.tokenslist);
         this.GameStructure.setWalllist(this.walllist);
