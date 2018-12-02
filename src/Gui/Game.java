@@ -947,7 +947,7 @@ public class Game {
                             }
                             blast.play();
                             blast.seek(Duration.millis(0));
-                            destroyBlockAndUpdateScore(i);
+                            destroyBlockAndUpdateScore(i,blockslist.get(i).getValue());
                             isGameRunning = true;
 
                         } else {
@@ -958,6 +958,7 @@ public class Game {
                                 killsnake= true;
 
                             int finalI = i;
+                            int pointsLocal = blockslist.get(i).getValue();
                             for (int j = 0; j < Math.min(valueOfBlock,snake.size()); j++) {
 
                                 snake.size();
@@ -981,7 +982,7 @@ public class Game {
                             anim.setOnFinished(event -> {
                                 blast.play();
                                 blast.seek(Duration.millis(0));
-                                destroyBlockAndUpdateScore(finalI);
+                                destroyBlockAndUpdateScore(finalI,pointsLocal);
                                 isGameRunning = true;
                                 if (finalKillsnake)
                                     ondeath();
@@ -1008,8 +1009,8 @@ public class Game {
      * Shows the destroy animation and then updates the score
      * @param i Operations to be done on block with index i
      */
-    private void destroyBlockAndUpdateScore(int i) {
-        points += blockslist.get(i).getValue();
+    private void destroyBlockAndUpdateScore(int i,int ptsLocal) {
+        points += ptsLocal;
         Totalscore += points;
         ImageView imageView = new ImageView("view/Animations/Explosion.gif");
         imageView.setLayoutY(blockslist.get(i).getLayoutY());

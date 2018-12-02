@@ -5,21 +5,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/SnakevsBloc.java" line="34" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="Shortcut to correct snake positions">
-      <change afterPath="$PROJECT_DIR$/src/sound/blast.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sound/blockhit.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sound/coin.mp3" afterDir="false" />
+    <list default="true" id="fb1f5d1e-49ea-4802-b00c-279e6262bebd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameModelStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GameModelStore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackRadius.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game$changeBackShield.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/Gui/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/ImageButton$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/APGame/view/ImageButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/APGame/view/ImageButton.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ImageButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ImageButton.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\Rohan\IdeaProjects\APGame2\.idea\shelf/" />
@@ -252,12 +241,14 @@
     <session id="1166804794">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="244" />
+          <entry key="java" value="312" />
+          <entry key="txt" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="244" />
+          <entry key="JAVA" value="312" />
+          <entry key="PLAIN_TEXT" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -277,8 +268,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="967" column="68" selection-start-line="967" selection-start-column="68" selection-end-line="967" selection-end-column="68" />
+            <state relative-caret-position="-85">
+              <caret line="929" column="66" selection-start-line="929" selection-start-column="66" selection-end-line="929" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#41799#41800#0" expanded="true" />
@@ -576,7 +567,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543754484361" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543755019979" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -1642,7 +1633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543732101160</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added audio to the game">
+      <created>1543754577077</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1543754577078</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1747,7 +1745,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mini collision" />
     <MESSAGE value="Implemented collision logic and made a score label" />
     <MESSAGE value="Reducing length of snake on collision" />
     <MESSAGE value="Made the looks better" />
@@ -1772,7 +1769,8 @@
     <MESSAGE value="Radius increases only on tokens" />
     <MESSAGE value="Created a countdown timer" />
     <MESSAGE value="Shortcut to correct snake positions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Shortcut to correct snake positions" />
+    <MESSAGE value="Added audio to the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added audio to the game" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/io/ObjectOutputStream.java" />
@@ -1848,6 +1846,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="49">
           <caret line="41" column="18" lean-forward="true" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2035,8 +2036,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="967" column="68" selection-start-line="967" selection-start-column="68" selection-end-line="967" selection-end-column="68" />
+        <state relative-caret-position="-85">
+          <caret line="929" column="66" selection-start-line="929" selection-start-column="66" selection-end-line="929" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#41799#41800#0" expanded="true" />
