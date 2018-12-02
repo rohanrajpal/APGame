@@ -935,15 +935,24 @@ public class Game {
                             boolean killsnake=false;
                             if (valueOfBlock >= snake.size())
                                 killsnake= true;
+
+                            int finalI = i;
                             for (int j = 0; j < Math.min(valueOfBlock,snake.size()); j++) {
                                 snake.size();
                                 Duration duration = Duration.millis(j * 100);
-                                KeyFrame keyFrame = new KeyFrame(duration, event -> rootLayout.getChildren().remove(snake.remove(snake.size() - 1)));
+                                int finalJ = j;
+                                KeyFrame keyFrame = new KeyFrame(duration, event -> {
+                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+//                                    int blockVal = Integer.parseInt(blockslist.get(finalI).gettext()) - 1;
+                                    blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
+                                }
+
+                                );
                                 anim.getKeyFrames().add(keyFrame);
                             }
 
                             anim.play();
-                            int finalI = i;
+
                             boolean finalKillsnake = killsnake;
                             anim.setOnFinished(event -> {
                                 destroyBlockAndUpdateScore(finalI);
