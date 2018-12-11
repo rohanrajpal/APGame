@@ -985,6 +985,10 @@ public class Game {
      * Collision with blocks
      */
     private void collisionWithBlocks() {
+        if(snake.size()<=0){
+            ondeath();
+
+        }
         for (int i=0;i<blockslist.size();i++) {
             Bounds bd = blockslist.get(i).getBoundsInParent();
 //            System.out.println(bd.getMinX());

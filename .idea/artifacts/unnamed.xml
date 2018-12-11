@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="unnamed">
+    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
+    <root id="root">
+      <element id="archive" name="archiveSnake.jar" />
+      <element id="archive" name="APGame.jar">
+        <element id="module-output" name="APGame" />
+      </element>
+    </root>
+  </artifact>
+</component>
