@@ -5,7 +5,6 @@ import controller.ControllerGame;
 import controller.ControllerLeaderboard;
 import javafx.animation.*;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
@@ -13,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -48,7 +45,7 @@ public class Game {
     private final static int SNAKEHEAD_RADIUS=20;
     private final static int BLOCK_RADIUS=40;
     private static int TOKEN_RADIUS=10;
-
+    private boolean keyreleased;
     private ScoreLabel scoreLabelText;
     private int Totalscore=0;
     private int points;
@@ -84,6 +81,8 @@ public class Game {
     private SnakeLengthLabel snakeLen;
     private ScoreLabel magLabel;
     private ScoreLabel shieldLabel;
+    private boolean isDarkMode;
+    private ArrayList<Double> snakecor;
 
     /**
      *The initial consutructor which when called creates necessary objects and calls
@@ -96,11 +95,12 @@ public class Game {
      * @param le    The previous leaderboard model
      */
     public Game(GameModel G,ArrayList<Block> bl,ArrayList<Token> tk,ArrayList<Wallswrapper> wa,LeaderBoardModel le){
+        isDarkMode=false;
         this.templeaderboard=le;
         this.GameStructure=G;
         snake=new ArrayList<>();
+        snakecor=new ArrayList<Double>();
         initmainlayout();
-        createKeyListeners();
         blockslist=bl;
         tokenslist=tk;
         walllist=wa;
@@ -247,11 +247,54 @@ public class Game {
      * This initializes all the key listeners
      * This game also has cheat codes to activate the power ups.
      */
+    AnimationTimer animate= new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            for (int i = snake.size() - 1; i > 0; i--) {
+                snakecor.set(i, snakecor.get(i - 1));
+            }
+            if (snake.get(0).getLayoutX() > 20) {
+                snakecor.set(0, snakecor.get(0)- snakeSpeed);
+            }
+            for (int i = 0; i < snake.size(); i++) {
+                snake.get(i).setLayoutX(snakecor.get(i));
+            }
+        }
+    };;
+    AnimationTimer  animate1 = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            for (int i = snake.size() - 1; i > 0; i--) {
+                snakecor.set(i, snakecor.get(i - 1));
+            }
+            for (int i = 0; i < snake.size(); i++) {
+                snake.get(i).setLayoutX(snakecor.get(i));
+            }
+        }
+    };
+    AnimationTimer  animate2 = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            for (int i = snake.size() - 1; i > 0; i--) {
+                snakecor.set(i, snakecor.get(i - 1));
+            }
+            if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
+                snakecor.set(0, snakecor.get(0)+ snakeSpeed);
+            }
+            for (int i = 0; i < snake.size(); i++) {
+                snake.get(i).setLayoutX(snakecor.get(i));
+            }
+        }
+    };
     private void createKeyListeners() {
         gameScene.setOnKeyPressed(event -> {
+            keyreleased=false;
             if (event.getCode() == KeyCode.LEFT){
+
                 isLeftKeyPressed = true;
-            }else if (event.getCode() == KeyCode.RIGHT){
+            }
+            else if (event.getCode() == KeyCode.RIGHT){
+
                 isRightKeyPressed = true;
             }
             //To check is Magnet is working correctly
@@ -270,9 +313,16 @@ public class Game {
             if (event.getCode() == KeyCode.C){
                 correctSnakePostions();
             }
+            if (event.getCode() == KeyCode.Q){
+                darkMode();
+            }
         });
 
         gameScene.setOnKeyReleased(event -> {
+                System.out.println("released");
+                animate.stop();
+                animate2.stop();
+                animate1.start();
             if (event.getCode() == KeyCode.LEFT){
                 isLeftKeyPressed = false;
             }else if (event.getCode() == KeyCode.RIGHT){
@@ -308,6 +358,7 @@ public class Game {
         moveBlocks();
         moveWalls();
         createscoreLabelText();
+        createKeyListeners();
     }
     /**
      * Calls necessary functions to deserialize a game
@@ -321,6 +372,7 @@ public class Game {
         moveBlocks();
         moveWalls();
         createscoreLabelText();
+        createKeyListeners();
     }
 
     /**
@@ -548,6 +600,7 @@ public class Game {
             public void handle() {
                 if (isGameRunning) {
                     //createwall();
+                    darkModeInvisible();
                     moveBlocks();
                     moveWalls();
                     relocateelementsbelowscreen();
@@ -682,45 +735,53 @@ public class Game {
      * Function to smoothly move left
      */
     private void moveLeft() {
-        if (snake.get(0).getLayoutX() > 20) {
-            for (int i = 0; i < snake.size(); i++) {
-                ImageView p = snake.get(i);
-                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
-                transition.setFromX(p.getTranslateX());
-                transition.setFromY(p.getTranslateY());
-                transition.setToX(p.getTranslateX());
-                transition.setToY(p.getTranslateY());
-                transition.playFromStart();
-                transition.setOnFinished(t -> {
-                    p.setLayoutX(p.getLayoutX() - (snakeSpeed));
-                    p.setLayoutY(p.getLayoutY());
-                });
-                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
-                //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - snakeSpeed);
-            }
-        }
+
+        animate1.stop();
+        animate2.stop();
+        animate.start();
+
+//        if (snake.get(0).getLayoutX() > 20) {
+//            for (int i = 0; i < snake.size(); i++) {
+//                ImageView p = snake.get(i);
+//                final TranslateTransition transition = new TranslateTransition(Duration.millis((i + 1) * (60)), p);
+//                transition.setFromX(p.getTranslateX());
+//                transition.setFromY(p.getTranslateY());
+//                transition.setToX(p.getTranslateX());
+//                transition.setToY(p.getTranslateY());
+//                transition.playFromStart();
+//                transition.setOnFinished(t -> {
+//                    p.setLayoutX(p.getLayoutX() - (snakeSpeed));
+//                    p.setLayoutY(p.getLayoutY());
+//                });
+//                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
+//                //snake.get(i).setLayoutX(snake.get(i).getLayoutX() - snakeSpeed);
+//            }
+//        }
     }
 
     /**
      * Function to smoothly move right
      */
     private void moveRight(){
-        if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
-            for (int i = 0; i < snake.size(); i++) {
-                ImageView p = snake.get(i);
-                final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1) * (60)), p);
-                transition.setFromX(p.getTranslateX());
-                transition.setFromY(p.getTranslateY());
-                transition.setToX(p.getTranslateX());
-                transition.setToY(p.getTranslateY());
-                transition.playFromStart();
-                transition.setOnFinished(t -> {
-                    p.setLayoutX(p.getLayoutX() + snakeSpeed);
-                    p.setLayoutY(p.getLayoutY());
-                });
-                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
-            }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
-        }
+        animate1.stop();
+        animate.stop();
+        animate2.start();
+//        if(snake.get(0).getLayoutX()<gameScene.getWidth()-55) {
+//            for (int i = 0; i < snake.size(); i++) {
+//                ImageView p = snake.get(i);
+//                final TranslateTransition transition = new TranslateTransition(Duration.millis((i+1) * (60)), p);
+//                transition.setFromX(p.getTranslateX());
+//                transition.setFromY(p.getTranslateY());
+//                transition.setToX(p.getTranslateX());
+//                transition.setToY(p.getTranslateY());
+//                transition.playFromStart();
+//                transition.setOnFinished(t -> {
+//                    p.setLayoutX(p.getLayoutX() + snakeSpeed);
+//                    p.setLayoutY(p.getLayoutY());
+//                });
+//                GameStructure.getSnake().setX(this.snake.get(0).getLayoutX());
+//            }//snake.get(i).setLayoutX(snake.get(i).getLayoutX() + 3);
+//        }
     }
 
     /**
@@ -744,7 +805,6 @@ public class Game {
                 moveRight();
             }
         }
-
     }
 
     /**
@@ -759,11 +819,13 @@ public class Game {
             snake.get(i).setLayoutX(GameStructure.getSnake().getX());
             snake.get(i).setLayoutY(GameStructure.getSnake().getY()+(i*25));
             rootLayout.getChildren().add(snake.get(i));
+            snakecor.add(snake.get(i).getLayoutX());
         }
         snakeLen = new SnakeLengthLabel("5");
         snakeLen.setLayoutX(snake.get(0).getLayoutX());
         snakeLen.setLayoutY(snake.get(0).getLayoutY()-25);
         rootLayout.getChildren().add(snakeLen);
+        System.out.println(snake.size());
     }
 
     /**
@@ -825,8 +887,12 @@ public class Game {
                 wall x = aWalllist.getWalls().get(j);
                 if (snake.get(0).getBoundsInParent().intersects(x.getBoundsInParent())) {
                     if (snake.get(0).getLayoutX() - x.getLayoutX() >= -5) {
+                        animate.stop();
+                        animate1.start();
                         facesWallleft = true;
                     } else {
+                        animate2.stop();
+                        animate1.start();
                         facesWallright = true;
                     }
                 }
@@ -919,14 +985,22 @@ public class Game {
      * Collision with blocks
      */
     private void collisionWithBlocks() {
+        if(snake.size()<=0){
+            ondeath();
+
+        }
         for (int i=0;i<blockslist.size();i++) {
             Bounds bd = blockslist.get(i).getBoundsInParent();
 //            System.out.println(bd.getMinX());
             Bounds snakBd =snake.get(0).getBoundsInParent();
-
+            if (SNAKEHEAD_RADIUS+100 > calcculateDistance(snake.get(0).getLayoutX() + 20,
+                    blockslist.get(i).getLayoutX()+blockslist.get(i).getPrefWidth()/2,
+                    snake.get(0).getLayoutY()+ 20,
+                    blockslist.get(i).getLayoutY()+blockslist.get(i).getPrefHeight()/2)){
+                blockslist.get(i).setVisible(true);
+            }
             if (blockslist.get(i).getBoundsInParent().intersects(snake.get(0).getBoundsInParent())) {
 //                System.out.println(bd+"\n"+snakBd);
-
                 if(snakBd.intersects(bd.getMinX(),bd.getMinY()+70,
                         bd.getWidth(),bd.getHeight()-78)){
                     isGameRunning = false;
@@ -941,8 +1015,10 @@ public class Game {
                             }
                             if (!isShieldOn) {
                                 for (int r = 0; r < valueOfBlock; r++) {
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
-
+                                    if (snake.size()>0){
+                                        snakecor.remove(snakecor.size()-1);
+                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                    }
                                 }
                             }
                             blast.play();
@@ -965,11 +1041,15 @@ public class Game {
                                 Duration duration = Duration.millis(j * 100);
                                 int finalJ = j;
                                 KeyFrame keyFrame = new KeyFrame(duration, event -> {
-                                    blockhit.play();
-                                    blockhit.seek(Duration.millis(0));
-                                    rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
+                                    if(snake.size()>0){
+                                        blockhit.play();
+                                        blockhit.seek(Duration.millis(0));
+                                        snakecor.remove(snakecor.size()-1);
+                                        rootLayout.getChildren().remove(snake.remove(snake.size() - 1));
 //                                    int blockVal = Integer.parseInt(blockslist.get(finalI).gettext()) - 1;
-                                    blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
+                                        blockslist.get(finalI).setText(String.valueOf(valueOfBlock- finalJ));
+                                    }
+
                                 }
 
                                 );
@@ -1044,8 +1124,8 @@ public class Game {
                 }
                 snake.get(snake.size() - 1).setLayoutX(toSetX+offSet);
                 snake.get(snake.size() - 1).setLayoutY(toSetY);
+                snakecor.add(toSetX);
                 rootLayout.getChildren().add(snake.get(snake.size() - 1));
-
         }
     }
 
@@ -1243,5 +1323,30 @@ public class Game {
      */
     private double calcculateDistance(double x1,double x2,double y1,double y2){
         return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
+    }
+
+    private void darkModeInvisible(){
+        if (isDarkMode){
+            for (int i=0;i<blockslist.size();i++){
+                blockslist.get(i).setVisible(false);
+            }
+        }
+    }
+    private void darkMode(){
+//        blockslist.get(0).setVisible();
+
+        isDarkMode=true;
+        createAndDisplayTimer();
+        timer = new Timer();
+        timer.schedule(new changeBackVisibility(), 5* 1000);
+    }
+
+    private class changeBackVisibility extends TimerTask {
+        @Override
+        public void run() {
+            Platform.runLater(()->{
+                isDarkMode=false;
+            });
+        }
     }
 }
